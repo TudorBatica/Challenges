@@ -12,7 +12,7 @@ class SignInForm extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(const SnackBar(
-                content: Text('Login failed. Please, try again.')));
+                content: Text('Sign in failed. Please, try again.')));
         }
       },
       child: Align(
@@ -22,7 +22,9 @@ class SignInForm extends StatelessWidget {
               const SizedBox(height: 16.0),
               _EmailInput(),
               const SizedBox(height: 8.0),
-              _PasswordInput()
+              _PasswordInput(),
+              const SizedBox(height: 8.0),
+              _SignInButton()
             ],
           ),
         ),
@@ -35,6 +37,7 @@ class _EmailInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignInCubit, SignInState>(
+      buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
         return TextField(
           key: const Key('signInForm_emailInput_textField'),
@@ -52,18 +55,37 @@ class _EmailInput extends StatelessWidget {
 class _PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignInCubit, SignInState>(builder: (context, state) {
-      return TextField(
-        key: const Key('signInForm_passwordInput_textField'),
-        onChanged: (password) =>
-            context.read<SignInCubit>().passwordChanged(password),
-        obscureText: true,
-        decoration: InputDecoration(
-            labelText: 'password',
-            errorText: state.password.invalid ? 'invalid password' : null),
-      );
-    });
+    return BlocBuilder<SignInCubit, SignInState>(
+        buildWhen: (previous, current) => previous.password != current.password,
+        builder: (context, state) {
+          return TextField(
+            key: const Key('signInForm_passwordInput_textField'),
+            onChanged: (password) =>
+                context.read<SignInCubit>().passwordChanged(password),
+            obscureText: true,
+            decoration: InputDecoration(
+                labelText: 'password',
+                errorText: state.password.invalid ? 'invalid password' : null),
+          );
+        });
   }
 }
 
-//class
+class _SignInButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SignInCubit, SignInState>(
+        buildWhen: (previous, current) => previous.status != current.status,
+        builder: (context, state) {
+          return state.status.isSubmissionInProgress
+              ? const CircularProgressIndicator()
+              : TextButton(
+                  onPressed: state.status.isValidated
+                      ? () => context
+                          .read<SignInCubit>()
+                          .signInWithEmailAndPassword()
+                      : null,
+                  child: Text("Sign In"));
+        });
+  }
+}
