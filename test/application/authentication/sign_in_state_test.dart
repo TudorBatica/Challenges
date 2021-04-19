@@ -32,5 +32,9 @@ void main() {
       expect(SignInState().copyWith(status: FormzStatus.submissionSuccess),
           SignInState(status: FormzStatus.submissionSuccess));
     });
+
+    test('identical objects value-wise have identical hash codes', () {
+      expect(SignInState().hashCode, SignInState().hashCode);
+    });
   });
 }
