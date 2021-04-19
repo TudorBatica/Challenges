@@ -24,7 +24,9 @@ class SignInForm extends StatelessWidget {
               const SizedBox(height: 8.0),
               _PasswordInput(),
               const SizedBox(height: 8.0),
-              _SignInButton()
+              _SignInButton(),
+              const SizedBox(height: 8.0),
+              _GoToSignUpButton()
             ],
           ),
         ),
@@ -87,5 +89,13 @@ class _SignInButton extends StatelessWidget {
                       : null,
                   child: Text("Sign In"));
         });
+  }
+}
+
+class _GoToSignUpButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+        onPressed: () {}, child: Text("Don't have an account? Sign up here."));
   }
 }
