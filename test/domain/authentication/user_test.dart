@@ -15,5 +15,10 @@ void main() {
           id: id, email: email, name: name, profilePicture: profilePicture);
       expect(someUser, sameUser);
     });
+
+    test('recognizes anonymous user (unauthenticated)', () {
+      final anonUser = User(id: '');
+      expect(anonUser.isAnonymous, true);
+    });
   });
 }

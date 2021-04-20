@@ -54,11 +54,11 @@ LH:7
 end_of_record
 SF:lib\domain\authentication\user.dart
 DA:9,6
-DA:24,0
+DA:24,2
 DA:26,1
 DA:27,5
 LF:4
-LH:3
+LH:4
 end_of_record
 SF:lib\application\authentication\sign_up_cubit.dart
 DA:15,2
