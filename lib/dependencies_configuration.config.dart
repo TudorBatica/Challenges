@@ -10,10 +10,11 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import 'application/authentication/sign_in_cubit.dart' as _i6;
 import 'application/authentication/sign_up_cubit.dart' as _i7;
+import 'application/core/app_cubit.dart' as _i8;
 import 'infrastructure/authentication/authentication_repository.dart' as _i4;
 import 'infrastructure/authentication/firebase_auth_repository.dart' as _i5;
 import 'infrastructure/authentication/firebase_injectable_module.dart'
-    as _i8; // ignore_for_file: unnecessary_lambdas
+    as _i9; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -29,7 +30,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i6.SignInCubit(get<_i4.AuthenticationRepository>()));
   gh.factory<_i7.SignUpCubit>(
       () => _i7.SignUpCubit(get<_i4.AuthenticationRepository>()));
+  gh.factory<_i8.AppCubit>(
+      () => _i8.AppCubit(get<_i4.AuthenticationRepository>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i8.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i9.FirebaseInjectableModule {}

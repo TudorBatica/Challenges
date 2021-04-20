@@ -1,4 +1,6 @@
+import 'package:challengesapp/application/core/app_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -14,6 +16,12 @@ class ProfilePage extends StatelessWidget {
           title: Text(
         'User Profile',
       )),
+      body: BlocBuilder<AppCubit, AppState>(
+        builder: (context, state) {
+          String text = state.user.email ?? "not signed in";
+          return Text(text);
+        },
+      ),
     );
   }
 }
