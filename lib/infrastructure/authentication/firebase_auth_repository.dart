@@ -1,3 +1,4 @@
+import 'package:challengesapp/domain/authentication/user.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:injectable/injectable.dart';
 
@@ -11,6 +12,13 @@ class FirebaseAuthRepository implements AuthenticationRepository {
   final firebase_auth.FirebaseAuth _firebaseAuth;
 
   FirebaseAuthRepository(this._firebaseAuth);
+
+  @override
+  Stream<User> get user {
+    return _firebaseAuth.authStateChanges().map((firebaseUser) {
+      return firebaseUser == null ? User.anonymous : firebaseUser.toUser;
+    });
+  }
 
   @override
   Future<void> signInWithEmailAndPassword(
@@ -33,4 +41,19 @@ class FirebaseAuthRepository implements AuthenticationRepository {
       throw SignUpWithEmailAndPasswordFailure();
     }
   }
+
+  @override
+  Future<void> signOut() async {
+    try {
+      await _firebaseAuth.signOut();
+    } on Exception {
+      throw SignOutFailure();
+    }
+  }
+}
+
+/// Maps Firebase user to domain user
+extension on firebase_auth.User {
+  User get toUser =>
+      User(id: uid, email: email, name: displayName, profilePicture: photoURL);
 }

@@ -1,6 +1,6 @@
 import 'package:challengesapp/application/authentication/sign_in_cubit.dart';
 import 'package:challengesapp/presentation/authentication/sign_up_page.dart';
-import 'package:challengesapp/presentation/home/home_page.dart';
+import 'package:challengesapp/presentation/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -17,7 +17,7 @@ class SignInForm extends StatelessWidget {
                 content: Text('Sign in failed. Please, try again.')));
         }
         if (state.status.isSubmissionSuccess) {
-          Navigator.of(context).push(HomePage.materialPageRoute());
+          Navigator.of(context).push(ProfilePage.materialPageRoute());
         }
       },
       child: Align(
