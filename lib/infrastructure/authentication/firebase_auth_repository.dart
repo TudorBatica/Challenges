@@ -29,17 +29,8 @@ class FirebaseAuthRepository implements AuthenticationRepository {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
-    } on firebase_auth.FirebaseAuthException catch (e) {
-      _handleSignUpException(e);
-    }
-  }
-
-  void _handleSignUpException(firebase_auth.FirebaseAuthException exception) {
-    switch (exception.code.toUpperCase()) {
-      case "EMAIL-ALREADY-IN-USE":
-        throw EmailAlreadyInUseFailure();
-      default:
-        throw SignUpWithEmailAndPasswordFailure();
+    } on Exception {
+      throw SignUpWithEmailAndPasswordFailure();
     }
   }
 }
