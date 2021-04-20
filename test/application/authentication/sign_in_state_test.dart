@@ -28,7 +28,7 @@ void main() {
           SignInState(password: password));
     });
 
-    test('returns object with changed status when email is status', () {
+    test('returns object with changed status when status is passed', () {
       expect(SignInState().copyWith(status: FormzStatus.submissionSuccess),
           SignInState(status: FormzStatus.submissionSuccess));
     });
