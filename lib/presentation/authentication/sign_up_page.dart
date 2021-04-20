@@ -1,4 +1,8 @@
+import 'package:challengesapp/application/authentication/sign_up_cubit.dart';
+import 'package:challengesapp/dependencies_configuration.dart';
+import 'package:challengesapp/presentation/authentication/sign_up_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -9,6 +13,11 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: BlocProvider(
+        create: (_) => getIt<SignUpCubit>(),
+        child: SignUpForm(),
+      ),
+    );
   }
 }

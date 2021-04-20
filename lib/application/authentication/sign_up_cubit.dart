@@ -12,8 +12,7 @@ part 'sign_up_state.dart';
 
 @injectable
 class SignUpCubit extends Cubit<SignUpState> {
-  SignUpCubit(SignUpState initialState, this._authenticationRepository)
-      : super(initialState);
+  SignUpCubit(this._authenticationRepository) : super(const SignUpState());
 
   final AuthenticationRepository _authenticationRepository;
 
@@ -50,7 +49,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     ));
   }
 
-  Future<void> signUpFormSubmitted() async {
+  Future<void> signUpWithEmailAndPassword() async {
     if (!state.status.isValidated) return;
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
