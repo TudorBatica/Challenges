@@ -88,8 +88,8 @@ void main() {
           expect: () => const []);
 
       blocTest<SignInCubit, SignInState>(
-          'emits submissionInProgress and then submissionSuccess ' +
-              'when signInWithEmailAndPassword is successful',
+          '''emits submissionInProgress and then submissionSuccess 
+              when signInWithEmailAndPassword is successful''',
           build: () => SignInCubit(authenticationRepository),
           seed: () => SignInState(
                 status: FormzStatus.valid,

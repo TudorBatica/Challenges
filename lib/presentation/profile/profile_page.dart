@@ -1,10 +1,14 @@
-import 'package:challengesapp/application/core/app_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../application/core/app_cubit.dart';
+
+/// User profile page widget
 class ProfilePage extends StatelessWidget {
+  /// Constructor
   const ProfilePage({Key? key}) : super(key: key);
 
+  /// Returns a `MaterialPageRoute` with a `ProfilePage` builder
   static Route materialPageRoute() {
     return MaterialPageRoute<void>(builder: (_) => const ProfilePage());
   }
@@ -18,8 +22,7 @@ class ProfilePage extends StatelessWidget {
       )),
       body: BlocBuilder<AppCubit, AppState>(
         builder: (context, state) {
-          String text = state.user.email ?? "not signed in";
-          return Text(text);
+          return Text(state.user.email ?? "not signed in");
         },
       ),
     );

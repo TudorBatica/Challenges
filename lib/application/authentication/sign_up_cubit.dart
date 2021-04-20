@@ -1,21 +1,25 @@
-import 'package:challengesapp/domain/authentication/confirmed_password.dart';
-import 'package:challengesapp/domain/authentication/email.dart';
-import 'package:challengesapp/infrastructure/authentication/authentication_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:challengesapp/domain/authentication/password.dart';
 import 'package:formz/formz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
+import '../../domain/authentication/confirmed_password.dart';
+import '../../domain/authentication/email.dart';
+import '../../domain/authentication/password.dart';
+import '../../infrastructure/authentication/authentication_repository.dart';
+
 part 'sign_up_state.dart';
 
+/// Cubit which manages the sign up form state
 @injectable
 class SignUpCubit extends Cubit<SignUpState> {
+  /// Constructor
   SignUpCubit(this._authenticationRepository) : super(const SignUpState());
 
   final AuthenticationRepository _authenticationRepository;
 
+  /// Update state with new email
   void emailChanged(String value) {
     final email = Email.dirty(value);
     emit(state.copyWith(
@@ -25,6 +29,7 @@ class SignUpCubit extends Cubit<SignUpState> {
             Formz.validate([email, state.password, state.confirmedPassword])));
   }
 
+  /// Update state with new password
   void passwordChanged(String value) {
     final password = Password.dirty(value);
     emit(state.copyWith(
@@ -34,6 +39,7 @@ class SignUpCubit extends Cubit<SignUpState> {
             Formz.validate([state.email, password, state.confirmedPassword])));
   }
 
+  /// Update state with new confirmed password
   void confirmedPasswordChanged(String value) {
     final confirmedPassword = ConfirmedPassword.dirty(
       password: state.password.value,
@@ -49,6 +55,7 @@ class SignUpCubit extends Cubit<SignUpState> {
     ));
   }
 
+  /// Handle sign up form submission
   Future<void> signUpWithEmailAndPassword() async {
     if (!state.status.isValidated) {
       return;

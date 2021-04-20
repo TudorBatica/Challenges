@@ -1,12 +1,16 @@
-import 'package:challengesapp/application/authentication/sign_up_cubit.dart';
-import 'package:challengesapp/dependencies_configuration.dart';
-import 'package:challengesapp/presentation/authentication/sign_up_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../application/authentication/sign_up_cubit.dart';
+import '../../dependencies_configuration.dart';
+import 'sign_up_form.dart';
+
+/// Sign up page widget
 class SignUpPage extends StatelessWidget {
+  /// Constructor
   const SignUpPage({Key? key}) : super(key: key);
 
+  /// Returns a `MaterialPageRoute` with a `SignUpPage` builder.
   static Route materialPageRoute() {
     return MaterialPageRoute<void>(builder: (_) => const SignUpPage());
   }

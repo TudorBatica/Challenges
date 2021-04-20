@@ -1,7 +1,8 @@
-import 'package:challengesapp/dependencies_configuration.dart';
-import 'package:challengesapp/presentation/core/root_widget.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
+import 'dependencies_configuration.dart';
+import 'presentation/core/root_widget.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,7 +1,7 @@
-import 'package:challengesapp/domain/authentication/user.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:injectable/injectable.dart';
 
+import '../../domain/authentication/user.dart';
 import 'authentication_failures.dart';
 import 'authentication_repository.dart';
 
@@ -11,6 +11,7 @@ import 'authentication_repository.dart';
 class FirebaseAuthRepository implements AuthenticationRepository {
   final firebase_auth.FirebaseAuth _firebaseAuth;
 
+  /// Constructor
   FirebaseAuthRepository(this._firebaseAuth);
 
   @override

@@ -1,10 +1,12 @@
-import 'package:challengesapp/application/authentication/sign_in_cubit.dart';
-import 'package:challengesapp/presentation/authentication/sign_up_page.dart';
-import 'package:challengesapp/presentation/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
+import '../../application/authentication/sign_in_cubit.dart';
+import '../profile/profile_page.dart';
+import 'sign_up_page.dart';
+
+/// Sign in form widget
 class SignInForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
