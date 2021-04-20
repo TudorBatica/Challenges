@@ -1,7 +1,7 @@
 import 'package:challengesapp/presentation/authentication/sign_in_page.dart';
 import 'package:flutter/material.dart';
 
-class AppRoot extends StatelessWidget {
+class RootWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

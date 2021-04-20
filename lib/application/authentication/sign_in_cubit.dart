@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:challengesapp/domain/authentication/email.dart';
 import 'package:challengesapp/domain/authentication/password.dart';
 import 'package:challengesapp/infrastructure/authentication/authentication_repository.dart';
+import 'package:equatable/equatable.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:formz/formz.dart';
 import 'package:injectable/injectable.dart';

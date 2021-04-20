@@ -1,7 +1,7 @@
 part of 'sign_in_cubit.dart';
 
 @immutable
-class SignInState {
+class SignInState extends Equatable {
   const SignInState(
       {this.email = const Email.pure(),
       this.password = const Password.pure(),
@@ -12,17 +12,7 @@ class SignInState {
   final FormzStatus status;
 
   @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is SignInState &&
-        other.email == email &&
-        other.password == password &&
-        other.status == status;
-  }
-
-  @override
-  int get hashCode => email.hashCode ^ password.hashCode ^ status.hashCode;
+  List<Object?> get props => [email, password, status];
 
   SignInState copyWith({
     Email? email,
