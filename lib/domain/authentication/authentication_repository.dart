@@ -1,4 +1,4 @@
-import '../../domain/authentication/user.dart';
+import 'user.dart';
 
 /// Repository which manages user authentication.
 abstract class AuthenticationRepository {

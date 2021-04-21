@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
+import '../../domain/authentication/authentication_repository.dart';
 import '../../domain/authentication/user.dart';
-import '../../infrastructure/authentication/authentication_repository.dart';
 
 part 'app_state.dart';
 

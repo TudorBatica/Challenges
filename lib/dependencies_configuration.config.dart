@@ -10,8 +10,8 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import 'application/authentication/sign_in_cubit.dart' as _i6;
 import 'application/authentication/sign_up_cubit.dart' as _i7;
-import 'application/core/app_cubit.dart' as _i8;
-import 'infrastructure/authentication/authentication_repository.dart' as _i4;
+import 'application/common/app_cubit.dart' as _i8;
+import 'domain/authentication/authentication_repository.dart' as _i4;
 import 'infrastructure/authentication/firebase_auth_repository.dart' as _i5;
 import 'infrastructure/authentication/firebase_injectable_module.dart' as _i10;
 import 'presentation/navigation/navigation_service.dart'

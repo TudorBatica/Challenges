@@ -1,5 +1,5 @@
+import 'package:challengesapp/application/common/app_cubit.dart';
 import 'package:challengesapp/presentation/authentication/sign_in_page.dart';
-import 'package:challengesapp/presentation/core/base_page.dart';
 import 'package:challengesapp/presentation/home/home_page.dart';
 import 'package:challengesapp/presentation/navigation/navigation_service.dart';
 import 'package:challengesapp/presentation/navigation/route_names.dart';
@@ -8,8 +8,8 @@ import 'package:challengesapp/presentation/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/core/app_cubit.dart';
 import '../../dependencies_configuration.dart';
+import 'base_page.dart';
 
 /// App's main widget.
 class RootWidget extends StatelessWidget {

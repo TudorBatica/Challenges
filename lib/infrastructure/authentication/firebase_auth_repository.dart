@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:injectable/injectable.dart';
 
+import '../../domain/authentication/authentication_repository.dart';
 import '../../domain/authentication/user.dart';
 import 'authentication_failures.dart';
-import 'authentication_repository.dart';
 
 /// Authentication Repository implementation
 /// which makes use of FirebaseAuth services.
