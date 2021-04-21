@@ -1,7 +1,8 @@
 import 'package:challengesapp/application/common/app_cubit.dart';
+import 'package:challengesapp/application/navigation/navigation_service.dart';
 import 'package:challengesapp/presentation/authentication/sign_in_page.dart';
 import 'package:challengesapp/presentation/home/home_page.dart';
-import 'package:challengesapp/application/navigation/navigation_service.dart';
+import 'package:challengesapp/application/navigation/navigation_service_impl.dart';
 import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:challengesapp/application/navigation/router.dart';
 import 'package:challengesapp/presentation/profile/profile_page.dart';
