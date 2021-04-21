@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 
 import 'navigation_service.dart';
 
+/// Navigation Service implementation which uses the built in NavigatorState
 @LazySingleton(as: NavigationService)
 class NavigationServiceImpl implements NavigationService {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();

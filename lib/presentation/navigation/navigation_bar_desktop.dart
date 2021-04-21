@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'navigation_item.dart';
 import '../../application/navigation/route_names.dart';
+import 'navigation_item.dart';
 
+/// Navbar for wide screens. Displays the nav items on the bar itself.
 class NavigationBarTabletDesktop extends StatelessWidget {
+  /// Constructor
   const NavigationBarTabletDesktop({Key? key}) : super(key: key);
 
   @override

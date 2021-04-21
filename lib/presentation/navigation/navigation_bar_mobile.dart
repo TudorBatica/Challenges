@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+/// Navbar for narrow screens. Displays the icon for the side drawer.
 class NavigationBarMobile extends StatelessWidget {
+  /// Constructor
   const NavigationBarMobile({Key? key}) : super(key: key);
 
   @override

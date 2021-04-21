@@ -1,10 +1,12 @@
-import 'package:challengesapp/presentation/authentication/sign_in_page.dart';
-import 'package:challengesapp/presentation/authentication/sign_up_page.dart';
-import 'package:challengesapp/presentation/home/home_page.dart';
-import 'package:challengesapp/application/navigation/route_names.dart';
-import 'package:challengesapp/presentation/profile/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../presentation/authentication/sign_in_page.dart';
+import '../../presentation/authentication/sign_up_page.dart';
+import '../../presentation/home/home_page.dart';
+import '../../presentation/profile/profile_page.dart';
+import 'route_names.dart';
+
+/// Retrieves the correct route using its path
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
     case homeRoute:
@@ -33,14 +35,14 @@ class _FadeRoute extends PageRouteBuilder {
           pageBuilder: (
             context,
             animation,
-            Animation<double> secondaryAnimation,
+            secondaryAnimation,
           ) =>
               child,
           transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
+            context,
+            animation,
+            secondaryAnimation,
+            child,
           ) =>
               FadeTransition(
             opacity: animation,

@@ -1,9 +1,12 @@
-import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:flutter/material.dart';
 
+import '../../application/navigation/route_names.dart';
 import 'navigation_item.dart';
 
+/// Side drawer which displays the navbar items.
+/// Should be used for mobile(narrow) screens.
 class NavigationDrawer extends StatelessWidget {
+  /// Constructor
   const NavigationDrawer({Key? key}) : super(key: key);
 
   @override

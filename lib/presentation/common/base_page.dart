@@ -1,11 +1,15 @@
-import 'package:challengesapp/presentation/navigation/navigation_bar.dart';
-import 'package:challengesapp/presentation/navigation/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
+import '../navigation/navigation_bar.dart';
+import '../navigation/navigation_drawer.dart';
+
+/// Page layout template
 class BasePage extends StatelessWidget {
+  /// Content displayed below the navbar(the actual page)
   final Widget? child;
 
+  /// Constructor
   const BasePage({Key? key, this.child}) : super(key: key);
 
   @override
