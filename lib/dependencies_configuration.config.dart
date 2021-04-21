@@ -13,7 +13,8 @@ import 'application/authentication/sign_up_cubit.dart' as _i7;
 import 'application/core/app_cubit.dart' as _i8;
 import 'infrastructure/authentication/authentication_repository.dart' as _i4;
 import 'infrastructure/authentication/firebase_auth_repository.dart' as _i5;
-import 'infrastructure/authentication/firebase_injectable_module.dart'
+import 'infrastructure/authentication/firebase_injectable_module.dart' as _i10;
+import 'presentation/navigation/navigation_service.dart'
     as _i9; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
@@ -32,7 +33,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       () => _i7.SignUpCubit(get<_i4.AuthenticationRepository>()));
   gh.factory<_i8.AppCubit>(
       () => _i8.AppCubit(get<_i4.AuthenticationRepository>()));
+  gh.singleton<_i9.NavigationService>(_i9.NavigationService());
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i9.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i10.FirebaseInjectableModule {}
