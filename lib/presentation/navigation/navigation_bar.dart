@@ -6,13 +6,16 @@ import 'navigation_bar_mobile.dart';
 
 /// Renders the appropriate navbar, based on screen width.
 class NavigationBar extends StatelessWidget {
+  /// Drawer key used to open the nav drawer. Passed from the root scaffold.
+  final GlobalKey<ScaffoldState> drawerKey;
+
   /// Constructor
-  const NavigationBar({Key? key}) : super(key: key);
+  const NavigationBar({Key? key, required this.drawerKey}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
-      mobile: NavigationBarMobile(),
+      mobile: NavigationBarMobile(drawerKey: drawerKey),
       tablet: NavigationBarTabletDesktop(),
     );
   }

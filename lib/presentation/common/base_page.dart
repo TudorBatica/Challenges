@@ -9,8 +9,10 @@ class BasePage extends StatelessWidget {
   /// Content displayed below the navbar(the actual page)
   final Widget? child;
 
+  final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
+
   /// Constructor
-  const BasePage({Key? key, this.child}) : super(key: key);
+  BasePage({Key? key, this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +26,13 @@ class BasePage extends StatelessWidget {
 
     return ResponsiveBuilder(
       builder: (context, sizingInformation) => Scaffold(
+        key: _drawerKey,
         drawer: sizingInformation.deviceScreenType == DeviceScreenType.mobile
             ? NavigationDrawer()
             : null,
         backgroundColor: Colors.white,
         body: Column(
-          children: <Widget>[NavigationBar(), body],
+          children: [NavigationBar(drawerKey: _drawerKey), body],
         ),
       ),
     );
