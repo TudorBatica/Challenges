@@ -10,11 +10,6 @@ class SignUpPage extends StatelessWidget {
   /// Constructor
   const SignUpPage({Key? key}) : super(key: key);
 
-  /// Returns a `MaterialPageRoute` with a `SignUpPage` builder.
-  static Route materialPageRoute() {
-    return MaterialPageRoute<void>(builder: (_) => const SignUpPage());
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

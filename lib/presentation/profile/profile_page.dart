@@ -8,11 +8,6 @@ class ProfilePage extends StatelessWidget {
   /// Constructor
   const ProfilePage({Key? key}) : super(key: key);
 
-  /// Returns a [MaterialPageRoute] with a [ProfilePage] builder
-  static Route materialPageRoute() {
-    return MaterialPageRoute<void>(builder: (_) => const ProfilePage());
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

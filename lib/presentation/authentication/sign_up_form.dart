@@ -3,8 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
 import '../../application/authentication/sign_up_cubit.dart';
-import '../profile/profile_page.dart';
-import 'sign_in_page.dart';
+import '../../application/navigation/navigation_service.dart';
+import '../../application/navigation/route_names.dart';
+import '../../dependencies_configuration.dart';
 
 /// Sign up form widget
 class SignUpForm extends StatelessWidget {
@@ -19,7 +20,7 @@ class SignUpForm extends StatelessWidget {
                 content: Text('Sign up failed. Please, try again.')));
         }
         if (state.status.isSubmissionSuccess) {
-          Navigator.of(context).push(ProfilePage.materialPageRoute());
+          getIt<NavigationService>().navigateTo(profileRoute);
         }
       },
       child: Align(
@@ -128,8 +129,7 @@ class _GoToSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () =>
-            Navigator.of(context).push(SignInPage.materialPageRoute()),
+        onPressed: () => getIt<NavigationService>().navigateTo(signInRoute),
         child: Text("Already have an account? Sign in here."));
   }
 }
