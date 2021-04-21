@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'navigation_item.dart';
-import 'route_names.dart';
+import '../../application/navigation/route_names.dart';
 
 class NavigationBarTabletDesktop extends StatelessWidget {
   const NavigationBarTabletDesktop({Key? key}) : super(key: key);

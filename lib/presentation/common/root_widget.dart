@@ -1,9 +1,9 @@
 import 'package:challengesapp/application/common/app_cubit.dart';
 import 'package:challengesapp/presentation/authentication/sign_in_page.dart';
 import 'package:challengesapp/presentation/home/home_page.dart';
-import 'package:challengesapp/presentation/navigation/navigation_service.dart';
-import 'package:challengesapp/presentation/navigation/route_names.dart';
-import 'package:challengesapp/presentation/navigation/router.dart';
+import 'package:challengesapp/application/navigation/navigation_service.dart';
+import 'package:challengesapp/application/navigation/route_names.dart';
+import 'package:challengesapp/application/navigation/router.dart';
 import 'package:challengesapp/presentation/profile/profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +18,7 @@ class RootWidget extends StatelessWidget {
     return BlocProvider(
       create: (_) => getIt<AppCubit>(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Challenges App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

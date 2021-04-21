@@ -14,7 +14,7 @@ import 'application/common/app_cubit.dart' as _i8;
 import 'domain/authentication/authentication_repository.dart' as _i4;
 import 'infrastructure/authentication/firebase_auth_repository.dart' as _i5;
 import 'infrastructure/authentication/firebase_injectable_module.dart' as _i10;
-import 'presentation/navigation/navigation_service.dart'
+import 'application/navigation/navigation_service.dart'
     as _i9; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars

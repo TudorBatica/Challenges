@@ -1,4 +1,4 @@
-import 'package:challengesapp/presentation/navigation/route_names.dart';
+import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:flutter/material.dart';
 
 import 'navigation_item.dart';

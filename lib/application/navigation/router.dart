@@ -1,7 +1,7 @@
 import 'package:challengesapp/presentation/authentication/sign_in_page.dart';
 import 'package:challengesapp/presentation/authentication/sign_up_page.dart';
 import 'package:challengesapp/presentation/home/home_page.dart';
-import 'package:challengesapp/presentation/navigation/route_names.dart';
+import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:challengesapp/presentation/profile/profile_page.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -33,7 +33,7 @@ class _FadeRoute extends PageRouteBuilder {
           pageBuilder: (
             context,
             animation,
-            secondaryAnimation,
+            Animation<double> secondaryAnimation,
           ) =>
               child,
           transitionsBuilder: (

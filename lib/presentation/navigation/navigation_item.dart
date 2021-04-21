@@ -1,4 +1,4 @@
-import 'package:challengesapp/presentation/navigation/navigation_service.dart';
+import 'package:challengesapp/application/navigation/navigation_service.dart';
 import 'package:flutter/material.dart';
 
 import '../../dependencies_configuration.dart';
