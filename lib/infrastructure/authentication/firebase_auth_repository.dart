@@ -1,18 +1,21 @@
+import 'package:challengesapp/domain/profile/profile_repository.dart';
+import 'package:challengesapp/domain/profile/user_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:injectable/injectable.dart';
 
 import '../../domain/authentication/authentication_repository.dart';
 import '../../domain/authentication/user_identity.dart';
-import 'authentication_failures.dart';
+import '../../domain/authentication/authentication_failures.dart';
 
 /// Authentication Repository implementation
 /// which makes use of FirebaseAuth services.
 @LazySingleton(as: AuthenticationRepository)
 class FirebaseAuthRepository implements AuthenticationRepository {
   final firebase_auth.FirebaseAuth _firebaseAuth;
+  final ProfileRepository _profileRepository;
 
   // ignore: public_member_api_docs
-  FirebaseAuthRepository(this._firebaseAuth);
+  FirebaseAuthRepository(this._firebaseAuth, this._profileRepository);
 
   @override
   Stream<UserIdentity> get user {
@@ -36,10 +39,14 @@ class FirebaseAuthRepository implements AuthenticationRepository {
 
   @override
   Future<void> signUpWithEmailAndPassword(
-      {required String email, required String password}) async {
+      {required String email,
+      required String password,
+      required String name}) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
           email: email, password: password);
+      await _profileRepository.createNewUserProfile(
+          userCredential.user!.uid, UserProfile(name: name));
     } on Exception {
       throw SignUpWithEmailAndPasswordFailure();
     }

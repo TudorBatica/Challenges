@@ -43,9 +43,9 @@ void main() {
       authenticationRepository = MockAuthenticationRepository();
       when(
         () => authenticationRepository.signUpWithEmailAndPassword(
-          email: any(named: 'email'),
-          password: any(named: 'password'),
-        ),
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+            name: any(named: 'John Doe')),
       ).thenAnswer((_) async => null);
     });
 
@@ -168,9 +168,9 @@ void main() {
         verify: (_) {
           verify(
             () => authenticationRepository.signUpWithEmailAndPassword(
-              email: validEmailString,
-              password: validPasswordString,
-            ),
+                email: validEmailString,
+                password: validPasswordString,
+                name: 'John Doe'),
           ).called(1);
         },
       );
@@ -208,9 +208,9 @@ void main() {
         build: () {
           when(
             () => authenticationRepository.signUpWithEmailAndPassword(
-              email: any(named: 'email'),
-              password: any(named: 'password'),
-            ),
+                email: any(named: 'email'),
+                password: any(named: 'password'),
+                name: any(named: 'John Doe')),
           ).thenThrow(Exception('Sign up failed!'));
           return SignUpCubit(authenticationRepository);
         },

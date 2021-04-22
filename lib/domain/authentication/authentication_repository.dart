@@ -12,7 +12,7 @@ abstract class AuthenticationRepository {
 
   /// Handles registration
   Future<void> signUpWithEmailAndPassword(
-      {required String email, required String password});
+      {required String email, required String password, required String name});
 
   /// Handles logout
   Future<void> signOut();
