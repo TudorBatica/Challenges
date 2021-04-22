@@ -1,4 +1,4 @@
-import 'package:challengesapp/domain/profile/user_profile.dart';
+import 'user_profile.dart';
 
 /// Repository which manages user profiles
 abstract class ProfileRepository {

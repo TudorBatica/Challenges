@@ -1,11 +1,11 @@
-import 'package:challengesapp/domain/profile/profile_repository.dart';
-import 'package:challengesapp/domain/profile/user_profile.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:injectable/injectable.dart';
 
+import '../../domain/authentication/authentication_failures.dart';
 import '../../domain/authentication/authentication_repository.dart';
 import '../../domain/authentication/user_identity.dart';
-import '../../domain/authentication/authentication_failures.dart';
+import '../../domain/profile/profile_repository.dart';
+import '../../domain/profile/user_profile.dart';
 
 /// Authentication Repository implementation
 /// which makes use of FirebaseAuth services.
