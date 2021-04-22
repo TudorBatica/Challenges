@@ -18,8 +18,8 @@ class NavigationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => getIt<NavigationService>().navigateTo(navigationPath),
+    return MaterialButton(
+      onPressed: () => getIt<NavigationService>().navigateTo(navigationPath),
       child: Container(
         child: Text(
           name,

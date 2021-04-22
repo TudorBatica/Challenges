@@ -6,7 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/authentication/authentication_repository.dart';
-import '../../domain/authentication/user.dart';
+import '../../domain/authentication/user_identity.dart';
 
 part 'app_state.dart';
 
@@ -21,7 +21,7 @@ class AppCubit extends Cubit<AppState> {
   }
 
   final AuthenticationRepository _authenticationRepository;
-  late final StreamSubscription<User> _userSubscription;
+  late final StreamSubscription<UserIdentity> _userSubscription;
 
   @override
   Future<void> close() {

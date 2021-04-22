@@ -10,8 +10,10 @@ class NavigationBarTabletDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = 66.5; // about 1.75 cm
+
     return Container(
-      height: 100,
+      height: height,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[

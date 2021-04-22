@@ -13,7 +13,6 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Sign In")),
       body: BlocProvider(
         create: (_) => getIt<SignInCubit>(),
         child: SignInForm(),

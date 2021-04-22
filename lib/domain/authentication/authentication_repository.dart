@@ -1,10 +1,10 @@
-import 'user.dart';
+import 'user_identity.dart';
 
 /// Repository which manages user authentication.
 abstract class AuthenticationRepository {
   /// Stream which emits a new user each time the logged in user changes.
-  /// Emits `User.anonymous` on log out
-  Stream<User> get user;
+  /// Emits `User.anonymous` when no user is logged in.
+  Stream<UserIdentity> get user;
 
   /// Handles login
   Future<void> signInWithEmailAndPassword(

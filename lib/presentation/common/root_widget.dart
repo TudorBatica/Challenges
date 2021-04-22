@@ -16,8 +16,13 @@ class RootWidget extends StatelessWidget {
       create: (_) => getIt<AppCubit>(),
       child: MaterialApp(
         title: 'Challenges App',
+        debugShowCheckedModeBanner: false,
+        themeMode: ThemeMode.system,
         theme: ThemeData(
           primarySwatch: Colors.blue,
+        ),
+        darkTheme: ThemeData(
+          primarySwatch: Colors.green,
         ),
         builder: (context, child) => BasePage(child: child),
         navigatorKey: getIt<NavigationService>().navigatorKey,

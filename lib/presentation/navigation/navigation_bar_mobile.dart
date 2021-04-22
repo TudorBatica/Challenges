@@ -11,19 +11,19 @@ class NavigationBarMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = 47.5; // about 1.25 cm
+
     return Container(
-      height: 80,
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () => drawerKey.currentState?.openDrawer(),
-          ),
-          Text('Ciuciu')
-        ],
-      ),
-    );
+        height: height,
+        child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              IconButton(
+                icon: Icon(Icons.menu),
+                onPressed: () => drawerKey.currentState?.openDrawer(),
+              ),
+              Text('Logo')
+            ]));
   }
 }

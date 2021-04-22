@@ -5,17 +5,17 @@ part of 'app_cubit.dart';
 @immutable
 class AppState extends Equatable {
   /// The currently logged in user.
-  final User user;
+  final UserIdentity user;
 
   /// Constructor
-  const AppState({this.user = User.anonymous});
+  const AppState({this.user = UserIdentity.anonymous});
 
   @override
   List<Object?> get props => [user];
 
   /// Copy factory
   AppState copyWith({
-    User? user,
+    UserIdentity? user,
   }) {
     return AppState(
       user: user ?? this.user,

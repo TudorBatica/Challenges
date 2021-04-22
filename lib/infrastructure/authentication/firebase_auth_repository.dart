@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:injectable/injectable.dart';
 
 import '../../domain/authentication/authentication_repository.dart';
-import '../../domain/authentication/user.dart';
+import '../../domain/authentication/user_identity.dart';
 import 'authentication_failures.dart';
 
 /// Authentication Repository implementation
@@ -11,13 +11,15 @@ import 'authentication_failures.dart';
 class FirebaseAuthRepository implements AuthenticationRepository {
   final firebase_auth.FirebaseAuth _firebaseAuth;
 
-  /// Constructor
+  // ignore: public_member_api_docs
   FirebaseAuthRepository(this._firebaseAuth);
 
   @override
-  Stream<User> get user {
+  Stream<UserIdentity> get user {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
-      return firebaseUser == null ? User.anonymous : firebaseUser.toUser;
+      return firebaseUser == null
+          ? UserIdentity.anonymous
+          : firebaseUser.toUser;
     });
   }
 
@@ -55,6 +57,5 @@ class FirebaseAuthRepository implements AuthenticationRepository {
 
 /// Maps Firebase user to domain user
 extension on firebase_auth.User {
-  User get toUser =>
-      User(id: uid, email: email, name: displayName, profilePicture: photoURL);
+  UserIdentity get toUser => UserIdentity(id: uid, email: email);
 }
