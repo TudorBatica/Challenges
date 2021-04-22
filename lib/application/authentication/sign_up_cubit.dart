@@ -1,3 +1,6 @@
+import 'dart:html';
+
+import 'package:challengesapp/application/authentication/name.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -5,9 +8,9 @@ import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/authentication/authentication_repository.dart';
-import '../../domain/authentication/confirmed_password.dart';
-import '../../domain/authentication/email.dart';
-import '../../domain/authentication/password.dart';
+import 'confirmed_password.dart';
+import 'email.dart';
+import 'password.dart';
 
 part 'sign_up_state.dart';
 
@@ -24,15 +27,24 @@ class SignUpCubit extends Cubit<SignUpState> {
     final email = Email.dirty(value);
     emit(state.copyWith(
         email: email,
-        confirmedPassword: state.confirmedPassword,
-        status:
-            Formz.validate([email, state.password, state.confirmedPassword])));
+        status: Formz.validate(
+            [email, state.name, state.password, state.confirmedPassword])));
+  }
+
+  /// Update state with new name
+  void nameChanged(String value) {
+    final name = Name.dirty(value);
+    emit(state.copyWith(
+        name: name,
+        status: Formz.validate(
+            [state.email, name, state.password, state.confirmedPassword])));
   }
 
   /// Update state with new password
   void passwordChanged(String value) {
     final password = Password.dirty(value);
     emit(state.copyWith(
+        name: state.name,
         password: password,
         confirmedPassword: state.confirmedPassword,
         status:
@@ -46,6 +58,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       value: value,
     );
     emit(state.copyWith(
+      name: state.name,
       confirmedPassword: confirmedPassword,
       status: Formz.validate([
         state.email,

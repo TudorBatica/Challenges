@@ -6,8 +6,8 @@ import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/authentication/authentication_repository.dart';
-import '../../domain/authentication/email.dart';
-import '../../domain/authentication/password.dart';
+import 'email.dart';
+import 'password.dart';
 
 part 'sign_in_state.dart';
 

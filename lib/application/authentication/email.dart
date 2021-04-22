@@ -3,10 +3,11 @@ import 'package:formz/formz.dart';
 // ignore: public_member_api_docs
 enum EmailValidationError { invalid }
 
-// ignore: public_member_api_docs
+/// Email input model
 class Email extends FormzInput<String, EmailValidationError> {
   const Email.pure() : super.pure('');
-  // ignore: public_member_api_docs
+
+  /// Input has been modified by the user
   const Email.dirty([String value = '']) : super.dirty(value);
 
   static final RegExp _emailRegExp = RegExp(

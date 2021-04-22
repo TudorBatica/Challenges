@@ -1,7 +1,7 @@
 import 'package:challengesapp/application/authentication/sign_up_cubit.dart';
-import 'package:challengesapp/domain/authentication/confirmed_password.dart';
-import 'package:challengesapp/domain/authentication/email.dart';
-import 'package:challengesapp/domain/authentication/password.dart';
+import 'package:challengesapp/application/authentication/confirmed_password.dart';
+import 'package:challengesapp/application/authentication/email.dart';
+import 'package:challengesapp/application/authentication/password.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:formz/formz.dart';
 

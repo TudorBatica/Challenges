@@ -6,7 +6,7 @@ import '../profile/user_profile.dart';
 /// Represents a complete blueprint of a user,
 /// holding both their identity and their profile.
 class User extends Equatable {
-  /// /// {@macro UserIdentity}
+  /// {@macro UserIdentity}
   final UserIdentity identity;
 
   /// {@macro UserProfile}
