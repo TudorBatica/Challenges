@@ -5,7 +5,7 @@ void main() {
   const id = 'userid';
   const email = 'useremail@gmail.com';
 
-  group('Domain User', () {
+  group('User Identity', () {
     test('supports value equality', () {
       final someUser = UserIdentity(id: id, email: email);
       final sameUser = UserIdentity(id: id, email: email);

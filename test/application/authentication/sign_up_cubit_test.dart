@@ -1,4 +1,5 @@
 import 'package:bloc_test/bloc_test.dart';
+import 'package:challengesapp/application/authentication/name.dart';
 import 'package:challengesapp/application/authentication/sign_up_cubit.dart';
 import 'package:challengesapp/application/authentication/confirmed_password.dart';
 import 'package:challengesapp/application/authentication/email.dart';
@@ -45,7 +46,7 @@ void main() {
         () => authenticationRepository.signUpWithEmailAndPassword(
             email: any(named: 'email'),
             password: any(named: 'password'),
-            name: any(named: 'John Doe')),
+            name: any(named: 'name')),
       ).thenAnswer((_) async => null);
     });
 
@@ -64,10 +65,11 @@ void main() {
       );
 
       blocTest<SignUpCubit, SignUpState>(
-        'emits [valid] when email/password/confirmedPassword are valid',
+        'emits [valid] when email/name/password/confirmedPassword are valid',
         build: () => SignUpCubit(authenticationRepository),
         seed: () => SignUpState(
           email: validEmail,
+          name: Name.dirty('John Doe'),
           password: validPassword,
           confirmedPassword: validConfirmedPassword,
         ),
@@ -75,6 +77,7 @@ void main() {
         expect: () => const [
           SignUpState(
             email: validEmail,
+            name: Name.dirty('John Doe'),
             password: validPassword,
             confirmedPassword: validConfirmedPassword,
             status: FormzStatus.valid,
@@ -156,11 +159,12 @@ void main() {
       );
 
       blocTest<SignUpCubit, SignUpState>(
-        'calls signUp with correct email/password/confirmedPassword',
+        'calls signUp with correct email/name/password/confirmedPassword',
         build: () => SignUpCubit(authenticationRepository),
         seed: () => SignUpState(
           status: FormzStatus.valid,
           email: validEmail,
+          name: Name.dirty('John Doe'),
           password: validPassword,
           confirmedPassword: validConfirmedPassword,
         ),
@@ -210,7 +214,7 @@ void main() {
             () => authenticationRepository.signUpWithEmailAndPassword(
                 email: any(named: 'email'),
                 password: any(named: 'password'),
-                name: any(named: 'John Doe')),
+                name: any(named: 'name')),
           ).thenThrow(Exception('Sign up failed!'));
           return SignUpCubit(authenticationRepository);
         },
