@@ -10,10 +10,10 @@ class User extends Equatable {
   final UserIdentity identity;
 
   /// {@macro UserProfile}
-  final UserProfile profile;
+  final UserProfile? profile;
 
   // ignore: public_member_api_docs
-  User({required this.identity, required this.profile});
+  User({required this.identity, this.profile});
 
   @override
   List<Object?> get props => [identity, profile];

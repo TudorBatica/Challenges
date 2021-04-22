@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:challengesapp/domain/common/user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -15,13 +16,14 @@ part 'app_state.dart';
 @injectable
 class AppCubit extends Cubit<AppState> {
   /// Constructor
-  AppCubit(this._authenticationRepository) : super(const AppState()) {
+  AppCubit(this._authenticationRepository)
+      : super(AppState(user: User(identity: UserIdentity.anonymous))) {
     _userSubscription = _authenticationRepository.user
         .listen((user) => emit(state.copyWith(user: user)));
   }
 
   final AuthenticationRepository _authenticationRepository;
-  late final StreamSubscription<UserIdentity> _userSubscription;
+  late final StreamSubscription<User> _userSubscription;
 
   @override
   Future<void> close() {

@@ -13,7 +13,12 @@ class ProfilePage extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<AppCubit, AppState>(
         builder: (context, state) {
-          return Text(state.user.email ?? "not signed in");
+          return Column(
+            children: [
+              Text(state.user.identity.email ?? "no email"),
+              Text(state.user.profile?.name ?? 'no name'),
+            ],
+          );
         },
       ),
     );

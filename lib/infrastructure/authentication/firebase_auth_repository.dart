@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 import '../../domain/authentication/authentication_failures.dart';
 import '../../domain/authentication/authentication_repository.dart';
 import '../../domain/authentication/user_identity.dart';
+import '../../domain/common/user.dart';
 import '../../domain/profile/profile_repository.dart';
 import '../../domain/profile/user_profile.dart';
 
@@ -18,12 +19,15 @@ class FirebaseAuthRepository implements AuthenticationRepository {
   FirebaseAuthRepository(this._firebaseAuth, this._profileRepository);
 
   @override
-  Stream<UserIdentity> get user {
-    return _firebaseAuth.authStateChanges().map((firebaseUser) {
-      return firebaseUser == null
-          ? UserIdentity.anonymous
-          : firebaseUser.toUser;
-    });
+  Stream<User> get user async* {
+    await for (var firebaseUser in _firebaseAuth.authStateChanges()) {
+      if (firebaseUser == null) {
+        yield User(identity: UserIdentity.anonymous);
+      }
+      final profile =
+          await _profileRepository.getUserProfile(firebaseUser!.uid);
+      yield User(identity: firebaseUser.toUserIdentity, profile: profile);
+    }
   }
 
   @override
@@ -62,7 +66,8 @@ class FirebaseAuthRepository implements AuthenticationRepository {
   }
 }
 
-/// Maps Firebase user to domain user
+/// Maps Firebase user to [UserIdentity]
 extension on firebase_auth.User {
-  UserIdentity get toUser => UserIdentity(id: uid, email: email);
+  UserIdentity get toUserIdentity =>
+      UserIdentity(id: uid, email: email, isConfirmed: emailVerified);
 }
