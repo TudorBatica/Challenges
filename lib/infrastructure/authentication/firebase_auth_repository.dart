@@ -23,10 +23,11 @@ class FirebaseAuthRepository implements AuthenticationRepository {
     await for (var firebaseUser in _firebaseAuth.authStateChanges()) {
       if (firebaseUser == null) {
         yield User(identity: UserIdentity.anonymous);
+      } else {
+        final profile =
+            await _profileRepository.getUserProfile(firebaseUser.uid);
+        yield User(identity: firebaseUser.toUserIdentity, profile: profile);
       }
-      final profile =
-          await _profileRepository.getUserProfile(firebaseUser!.uid);
-      yield User(identity: firebaseUser.toUserIdentity, profile: profile);
     }
   }
 
