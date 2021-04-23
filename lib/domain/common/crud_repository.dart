@@ -1,10 +1,7 @@
 /// Repository which exposes basic CRUD functionalities
 abstract class CrudRepository<Entity> {
   /// Creates a new entity
-  Future<void> create(Entity entity);
-
-  /// Creates a new entity at a specific location
-  Future<void> createAt(Entity entity, String location);
+  Future<void> create(Entity entity, String? location);
 
   /// Retrieves a specific entity
   Future<Entity> read(String id);

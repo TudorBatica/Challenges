@@ -23,24 +23,14 @@ abstract class FirestoreCrudRepository<T> implements CrudRepository<T> {
     _collection = _firebaseFirestore.collection(collectionPath);
   }
 
-  /// Stores the entity in a new document with a random id
   @override
-  Future<void> create(T entity) {
-    // TODO: implement create
-    throw UnimplementedError();
-  }
-
-  /// Stores the entity in a new document with a given id
-  /// If the document already exists, it overrides the existing data.
-  @override
-  Future<void> createAt(T entity, String documentId) async {
+  Future<void> create(T entity, String? documentId) async {
     await _collection.doc(documentId).set(_serializer.toJson(entity));
   }
 
   @override
-  Future<void> delete(String id) {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<void> delete(String documentId) async {
+    await _collection.doc(documentId).delete();
   }
 
   /// Retrieves the entity located inside a specific document

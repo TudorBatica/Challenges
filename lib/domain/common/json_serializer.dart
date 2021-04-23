@@ -1,5 +1,3 @@
-import 'package:injectable/injectable.dart';
-
 /// JSON to/from entity serializer
 abstract class JsonSerializer<T> {
   /// Get JSON representation
