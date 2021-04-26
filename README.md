@@ -1,5 +1,5 @@
 # Challenges
-![.NET workflow badge](https://github.com/TudorBatica/Challenges/workflows/Flutter%20CI/badge.svg)
+![.NET workflow badge](https://github.com/TudorBatica/Challenges/workflows/pipeline/badge.svg)
 ![codecov](https://codecov.io/gh/TudorBatica/Challenges/branch/master/graph/badge.svg)
 [![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://pub.dev/packages/effective_dart)
 
