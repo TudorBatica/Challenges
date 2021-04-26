@@ -47,8 +47,7 @@ abstract class FirestoreCrudRepository<T> implements CrudRepository<T> {
   }
 
   @override
-  Future<void> update(T entity, String id) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<void> update(T entity, String documentId) async {
+    await _collection.doc(documentId).set(_serializer.toJson(entity));
   }
 }
