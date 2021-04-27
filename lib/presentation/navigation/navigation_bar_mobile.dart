@@ -14,16 +14,18 @@ class NavigationBarMobile extends StatelessWidget {
     final height = 47.5; // about 1.25 cm
 
     return Container(
-        height: height,
-        child: Row(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              IconButton(
-                icon: Icon(Icons.menu),
-                onPressed: () => drawerKey.currentState?.openDrawer(),
-              ),
-              Text('Logo')
-            ]));
+      height: height,
+      child: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: () => drawerKey.currentState?.openDrawer(),
+          ),
+          Text('Logo'),
+        ],
+      ),
+    );
   }
 }

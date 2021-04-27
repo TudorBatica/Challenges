@@ -15,7 +15,7 @@ class ProfilePage extends StatelessWidget {
         builder: (context, state) {
           return Column(
             children: [
-              Text(state.user.identity.email ?? "no email"),
+              SelectableText(state.user.identity.email ?? "no email"),
               Text(state.user.profile?.name ?? 'no name'),
             ],
           );

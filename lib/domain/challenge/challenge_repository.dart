@@ -1,11 +1,10 @@
-import 'package:challengesapp/domain/challenge/challenge_info.dart';
-
 import 'challenge.dart';
+import 'challenge_info.dart';
 
 /// Repository which manages challenge models
 abstract class ChallengeRepository {
   /// Store a new challenge
-  Future<void> createNewChallenge();
+  Future<void> createNewChallenge(Challenge challenge);
 
   /// Retrieves a specific challenge.
   /// The [Challenge] model object holds all the available data of a challenge,

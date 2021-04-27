@@ -16,7 +16,8 @@ class NavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
       mobile: NavigationBarMobile(drawerKey: drawerKey),
-      tablet: NavigationBarTabletDesktop(),
+      tablet: NavigationBarMobile(drawerKey: drawerKey),
+      desktop: NavigationBarDesktop(),
     );
   }
 }

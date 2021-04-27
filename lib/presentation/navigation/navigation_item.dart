@@ -11,9 +11,12 @@ class NavigationItem extends StatelessWidget {
   /// Navigation path
   final String navigationPath;
 
+  /// Background color
+  final Color? color;
+
   /// Constructor
   const NavigationItem(
-      {Key? key, required this.name, required this.navigationPath})
+      {Key? key, required this.name, required this.navigationPath, this.color})
       : super(key: key);
 
   @override
@@ -21,9 +24,10 @@ class NavigationItem extends StatelessWidget {
     return MaterialButton(
       onPressed: () => getIt<NavigationService>().navigateTo(navigationPath),
       child: Container(
+        color: color,
         child: Text(
           name,
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(fontSize: 14),
         ),
       ),
     );
