@@ -7,11 +7,12 @@ enum ConfirmedPasswordValidationError { invalid }
 class ConfirmedPassword
     extends FormzInput<String, ConfirmedPasswordValidationError> {
   const ConfirmedPassword.pure({this.password = ''}) : super.pure('');
-  // ignore: public_member_api_docs
+
+  /// Field has been touched by user
   const ConfirmedPassword.dirty({required this.password, String value = ''})
       : super.dirty(value);
 
-  // ignore: public_member_api_docs
+  /// Password to match
   final String password;
 
   @override
