@@ -15,6 +15,5 @@ class Challenge extends Equatable {
   Challenge({required this.information, required this.task});
 
   @override
-  // TODO: implement props
-  List<Object?> get props => throw UnimplementedError();
+  List<Object?> get props => [information, task];
 }

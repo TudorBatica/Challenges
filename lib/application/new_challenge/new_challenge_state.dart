@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs
 part of 'new_challenge_cubit.dart';
 
 /// Host new challenge form state representation

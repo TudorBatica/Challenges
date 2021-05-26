@@ -1,4 +1,4 @@
-// ignore: public_member_api_docs
+// ignore_for_file: public_member_api_docs
 import 'package:formz/formz.dart';
 
 enum RegistrationDeadlineInputError { invalid }
@@ -27,9 +27,6 @@ class RegistrationDeadlineInput
 
   @override
   RegistrationDeadlineInputError? validator(DateTime? value) {
-    print("\nIn registration datetime validator");
-    print(
-        'value is $value\nstart is $startingDatetime\nsol is $solutionSubmissionDateTime');
     if (value == null ||
         startingDatetime.isBefore(value) ||
         solutionSubmissionDateTime.isBefore(value)) {

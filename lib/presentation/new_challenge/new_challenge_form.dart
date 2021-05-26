@@ -1,10 +1,10 @@
-import 'package:challengesapp/application/common/app_cubit.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:formz/formz.dart';
+import 'package:intl/intl.dart';
 
+import '../../application/common/app_cubit.dart';
 import '../../application/new_challenge/new_challenge_cubit.dart';
 import '../../domain/common/pair.dart';
 
@@ -12,6 +12,7 @@ final _dateTimeErrorMessage =
     '''Challenge schedule must respect the following chronological order:
 Registration -> Start -> Solution Submission''';
 
+/// Form for adding a new challenge
 class NewChallengeForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

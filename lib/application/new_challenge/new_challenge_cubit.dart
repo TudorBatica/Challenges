@@ -22,13 +22,16 @@ import 'title_input.dart';
 
 part 'new_challenge_state.dart';
 
+/// Manages the state of the new challenge form
 @injectable
 class NewChallengeCubit extends Cubit<NewChallengeState> {
   final ChallengeRepository _challengeRepository;
 
+  /// Constructor with initial state
   NewChallengeCubit(this._challengeRepository)
       : super(NewChallengeState.intial());
 
+  /// Title input has been changed by user
   void titleChanged(String value) {
     final title = TitleInput.dirty(value: value);
     emit(state.copyWith(
@@ -46,6 +49,7 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
         ])));
   }
 
+  /// Description input has been changed by user
   void descriptionChanged(String value) {
     final description = DescriptionInput.dirty(value: value);
     emit(state.copyWith(
@@ -63,6 +67,7 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
         ])));
   }
 
+  /// Category input has been changed by user
   void categoryChanged(String value) {
     final category = CategoryInput.dirty(value: value);
     emit(state.copyWith(
@@ -80,6 +85,7 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
         ])));
   }
 
+  /// Registration deadline input has been changed by user
   void registrationDeadlineChanged(DateTime value,
       {bool isSideEffect = false}) {
     final registrationDeadline = RegistrationDeadlineInput.dirty(
@@ -112,6 +118,7 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
         ])));
   }
 
+  /// Challenge starting datetime input has been changed by user
   void startingDateTimeChanged(DateTime value, {bool isSideEffect = false}) {
     final startingDatetime = StartingDatetimeInput.dirty(
         registrationDeadline: state.registrationDeadline.value,
@@ -143,6 +150,7 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
         ])));
   }
 
+  /// Solution submission deadline input has been changed by user
   void solutionSubmissionDeadlineChanged(DateTime value,
       {bool isSideEffect = false}) {
     final solutionSubmissionDeadline = SolutionSubmissionDeadlineInput.dirty(
@@ -175,6 +183,7 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
         ])));
   }
 
+  /// Prize input has been changed by user
   void prizeChanged(String value) {
     final prize = PrizeInput.dirty(value: value);
     emit(state.copyWith(
@@ -192,6 +201,7 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
         ])));
   }
 
+  /// Team size input has been changed by user
   void teamSizeChanged(Pair<int, int> value) {
     final teamSize = TeamSizeInput.dirty(value);
     emit(state.copyWith(
@@ -209,6 +219,7 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
         ])));
   }
 
+  /// Task input has been changed by user
   void taskChanged(String value) {
     final task = TaskInput.dirty(value: value);
     emit(state.copyWith(
@@ -226,6 +237,7 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
         ])));
   }
 
+  /// Submit the new challenge form
   Future<void> submitForm(String hostId, String hostName) async {
     if (!state.status.isValidated) {
       return;

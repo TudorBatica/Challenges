@@ -6,7 +6,7 @@ import '../../domain/common/pair.dart';
 // ignore: public_member_api_docs
 enum TeamSizeInputError { invalid }
 
-// Challenge team size input
+/// Challenge team size input
 class TeamSizeInput extends FormzInput<Pair<int, int>, TeamSizeInputError> {
   const TeamSizeInput.pure(Pair<int, int> value) : super.pure(value);
 
