@@ -3,9 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
 import '../../application/authentication/sign_up_cubit.dart';
-import '../../application/navigation/navigation_service.dart';
-import '../../application/navigation/route_names.dart';
-import '../../dependencies_configuration.dart';
 
 /// Sign up form widget
 class SignUpForm extends StatelessWidget {
