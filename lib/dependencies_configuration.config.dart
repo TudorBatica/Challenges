@@ -65,10 +65,10 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.lazySingleton<_i18.FirestoreCrudRepository<_i8.ChallengeTask>>(() =>
       _i20.FirestoreChallengeTaskRepository(get<_i4.FirebaseFirestore>(),
           get<_i5.JsonSerializer<_i8.ChallengeTask>>()));
-  gh.factory<_i21.SignInCubit>(
-      () => _i21.SignInCubit(get<_i16.AuthenticationRepository>()));
-  gh.factory<_i22.SignUpCubit>(
-      () => _i22.SignUpCubit(get<_i16.AuthenticationRepository>()));
+  gh.factory<_i21.SignInCubit>(() => _i21.SignInCubit(
+      get<_i16.AuthenticationRepository>(), get<_i12.NavigationService>()));
+  gh.factory<_i22.SignUpCubit>(() => _i22.SignUpCubit(
+      get<_i16.AuthenticationRepository>(), get<_i12.NavigationService>()));
   gh.factory<_i23.AppCubit>(
       () => _i23.AppCubit(get<_i16.AuthenticationRepository>()));
   gh.lazySingleton<_i24.ChallengeRepository>(() =>

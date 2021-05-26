@@ -20,7 +20,7 @@ class SignUpForm extends StatelessWidget {
                 content: Text('Sign up failed. Please, try again.')));
         }
         if (state.status.isSubmissionSuccess) {
-          getIt<NavigationService>().navigateTo(profileRoute);
+          context.read<SignUpCubit>().navigateToProfilePage();
         }
       },
       child: Align(
@@ -147,7 +147,7 @@ class _GoToSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-        onPressed: () => getIt<NavigationService>().navigateTo(signInRoute),
+        onPressed: () => context.read<SignUpCubit>().navigateToSignInPage(),
         child: Text("Already have an account? Sign in here."));
   }
 }

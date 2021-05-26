@@ -5,6 +5,8 @@ import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/authentication/authentication_repository.dart';
+import '../navigation/navigation_service.dart';
+import '../navigation/route_names.dart';
 import 'confirmed_password.dart';
 import 'email.dart';
 import 'name.dart';
@@ -16,9 +18,11 @@ part 'sign_up_state.dart';
 @injectable
 class SignUpCubit extends Cubit<SignUpState> {
   /// Constructor
-  SignUpCubit(this._authenticationRepository) : super(const SignUpState());
+  SignUpCubit(this._authenticationRepository, this._navigationService)
+      : super(const SignUpState());
 
   final AuthenticationRepository _authenticationRepository;
+  final NavigationService _navigationService;
 
   /// Update state with new email
   void emailChanged(String value) {
@@ -81,5 +85,15 @@ class SignUpCubit extends Cubit<SignUpState> {
     } on Exception {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
     }
+  }
+
+  /// Push the profile route
+  Future<void> navigateToProfilePage() async {
+    _navigationService.navigateTo(profileRoute);
+  }
+
+  /// Push the sign in route
+  Future<void> navigateToSignInPage() async {
+    _navigationService.navigateTo(signInRoute);
   }
 }
