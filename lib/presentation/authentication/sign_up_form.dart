@@ -54,9 +54,15 @@ class _EmailInput extends StatelessWidget {
         onChanged: (email) => context.read<SignUpCubit>().emailChanged(email),
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
-            labelText: 'email',
-            errorText:
-                state.email.invalid ? 'Email address is not valid' : null),
+          labelText: 'email',
+          errorText: state.email.invalid ? 'Email address is not valid' : null,
+          filled: true,
+          border: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(10.0),
+            ),
+          ),
+        ),
       ),
     );
   }
