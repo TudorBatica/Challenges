@@ -23,9 +23,15 @@ class NewChallengeForm extends StatelessWidget {
               style: Theme.of(context).textTheme.headline4,
             ),
             SizedBox(height: 45.0),
-            Text(
-              'General information',
-              style: Theme.of(context).textTheme.headline5,
+            Row(
+              children: [
+                Icon(Icons.info_outline_rounded),
+                SizedBox(width: 5.0),
+                Text(
+                  'General information',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              ],
             ),
             SizedBox(height: 25.0),
             TitleInput(),
@@ -34,9 +40,15 @@ class NewChallengeForm extends StatelessWidget {
             SizedBox(height: 25.0),
             CategoryInput(),
             SizedBox(height: 45.0),
-            Text(
-              'Schedule',
-              style: Theme.of(context).textTheme.headline5,
+            Row(
+              children: [
+                Icon(Icons.calendar_today_rounded),
+                SizedBox(width: 5.0),
+                Text(
+                  'Schedule',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              ],
             ),
             SizedBox(height: 25.0),
             RegistrationDeadlineField(),
@@ -45,23 +57,41 @@ class NewChallengeForm extends StatelessWidget {
             SizedBox(height: 25.0),
             SolutionSubmissionDeadlineField(),
             SizedBox(height: 45.0),
-            Text(
-              'Prize',
-              style: Theme.of(context).textTheme.headline5,
+            Row(
+              children: [
+                Icon(Icons.stars_rounded),
+                SizedBox(width: 5.0),
+                Text(
+                  'Prize',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              ],
             ),
             SizedBox(height: 25.0),
             PrizeInput(),
             SizedBox(height: 45.0),
-            Text(
-              'Team size',
-              style: Theme.of(context).textTheme.headline5,
+            Row(
+              children: [
+                Icon(Icons.people_outline_rounded),
+                SizedBox(width: 5.0),
+                Text(
+                  'Team size',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              ],
             ),
             SizedBox(height: 45.0),
             TeamSizeInput(),
             SizedBox(height: 45.0),
-            Text(
-              'Task',
-              style: Theme.of(context).textTheme.headline5,
+            Row(
+              children: [
+                Icon(Icons.lightbulb_outline_rounded),
+                SizedBox(width: 5.0),
+                Text(
+                  'Task',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              ],
             ),
             SizedBox(height: 25.0),
             TaskInput(),
