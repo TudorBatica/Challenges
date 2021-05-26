@@ -1,3 +1,5 @@
+import 'package:challengesapp/presentation/common/base_form.dart';
+import 'package:challengesapp/presentation/common/button_with_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -21,19 +23,21 @@ class SignInForm extends StatelessWidget {
         }
       },
       child: Align(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 16.0),
-              _EmailInput(),
-              const SizedBox(height: 8.0),
-              _PasswordInput(),
-              const SizedBox(height: 8.0),
-              _SignInButton(),
-              const SizedBox(height: 8.0),
-              _GoToSignUpButton()
-            ],
-          ),
+        child: BaseForm(
+          elements: [
+            Text(
+              'Sign In',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            const SizedBox(height: 45.0),
+            _EmailInput(),
+            const SizedBox(height: 25.0),
+            _PasswordInput(),
+            const SizedBox(height: 45.0),
+            _SignInButton(),
+            const SizedBox(height: 25.0),
+            _GoToSignUpButton()
+          ],
         ),
       ),
     );
@@ -51,8 +55,15 @@ class _EmailInput extends StatelessWidget {
           onChanged: (email) => context.read<SignInCubit>().emailChanged(email),
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-              labelText: 'email',
-              errorText: state.email.invalid ? 'invalid email address' : null),
+            labelText: 'email',
+            errorText: state.email.invalid ? 'invalid email address' : null,
+            filled: true,
+            border: OutlineInputBorder(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(10.0),
+              ),
+            ),
+          ),
         );
       },
     );
@@ -71,8 +82,15 @@ class _PasswordInput extends StatelessWidget {
                 context.read<SignInCubit>().passwordChanged(password),
             obscureText: true,
             decoration: InputDecoration(
-                labelText: 'password',
-                errorText: state.password.invalid ? 'invalid password' : null),
+              labelText: 'password',
+              errorText: state.password.invalid ? 'invalid password' : null,
+              filled: true,
+              border: OutlineInputBorder(
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(10.0),
+                ),
+              ),
+            ),
           );
         });
   }
@@ -86,13 +104,17 @@ class _SignInButton extends StatelessWidget {
         builder: (context, state) {
           return state.status.isSubmissionInProgress
               ? const CircularProgressIndicator()
-              : TextButton(
+              : ButtonWithBorder(
                   onPressed: state.status.isValidated
                       ? () => context
                           .read<SignInCubit>()
                           .signInWithEmailAndPassword()
                       : null,
-                  child: Text("Sign In"));
+                  text: "Sign In",
+                  borderColor: Theme.of(context).primaryColor,
+                  backgroundColor: Theme.of(context).primaryColor,
+                  textColor: Colors.white,
+                );
         });
   }
 }
@@ -100,8 +122,11 @@ class _SignInButton extends StatelessWidget {
 class _GoToSignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        onPressed: () => context.read<SignInCubit>().navigateToSignUpPage(),
-        child: Text("Don't have an account? Sign up here."));
+    return ButtonWithBorder(
+      onPressed: () => context.read<SignInCubit>().navigateToSignUpPage(),
+      text: "Don't have an account? Sign up here.",
+      borderColor: Theme.of(context).primaryColor,
+      textColor: Theme.of(context).primaryColor,
+    );
   }
 }

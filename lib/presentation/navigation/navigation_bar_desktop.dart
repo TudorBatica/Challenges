@@ -41,6 +41,8 @@ class _MainNavElements extends StatelessWidget {
         NavigationItem(
           name: 'HOME',
           navigationPath: homeRoute,
+          textColor: Colors.black,
+          borderColor: Colors.white,
         ),
         SizedBox(
           width: 35,
@@ -48,6 +50,8 @@ class _MainNavElements extends StatelessWidget {
         NavigationItem(
           name: 'CHALLENGES',
           navigationPath: homeRoute,
+          textColor: Colors.black,
+          borderColor: Colors.white,
         ),
         SizedBox(
           width: 35,
@@ -55,6 +59,8 @@ class _MainNavElements extends StatelessWidget {
         NavigationItem(
           name: 'CHAT',
           navigationPath: homeRoute,
+          textColor: Colors.black,
+          borderColor: Colors.white,
         )
       ],
     );
@@ -67,8 +73,10 @@ class _TrailingNavElements extends StatelessWidget {
     return Row(
       children: [
         NavigationItem(
-          name: 'SIGN UP',
+          name: 'ENTER ACCOUNT',
           navigationPath: signUpRoute,
+          textColor: Colors.white,
+          borderColor: Theme.of(context).primaryColor,
           color: Theme.of(context).primaryColor,
         ),
         SizedBox(
@@ -77,9 +85,9 @@ class _TrailingNavElements extends StatelessWidget {
         NavigationItem(
           name: 'HOST',
           navigationPath: hostChallengeRoute,
-          color: Theme.of(context).primaryColor,
+          textColor: Theme.of(context).primaryColor,
+          borderColor: Theme.of(context).primaryColor,
         ),
-        Switch(value: true, onChanged: print)
       ],
     );
   }

@@ -24,10 +24,14 @@ class NavigationDrawer extends StatelessWidget {
           NavigationItem(
             name: 'Profile',
             navigationPath: profileRoute,
+            textColor: Colors.black,
+            borderColor: Colors.white,
           ),
           NavigationItem(
             name: 'Sign In',
             navigationPath: signInRoute,
+            textColor: Colors.black,
+            borderColor: Colors.white,
           ),
         ],
       ),
