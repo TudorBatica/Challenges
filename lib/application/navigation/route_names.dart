@@ -9,3 +9,6 @@ const String signInRoute = '/signin';
 
 /// Register page
 const String signUpRoute = '/signup';
+
+/// Host(add) a challenge page
+const String hostChallengeRoute = '/host';

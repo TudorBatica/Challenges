@@ -15,6 +15,7 @@ class LengthConstrainedInput
   LengthConstrainedInput.pure({this.minLength, this.maxLength})
       : super.pure('');
 
+  // ignore: public_member_api_docs
   LengthConstrainedInput.dirty(
       {this.minLength, this.maxLength, String value = ''})
       : super.dirty(value);

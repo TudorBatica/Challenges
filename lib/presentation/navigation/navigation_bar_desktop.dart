@@ -76,7 +76,7 @@ class _TrailingNavElements extends StatelessWidget {
         ),
         NavigationItem(
           name: 'HOST',
-          navigationPath: signUpRoute,
+          navigationPath: hostChallengeRoute,
           color: Theme.of(context).primaryColor,
         ),
         Switch(value: true, onChanged: print)

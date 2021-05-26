@@ -79,11 +79,23 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
         ])));
   }
 
-  void registrationDeadlineChanged(DateTime value) {
+  void registrationDeadlineChanged(DateTime value,
+      {bool isSideEffect = false}) {
     final registrationDeadline = RegistrationDeadlineInput.dirty(
         startingDatetime: state.startingDatetime.value,
         solutionSubmissionDateTime: state.solutionSubmissionDeadline.value,
         value: value);
+
+    final startingDatetime = StartingDatetimeInput.dirty(
+        registrationDeadline: value,
+        solutionSubmissionDateTime: state.solutionSubmissionDeadline.value,
+        value: state.startingDatetime.value);
+
+    final solutionSubmissionDeadline = SolutionSubmissionDeadlineInput.dirty(
+        registrationDeadline: value,
+        startingDatetime: state.startingDatetime.value,
+        value: state.solutionSubmissionDeadline.value);
+
     emit(state.copyWith(
         registrationDeadline: registrationDeadline,
         status: Formz.validate([
@@ -91,47 +103,70 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
           state.description,
           state.category,
           registrationDeadline,
-          state.startingDatetime,
-          state.solutionSubmissionDeadline,
+          startingDatetime,
+          solutionSubmissionDeadline,
           state.prize,
           state.teamSize,
           state.task
         ])));
   }
 
-  void startingDateTimeChanged(DateTime value) {
+  void startingDateTimeChanged(DateTime value, {bool isSideEffect = false}) {
     final startingDatetime = StartingDatetimeInput.dirty(
         registrationDeadline: state.registrationDeadline.value,
         solutionSubmissionDateTime: state.solutionSubmissionDeadline.value,
         value: value);
+
+    final solutionSubmissionDeadline = SolutionSubmissionDeadlineInput.dirty(
+        registrationDeadline: state.registrationDeadline.value,
+        startingDatetime: value,
+        value: state.solutionSubmissionDeadline.value);
+
+    final registrationDeadline = RegistrationDeadlineInput.dirty(
+        startingDatetime: value,
+        solutionSubmissionDateTime: state.solutionSubmissionDeadline.value,
+        value: state.registrationDeadline.value);
+
     emit(state.copyWith(
         startingDatetime: startingDatetime,
         status: Formz.validate([
           state.title,
           state.description,
           state.category,
-          state.registrationDeadline,
+          registrationDeadline,
           startingDatetime,
-          state.solutionSubmissionDeadline,
+          solutionSubmissionDeadline,
           state.prize,
           state.teamSize,
           state.task
         ])));
   }
 
-  void solutionSubmissionDeadlineChanged(DateTime value) {
+  void solutionSubmissionDeadlineChanged(DateTime value,
+      {bool isSideEffect = false}) {
     final solutionSubmissionDeadline = SolutionSubmissionDeadlineInput.dirty(
         registrationDeadline: state.registrationDeadline.value,
         startingDatetime: state.startingDatetime.value,
         value: value);
+
+    final registrationDeadline = RegistrationDeadlineInput.dirty(
+        startingDatetime: state.startingDatetime.value,
+        solutionSubmissionDateTime: value,
+        value: state.registrationDeadline.value);
+
+    final startingDatetime = StartingDatetimeInput.dirty(
+        registrationDeadline: state.registrationDeadline.value,
+        solutionSubmissionDateTime: value,
+        value: state.startingDatetime.value);
+
     emit(state.copyWith(
         solutionSubmissionDeadline: solutionSubmissionDeadline,
         status: Formz.validate([
           state.title,
           state.description,
           state.category,
-          state.registrationDeadline,
-          state.startingDatetime,
+          registrationDeadline,
+          startingDatetime,
           solutionSubmissionDeadline,
           state.prize,
           state.teamSize,
@@ -204,15 +239,16 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
   }
 
   ChallengeInfo _stateToChallengeInfo() => ChallengeInfo(
-      title: state.title.value,
-      description: state.description.value,
-      category: state.category.value,
-      registration: state.registrationDeadline.value,
-      start: state.startingDatetime.value,
-      submission: state.solutionSubmissionDeadline.value,
-      prize: state.prize.value,
-      teamSizeMin: state.teamSize.value.first,
-      teamSizeMax: state.teamSize.value.second);
+        title: state.title.value,
+        description: state.description.value,
+        category: state.category.value,
+        registration: state.registrationDeadline.value,
+        start: state.startingDatetime.value,
+        submission: state.solutionSubmissionDeadline.value,
+        prize: state.prize.value,
+        teamSizeMin: state.teamSize.value.first,
+        teamSizeMax: state.teamSize.value.second,
+      );
 
   ChallengeTask _stateToChallengeTask() =>
       ChallengeTask(title: '', description: state.description.value);

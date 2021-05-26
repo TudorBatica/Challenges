@@ -28,6 +28,9 @@ class StartingDatetimeInput
 
   @override
   StartingDatetimeInputError? validator(DateTime? value) {
+    print("\nIn startind datetime validator");
+    print(
+        'value is $value\nregistration is $registrationDeadline\nsol is $solutionSubmissionDateTime');
     if (value == null ||
         registrationDeadline.isAfter(value) ||
         solutionSubmissionDateTime.isBefore(value)) {

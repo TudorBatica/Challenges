@@ -12,6 +12,6 @@ class FirestoreChallengeTaskRepository
     extends FirestoreCrudRepository<ChallengeTask> {
   // ignore: public_member_api_docs
   FirestoreChallengeTaskRepository(FirebaseFirestore firebaseFirestore,
-      JsonSerializer<ChallengeTask> serializer, String challengeId)
+      JsonSerializer<ChallengeTask> serializer)
       : super(firebaseFirestore, serializer, challengeTasksCollectionPath);
 }
