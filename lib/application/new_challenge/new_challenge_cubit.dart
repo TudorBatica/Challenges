@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:meta/meta.dart';
 
 import '../../domain/challenge/challenge.dart';
 import '../../domain/challenge/challenge_info.dart';
@@ -225,20 +226,24 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
         ])));
   }
 
-  Future<void> submitForm() async {
+  Future<void> submitForm(String hostId, String hostName) async {
     if (!state.status.isValidated) {
       return;
     }
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
-      await _challengeRepository.createNewChallenge(_stateToChallenge());
+      await _challengeRepository
+          .createNewChallenge(_stateToChallenge(hostId, hostName));
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } on Exception {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
     }
   }
 
-  ChallengeInfo _stateToChallengeInfo() => ChallengeInfo(
+  ChallengeInfo _stateToChallengeInfo(String hostId, String hostName) =>
+      ChallengeInfo(
+        challengeHostId: hostId,
+        challengeHostName: hostName,
         title: state.title.value,
         description: state.description.value,
         category: state.category.value,
@@ -251,8 +256,9 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
       );
 
   ChallengeTask _stateToChallengeTask() =>
-      ChallengeTask(title: '', description: state.description.value);
+      ChallengeTask(description: state.description.value);
 
-  Challenge _stateToChallenge() => Challenge(
-      information: _stateToChallengeInfo(), task: _stateToChallengeTask());
+  Challenge _stateToChallenge(String hostId, String hostName) => Challenge(
+      information: _stateToChallengeInfo(hostId, hostName),
+      task: _stateToChallengeTask());
 }

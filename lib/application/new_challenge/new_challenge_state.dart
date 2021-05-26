@@ -27,7 +27,7 @@ class NewChallengeState extends Equatable {
     startingDatetime = StartingDatetimeInput.pure();
     solutionSubmissionDeadline = SolutionSubmissionDeadlineInput.pure();
     prize = PrizeInput.pure();
-    teamSize = TeamSizeInput.pure(Pair(1, 1));
+    teamSize = TeamSizeInput.pure(Pair(3, 10));
     task = TaskInput.pure();
   }
 

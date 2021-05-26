@@ -1,9 +1,12 @@
+import 'package:challengesapp/application/common/app_cubit.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:formz/formz.dart';
 
 import '../../application/new_challenge/new_challenge_cubit.dart';
+import '../../domain/common/pair.dart';
 
 final _dateTimeErrorMessage =
     '''Challenge schedule must respect the following chronological order:
@@ -49,10 +52,18 @@ class NewChallengeForm extends StatelessWidget {
                     SizedBox(height: 25.0),
                     _SolutionSubmissionDeadlineField(),
                     SizedBox(height: 45.0),
-                    Text('Rules and prizes'),
+                    Text('Prize'),
                     SizedBox(height: 25.0),
                     _PrizeInput(),
+                    SizedBox(height: 45.0),
+                    Text('Team size'),
                     SizedBox(height: 25.0),
+                    _TeamSizeInput(),
+                    SizedBox(height: 45.0),
+                    Text('Task'),
+                    _TaskInput(),
+                    SizedBox(height: 45.0),
+                    _SubmitButtonWrap()
                   ],
                 ),
               ),
@@ -226,8 +237,30 @@ class _PrizeInput extends StatelessWidget {
               ),
             ),
           ),
+          maxLines: null,
         );
       },
+    );
+  }
+}
+
+class _TeamSizeInput extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<NewChallengeCubit, NewChallengeState>(
+      buildWhen: (previous, current) => previous.teamSize != current.teamSize,
+      builder: (context, state) => RangeSlider(
+        values: RangeValues(state.teamSize.value.first.toDouble(),
+            state.teamSize.value.second.toDouble()),
+        max: 15,
+        min: 2,
+        divisions: 13,
+        labels: RangeLabels(state.teamSize.value.first.toString(),
+            state.teamSize.value.second.toString()),
+        onChanged: (value) => context
+            .read<NewChallengeCubit>()
+            .teamSizeChanged(Pair(value.start.toInt(), value.end.toInt())),
+      ),
     );
   }
 }
@@ -243,10 +276,54 @@ class _TaskInput extends StatelessWidget {
           onChanged: (value) =>
               context.read<NewChallengeCubit>().taskChanged(value),
           decoration: InputDecoration(
-              labelText: 'Task',
-              errorText: state.task.invalid ? 'invalid task' : null),
+            labelText: 'Task',
+            errorText: state.task.invalid ? 'invalid task' : null,
+            filled: true,
+            border: OutlineInputBorder(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(10.0),
+              ),
+            ),
+          ),
+          maxLines: null,
         );
       },
+    );
+  }
+}
+
+class _SubmitButtonWrap extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<NewChallengeCubit, NewChallengeState>(
+        buildWhen: (previous, current) => previous.status != current.status,
+        builder: (context, state) {
+          return state.status.isSubmissionInProgress
+              ? const CircularProgressIndicator()
+              : _SubmitButton(
+                  onPressed: state.status.isValidated
+                      ? context.read<NewChallengeCubit>().submitForm
+                      : null);
+        });
+  }
+}
+
+class _SubmitButton extends StatelessWidget {
+  final Future<void> Function(String, String)? onPressed;
+
+  const _SubmitButton({Key? key, required this.onPressed}) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AppCubit, AppState>(
+      buildWhen: (previous, current) => previous.user != current.user,
+      builder: (context, state) => TextButton(
+        onPressed: () {
+          if (onPressed != null) {
+            onPressed!(state.user.identity.id, state.user.profile!.name);
+          }
+        },
+        child: Text("CREATE CHALLENGE"),
+      ),
     );
   }
 }

@@ -4,4 +4,4 @@ String get userProfilesCollectionPath => 'profiles';
 
 String get challengeInfoCollectionPath => 'challengesInfo';
 
-String get challengeTasksCollectionPath => 'challengesPath';
+String get challengeTasksCollectionPath => 'challengesTasks';

@@ -9,17 +9,14 @@ part 'challenge_task.g.dart';
 /// {@endtemplate}
 @JsonSerializable()
 class ChallengeTask extends Equatable {
-  /// task title(short description)
-  final String title;
-
   /// task description
   final String description;
 
   // ignore: public_member_api_docs
-  ChallengeTask({required this.title, required this.description});
+  ChallengeTask({required this.description});
 
   @override
-  List<Object?> get props => [title, description];
+  List<Object?> get props => [description];
 
   // ignore: public_member_api_docs
   factory ChallengeTask.fromJson(Map<String, dynamic> json) =>
