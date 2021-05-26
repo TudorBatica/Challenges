@@ -9,14 +9,30 @@ class ButtonWithBorder extends StatelessWidget {
   /// Displayed text.
   final String text;
 
+  /// Button's border color
+  final Color borderColor;
+
+  /// Displayed text's color
+  final Color textColor;
+
+  /// Button's background
+  final Color? backgroundColor;
+
   // ignore: public_member_api_docs
-  const ButtonWithBorder({Key? key, this.onPressed, required this.text})
+  const ButtonWithBorder(
+      {Key? key,
+      this.onPressed,
+      required this.text,
+      required this.borderColor,
+      required this.textColor,
+      this.backgroundColor})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
       onPressed: onPressed,
       style: ButtonStyle(
+        backgroundColor: MaterialStateProperty.all(backgroundColor),
         padding: MaterialStateProperty.all(
           EdgeInsets.only(
             left: 30.0,
@@ -26,15 +42,12 @@ class ButtonWithBorder extends StatelessWidget {
           ),
         ),
         side: MaterialStateProperty.all(
-          BorderSide(color: Theme.of(context).primaryColor, width: 1),
+          BorderSide(color: borderColor, width: 1),
         ),
       ),
       child: Text(
         text,
-        style: Theme.of(context)
-            .textTheme
-            .button!
-            .copyWith(color: Theme.of(context).primaryColor),
+        style: Theme.of(context).textTheme.button!.copyWith(color: textColor),
       ),
     );
   }

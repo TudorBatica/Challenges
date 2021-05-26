@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
 import '../../application/authentication/sign_up_cubit.dart';
+import '../common/base_form.dart';
+import '../common/button_with_border.dart';
 
 /// Sign up form widget
 class SignUpForm extends StatelessWidget {
@@ -21,23 +23,25 @@ class SignUpForm extends StatelessWidget {
         }
       },
       child: Align(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              const SizedBox(height: 16.0),
-              _EmailInput(),
-              const SizedBox(height: 8.0),
-              _NameInput(),
-              const SizedBox(height: 8.0),
-              _PasswordInput(),
-              const SizedBox(height: 8.0),
-              _ConfirmPasswordInput(),
-              const SizedBox(height: 8.0),
-              _SignUpButton(),
-              const SizedBox(height: 8.0),
-              _GoToSignInButton()
-            ],
-          ),
+        child: BaseForm(
+          elements: [
+            Text(
+              'Sign Up',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            const SizedBox(height: 45.0),
+            _EmailInput(),
+            const SizedBox(height: 25.0),
+            _NameInput(),
+            const SizedBox(height: 25.0),
+            _PasswordInput(),
+            const SizedBox(height: 25.0),
+            _ConfirmPasswordInput(),
+            const SizedBox(height: 45.0),
+            _SignUpButton(),
+            const SizedBox(height: 25.0),
+            _GoToSignInButton()
+          ],
         ),
       ),
     );
@@ -158,12 +162,15 @@ class _SignUpButton extends StatelessWidget {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) => state.status.isSubmissionInProgress
           ? const CircularProgressIndicator()
-          : TextButton(
+          : ButtonWithBorder(
               onPressed: state.status.isValidated
                   ? () =>
                       context.read<SignUpCubit>().signUpWithEmailAndPassword()
                   : null,
-              child: Text("Sign Up"),
+              text: "SIGN UP",
+              borderColor: Theme.of(context).primaryColor,
+              backgroundColor: Theme.of(context).primaryColor,
+              textColor: Colors.white,
             ),
     );
   }
@@ -172,8 +179,11 @@ class _SignUpButton extends StatelessWidget {
 class _GoToSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        onPressed: () => context.read<SignUpCubit>().navigateToSignInPage(),
-        child: Text("Already have an account? Sign in here."));
+    return ButtonWithBorder(
+      onPressed: () => context.read<SignUpCubit>().navigateToSignInPage(),
+      text: "Already have an account? Sign in here.",
+      borderColor: Theme.of(context).primaryColor,
+      textColor: Theme.of(context).primaryColor,
+    );
   }
 }
