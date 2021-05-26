@@ -1,3 +1,4 @@
+import 'package:challengesapp/presentation/common/button_with_border.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,10 +23,10 @@ class NewChallengeForm extends StatelessWidget {
         child: Container(
           constraints: BoxConstraints(
             maxWidth: 900,
-            maxHeight: MediaQuery.of(context).size.height * 0.85,
+            maxHeight: MediaQuery.of(context).size.height * 0.80,
           ),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            borderRadius: BorderRadius.all(Radius.circular(20.0)),
             color: Colors.white,
           ),
           child: Scrollbar(
@@ -36,9 +37,15 @@ class NewChallengeForm extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Create a new challenge'),
+                    Text(
+                      'Create a new challenge',
+                      style: Theme.of(context).textTheme.headline4,
+                    ),
                     SizedBox(height: 45.0),
-                    Text('General information'),
+                    Text(
+                      'General information',
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
                     SizedBox(height: 25.0),
                     _TitleInput(),
                     SizedBox(height: 25.0),
@@ -46,24 +53,38 @@ class NewChallengeForm extends StatelessWidget {
                     SizedBox(height: 25.0),
                     _CategoryInput(),
                     SizedBox(height: 45.0),
-                    Text('Schedule'),
+                    Text(
+                      'Schedule',
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
+                    SizedBox(height: 25.0),
                     _RegistrationDeadlineField(),
                     SizedBox(height: 25.0),
                     _StartingDatetimeField(),
                     SizedBox(height: 25.0),
                     _SolutionSubmissionDeadlineField(),
                     SizedBox(height: 45.0),
-                    Text('Prize'),
+                    Text(
+                      'Prize',
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
                     SizedBox(height: 25.0),
                     _PrizeInput(),
                     SizedBox(height: 45.0),
-                    Text('Team size'),
-                    SizedBox(height: 25.0),
+                    Text(
+                      'Team size',
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
+                    SizedBox(height: 45.0),
                     _TeamSizeInput(),
                     SizedBox(height: 45.0),
-                    Text('Task'),
+                    Text(
+                      'Task',
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
+                    SizedBox(height: 25.0),
                     _TaskInput(),
-                    SizedBox(height: 45.0),
+                    SizedBox(height: 65.0),
                     _SubmitButtonWrap()
                   ],
                 ),
@@ -317,14 +338,13 @@ class _SubmitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AppCubit, AppState>(
       buildWhen: (previous, current) => previous.user != current.user,
-      builder: (context, state) => TextButton(
-        onPressed: () {
-          if (onPressed != null) {
-            onPressed!(state.user.identity.id, state.user.profile!.name);
-          }
-        },
-        child: Text("CREATE CHALLENGE"),
-      ),
+      builder: (context, state) => (onPressed == null)
+          ? ButtonWithBorder(text: 'CREATE CHALLENGE')
+          : ButtonWithBorder(
+              text: 'CREATE CHALLENGE',
+              onPressed: () =>
+                  onPressed!(state.user.identity.id, state.user.profile!.name),
+            ),
     );
   }
 }

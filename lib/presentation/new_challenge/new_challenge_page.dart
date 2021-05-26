@@ -1,3 +1,4 @@
+import 'package:challengesapp/presentation/common/scaffold_with_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,8 +10,8 @@ import 'new_challenge_form.dart';
 class NewChallengePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocProvider(
+    return ScaffoldWithBackground(
+      child: BlocProvider(
         create: (_) => getIt<NewChallengeCubit>(),
         child: NewChallengeForm(),
       ),

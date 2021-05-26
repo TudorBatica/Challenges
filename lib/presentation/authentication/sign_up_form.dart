@@ -71,10 +71,17 @@ class _NameInput extends StatelessWidget {
         key: const Key('signUpForm_nameInput_textField'),
         onChanged: (name) => context.read<SignUpCubit>().nameChanged(name),
         decoration: InputDecoration(
-            labelText: 'name',
-            errorText: state.name.invalid
-                ? 'Please enter a name with at least two characters'
-                : null),
+          labelText: 'name',
+          errorText: state.name.invalid
+              ? 'Please enter a name with at least two characters'
+              : null,
+          filled: true,
+          border: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(10.0),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -84,21 +91,29 @@ class _PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpCubit, SignUpState>(
-        buildWhen: (previous, current) => previous.password != current.password,
-        builder: (context, state) => TextField(
-              key: const Key('signUpForm_passwordInput_textField'),
-              onChanged: (password) =>
-                  context.read<SignUpCubit>().passwordChanged(password),
-              obscureText: true,
-              decoration: InputDecoration(
-                  labelText: 'password',
-                  errorText: state.password.invalid
-                      ? '''Passwords should have at least 8 characters and at 
+      buildWhen: (previous, current) => previous.password != current.password,
+      builder: (context, state) => TextField(
+        key: const Key('signUpForm_passwordInput_textField'),
+        onChanged: (password) =>
+            context.read<SignUpCubit>().passwordChanged(password),
+        obscureText: true,
+        decoration: InputDecoration(
+          labelText: 'password',
+          errorText: state.password.invalid
+              ? '''Passwords should have at least 8 characters and at 
                       least one letter, one number and one special character'''
-                          .replaceAll('\n', '')
-                          .replaceAll('  ', '')
-                      : null),
-            ));
+                  .replaceAll('\n', '')
+                  .replaceAll('  ', '')
+              : null,
+          filled: true,
+          border: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(10.0),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -106,21 +121,27 @@ class _ConfirmPasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpCubit, SignUpState>(
-        buildWhen: (previous, current) =>
-            previous.password != current.password ||
-            previous.confirmedPassword != current.confirmedPassword,
-        builder: (context, state) => TextField(
-              key: const Key('signUpForm_confirmPasswordInput_textField'),
-              onChanged: (password) => context
-                  .read<SignUpCubit>()
-                  .confirmedPasswordChanged(password),
-              obscureText: true,
-              decoration: InputDecoration(
-                  labelText: 'confirm password',
-                  errorText: state.confirmedPassword.invalid
-                      ? 'passwords do not match'
-                      : null),
-            ));
+      buildWhen: (previous, current) =>
+          previous.password != current.password ||
+          previous.confirmedPassword != current.confirmedPassword,
+      builder: (context, state) => TextField(
+        key: const Key('signUpForm_confirmPasswordInput_textField'),
+        onChanged: (password) =>
+            context.read<SignUpCubit>().confirmedPasswordChanged(password),
+        obscureText: true,
+        decoration: InputDecoration(
+          labelText: 'confirm password',
+          errorText:
+              state.confirmedPassword.invalid ? 'passwords do not match' : null,
+          filled: true,
+          border: OutlineInputBorder(
+            borderRadius: const BorderRadius.all(
+              Radius.circular(10.0),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -128,15 +149,17 @@ class _SignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpCubit, SignUpState>(
-        buildWhen: (previous, current) => previous.status != current.status,
-        builder: (context, state) => state.status.isSubmissionInProgress
-            ? const CircularProgressIndicator()
-            : TextButton(
-                onPressed: state.status.isValidated
-                    ? () =>
-                        context.read<SignUpCubit>().signUpWithEmailAndPassword()
-                    : null,
-                child: Text("Sign Up")));
+      buildWhen: (previous, current) => previous.status != current.status,
+      builder: (context, state) => state.status.isSubmissionInProgress
+          ? const CircularProgressIndicator()
+          : TextButton(
+              onPressed: state.status.isValidated
+                  ? () =>
+                      context.read<SignUpCubit>().signUpWithEmailAndPassword()
+                  : null,
+              child: Text("Sign Up"),
+            ),
+    );
   }
 }
 
