@@ -12,10 +12,11 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import 'application/authentication/sign_in_cubit.dart' as _i24;
 import 'application/authentication/sign_up_cubit.dart' as _i25;
+import 'application/challenges_list/challenges_list_cubit.dart' as _i29;
 import 'application/common/app_cubit.dart' as _i26;
 import 'application/navigation/navigation_service.dart' as _i13;
 import 'application/navigation/navigation_service_impl.dart' as _i14;
-import 'application/new_challenge/new_challenge_cubit.dart' as _i29;
+import 'application/new_challenge/new_challenge_cubit.dart' as _i30;
 import 'domain/authentication/authentication_repository.dart' as _i17;
 import 'domain/challenge/challenge_info.dart' as _i7;
 import 'domain/challenge/challenge_info_serializer.dart' as _i8;
@@ -35,7 +36,7 @@ import 'infrastructure/challenge/firestore_challenge_info_repository.dart'
 import 'infrastructure/challenge/firestore_challenge_repository.dart' as _i28;
 import 'infrastructure/challenge/firestore_challenge_task_repository.dart'
     as _i23;
-import 'infrastructure/common/firebase_injectable_module.dart' as _i30;
+import 'infrastructure/common/firebase_injectable_module.dart' as _i31;
 import 'infrastructure/common/firestore_crud_repository.dart' as _i21;
 import 'infrastructure/profile/firestore_profile_repository.dart'
     as _i16; // ignore_for_file: unnecessary_lambdas
@@ -83,11 +84,13 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i28.FirestoreChallengeRepository(
           get<_i21.FirestoreCrudRepository<_i7.ChallengeInfo>>(),
           get<_i21.FirestoreCrudRepository<_i9.ChallengeTask>>()));
-  gh.factory<_i29.NewChallengeCubit>(() => _i29.NewChallengeCubit(
+  gh.factory<_i29.ChallengesListCubit>(
+      () => _i29.ChallengesListCubit(get<_i27.ChallengeRepository>()));
+  gh.factory<_i30.NewChallengeCubit>(() => _i30.NewChallengeCubit(
       get<_i27.ChallengeRepository>(),
       get<_i19.ChallengeStorageRepository>(),
       get<_i13.NavigationService>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i30.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i31.FirebaseInjectableModule {}

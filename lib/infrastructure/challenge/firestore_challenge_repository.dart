@@ -33,4 +33,9 @@ class FirestoreChallengeRepository implements ChallengeRepository {
   Future<ChallengeInfo> getChallengeInfo(String id) async {
     return await _challengeInfoRepository.read(id);
   }
+
+  @override
+  Future<List<ChallengeInfo>> getAllChallengeInfos() {
+    return _challengeInfoRepository.readEntireCollection();
+  }
 }

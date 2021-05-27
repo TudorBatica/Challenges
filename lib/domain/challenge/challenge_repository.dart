@@ -16,6 +16,6 @@ abstract class ChallengeRepository {
   /// Retrieves the challenge information of a specific challenge.
   Future<ChallengeInfo> getChallengeInfo(String id);
 
-  /// Retrieves the download URL a specficic challenge's image
-  ///TODO: remove Future<String> getChallengeImageDownloadURL(String id);
+  /// Retrieve all challenge infos(no tasks).
+  Future<List<ChallengeInfo>> getAllChallengeInfos();
 }
