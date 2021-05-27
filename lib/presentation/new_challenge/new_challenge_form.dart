@@ -1,4 +1,3 @@
-import 'package:challengesapp/presentation/new_challenge/image_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -6,6 +5,7 @@ import '../../application/new_challenge/new_challenge_cubit.dart';
 import '../common/base_form.dart';
 import 'date_time_input_fields.dart';
 import 'general_information_input_fields.dart';
+import 'image_selection_input_field.dart';
 import 'submit_button.dart';
 import 'task_input_field.dart';
 import 'team_and_prize_input_fields.dart';
@@ -108,7 +108,7 @@ class NewChallengeForm extends StatelessWidget {
               ],
             ),
             SizedBox(height: 25.0),
-            ImageSelection(),
+            ImageSelectionInputField(),
             SizedBox(height: 65.0),
             SubmitButtonWrap()
           ],

@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -8,10 +9,12 @@ import 'package:meta/meta.dart';
 import '../../domain/challenge/challenge.dart';
 import '../../domain/challenge/challenge_info.dart';
 import '../../domain/challenge/challenge_repository.dart';
+import '../../domain/challenge/challenge_storage_repository.dart';
 import '../../domain/challenge/challenge_task.dart';
 import '../../domain/common/pair.dart';
 import 'category_input.dart';
 import 'description_input.dart';
+import 'image_selection_input.dart';
 import 'prize_input.dart';
 import 'registration_deadline_input.dart';
 import 'solution_submission_deadline_input.dart';
@@ -26,9 +29,10 @@ part 'new_challenge_state.dart';
 @injectable
 class NewChallengeCubit extends Cubit<NewChallengeState> {
   final ChallengeRepository _challengeRepository;
+  final ChallengeStorageRepository _challengeStorageRepository;
 
   /// Constructor with initial state
-  NewChallengeCubit(this._challengeRepository)
+  NewChallengeCubit(this._challengeRepository, this._challengeStorageRepository)
       : super(NewChallengeState.intial());
 
   /// Title input has been changed by user
@@ -45,7 +49,8 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
           state.solutionSubmissionDeadline,
           state.prize,
           state.teamSize,
-          state.task
+          state.task,
+          state.image
         ])));
   }
 
@@ -63,7 +68,8 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
           state.solutionSubmissionDeadline,
           state.prize,
           state.teamSize,
-          state.task
+          state.task,
+          state.image
         ])));
   }
 
@@ -81,7 +87,8 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
           state.solutionSubmissionDeadline,
           state.prize,
           state.teamSize,
-          state.task
+          state.task,
+          state.image
         ])));
   }
 
@@ -114,7 +121,8 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
           solutionSubmissionDeadline,
           state.prize,
           state.teamSize,
-          state.task
+          state.task,
+          state.image
         ])));
   }
 
@@ -146,7 +154,8 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
           solutionSubmissionDeadline,
           state.prize,
           state.teamSize,
-          state.task
+          state.task,
+          state.image
         ])));
   }
 
@@ -179,7 +188,8 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
           solutionSubmissionDeadline,
           state.prize,
           state.teamSize,
-          state.task
+          state.task,
+          state.image
         ])));
   }
 
@@ -197,7 +207,8 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
           state.solutionSubmissionDeadline,
           prize,
           state.teamSize,
-          state.task
+          state.task,
+          state.image
         ])));
   }
 
@@ -215,14 +226,16 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
           state.solutionSubmissionDeadline,
           state.prize,
           teamSize,
-          state.task
+          state.task,
+          state.image
         ])));
   }
 
   /// Task input has been changed by user
   void taskChanged(String value) {
     final task = TaskInput.dirty(value: value);
-    emit(state.copyWith(
+    emit(
+      state.copyWith(
         task: task,
         status: Formz.validate([
           state.title,
@@ -233,7 +246,37 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
           state.solutionSubmissionDeadline,
           state.prize,
           state.teamSize,
-          task
+          task,
+          state.image
+        ]),
+      ),
+    );
+  }
+
+  /// Prompts the user to select a file
+  Future<void> selectFile() async {
+    final selectedFile = await FilePicker.platform
+        .pickFiles(allowCompression: true, allowMultiple: false);
+    if (selectedFile == null || selectedFile.files[0].bytes == null) {
+      return;
+    }
+
+    final image = ImageSelectionInput.dirty(
+        Pair(selectedFile.files[0].bytes, selectedFile.files[0].name));
+
+    emit(state.copyWith(
+        image: image,
+        status: Formz.validate([
+          state.title,
+          state.description,
+          state.category,
+          state.registrationDeadline,
+          state.startingDatetime,
+          state.solutionSubmissionDeadline,
+          state.prize,
+          state.teamSize,
+          state.task,
+          image
         ])));
   }
 

@@ -17,6 +17,8 @@ class NewChallengeState extends Equatable {
 
   late final TaskInput task;
 
+  late final ImageSelectionInput image;
+
   /// current form status
   final FormzStatus status;
 
@@ -30,6 +32,7 @@ class NewChallengeState extends Equatable {
     prize = PrizeInput.pure();
     teamSize = TeamSizeInput.pure(Pair(3, 10));
     task = TaskInput.pure();
+    image = ImageSelectionInput.pure(Pair(null, null));
   }
 
   NewChallengeState({
@@ -43,6 +46,7 @@ class NewChallengeState extends Equatable {
     required this.teamSize,
     required this.task,
     required this.status,
+    required this.image,
   });
 
   @override
@@ -56,6 +60,7 @@ class NewChallengeState extends Equatable {
         prize,
         teamSize,
         task,
+        image,
         status
       ];
 
@@ -69,20 +74,21 @@ class NewChallengeState extends Equatable {
     PrizeInput? prize,
     TeamSizeInput? teamSize,
     TaskInput? task,
+    ImageSelectionInput? image,
     FormzStatus? status,
-  }) {
-    return NewChallengeState(
-      title: title ?? this.title,
-      description: description ?? this.description,
-      category: category ?? this.category,
-      registrationDeadline: registrationDeadline ?? this.registrationDeadline,
-      startingDatetime: startingDatetime ?? this.startingDatetime,
-      solutionSubmissionDeadline:
-          solutionSubmissionDeadline ?? this.solutionSubmissionDeadline,
-      prize: prize ?? this.prize,
-      teamSize: teamSize ?? this.teamSize,
-      task: task ?? this.task,
-      status: status ?? this.status,
-    );
-  }
+  }) =>
+      NewChallengeState(
+          title: title ?? this.title,
+          description: description ?? this.description,
+          category: category ?? this.category,
+          registrationDeadline:
+              registrationDeadline ?? this.registrationDeadline,
+          startingDatetime: startingDatetime ?? this.startingDatetime,
+          solutionSubmissionDeadline:
+              solutionSubmissionDeadline ?? this.solutionSubmissionDeadline,
+          prize: prize ?? this.prize,
+          teamSize: teamSize ?? this.teamSize,
+          task: task ?? this.task,
+          status: status ?? this.status,
+          image: image ?? this.image);
 }

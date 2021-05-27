@@ -30,19 +30,15 @@ class _SubmitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AppCubit, AppState>(
       buildWhen: (previous, current) => previous.user != current.user,
-      builder: (context, state) => (onPressed == null)
-          ? ButtonWithBorder(
-              text: 'CREATE CHALLENGE',
-              borderColor: Theme.of(context).primaryColor,
-              textColor: Theme.of(context).primaryColor,
-            )
-          : ButtonWithBorder(
-              text: 'CREATE CHALLENGE',
-              onPressed: () =>
-                  onPressed!(state.user.identity.id, state.user.profile!.name),
-              borderColor: Theme.of(context).primaryColor,
-              textColor: Theme.of(context).primaryColor,
-            ),
+      builder: (context, state) => ButtonWithBorder(
+        text: 'CREATE CHALLENGE',
+        borderColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).primaryColor,
+        textColor: Colors.white,
+        onPressed: (onPressed != null)
+            ? () => onPressed!(state.user.identity.id, state.user.profile!.name)
+            : null,
+      ),
     );
   }
 }
