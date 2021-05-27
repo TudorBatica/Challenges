@@ -1,6 +1,9 @@
 /// Home(Notifications) page
 const String homeRoute = '/home';
 
+/// Challenges list page
+const String challengesListRoute = '/challenges';
+
 /// User profile page
 const String profileRoute = '/profile';
 

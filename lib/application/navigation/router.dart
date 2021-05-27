@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 import '../../presentation/authentication/sign_in_page.dart';
 import '../../presentation/authentication/sign_up_page.dart';
+import '../../presentation/challenges_list/challenges_list_page.dart';
 import '../../presentation/home/home_page.dart';
 import '../../presentation/new_challenge/new_challenge_page.dart';
 import '../../presentation/profile/profile_page.dart';
@@ -20,6 +21,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(SignUpPage(), settings.name.toString());
     case hostChallengeRoute:
       return _getPageRoute(NewChallengePage(), settings.name.toString());
+    case challengesListRoute:
+      return _getPageRoute(ChallengesListPage(), settings.name.toString());
     default:
       return _getPageRoute(ProfilePage(), settings.name.toString());
   }

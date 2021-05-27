@@ -39,17 +39,8 @@ class _MainNavElements extends StatelessWidget {
           width: 60,
         ),
         NavigationItem(
-          name: 'HOME',
-          navigationPath: homeRoute,
-          textColor: Colors.black,
-          borderColor: Colors.white,
-        ),
-        SizedBox(
-          width: 35,
-        ),
-        NavigationItem(
           name: 'CHALLENGES',
-          navigationPath: homeRoute,
+          navigationPath: challengesListRoute,
           textColor: Colors.black,
           borderColor: Colors.white,
         ),
@@ -57,8 +48,8 @@ class _MainNavElements extends StatelessWidget {
           width: 35,
         ),
         NavigationItem(
-          name: 'CHAT',
-          navigationPath: homeRoute,
+          name: 'TEAMS',
+          navigationPath: profileRoute,
           textColor: Colors.black,
           borderColor: Colors.white,
         )
