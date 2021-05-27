@@ -1,3 +1,4 @@
+import 'package:challengesapp/presentation/new_challenge/image_selection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -95,6 +96,19 @@ class NewChallengeForm extends StatelessWidget {
             ),
             SizedBox(height: 25.0),
             TaskInput(),
+            SizedBox(height: 45.0),
+            Row(
+              children: [
+                Icon(Icons.image),
+                SizedBox(width: 5.0),
+                Text(
+                  'Image',
+                  style: Theme.of(context).textTheme.headline5,
+                ),
+              ],
+            ),
+            SizedBox(height: 25.0),
+            ImageSelection(),
             SizedBox(height: 65.0),
             SubmitButtonWrap()
           ],
