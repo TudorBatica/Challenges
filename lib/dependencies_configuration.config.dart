@@ -84,7 +84,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           get<_i21.FirestoreCrudRepository<_i7.ChallengeInfo>>(),
           get<_i21.FirestoreCrudRepository<_i9.ChallengeTask>>()));
   gh.factory<_i29.NewChallengeCubit>(() => _i29.NewChallengeCubit(
-      get<_i27.ChallengeRepository>(), get<_i19.ChallengeStorageRepository>()));
+      get<_i27.ChallengeRepository>(),
+      get<_i19.ChallengeStorageRepository>(),
+      get<_i13.NavigationService>()));
   return get;
 }
 

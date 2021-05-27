@@ -1,3 +1,7 @@
+import 'dart:typed_data';
+
+import 'package:challengesapp/application/navigation/navigation_service.dart';
+import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:equatable/equatable.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,9 +34,11 @@ part 'new_challenge_state.dart';
 class NewChallengeCubit extends Cubit<NewChallengeState> {
   final ChallengeRepository _challengeRepository;
   final ChallengeStorageRepository _challengeStorageRepository;
+  final NavigationService _navigationService;
 
   /// Constructor with initial state
-  NewChallengeCubit(this._challengeRepository, this._challengeStorageRepository)
+  NewChallengeCubit(this._challengeRepository, this._challengeStorageRepository,
+      this._navigationService)
       : super(NewChallengeState.intial());
 
   /// Title input has been changed by user
@@ -287,15 +293,34 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
     }
     emit(state.copyWith(status: FormzStatus.submissionInProgress));
     try {
+      final imageURL =
+          await _challengeStorageRepository.uploadImageAndRetrieveDownloadURL(
+              _nullableUint8ListToNonNullable(state.image.value.first),
+              state.image.value.second.toString());
       await _challengeRepository
-          .createNewChallenge(_stateToChallenge(hostId, hostName));
+          .createNewChallenge(_stateToChallenge(hostId, hostName, imageURL));
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } on Exception {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
     }
   }
 
-  ChallengeInfo _stateToChallengeInfo(String hostId, String hostName) =>
+  /// Push the profile route
+  Future<void> navigateToProfilePage() async {
+    _navigationService.navigateTo(profileRoute);
+  }
+
+  // This horrible method is due to sound null safety
+  Uint8List _nullableUint8ListToNonNullable(Uint8List? list) {
+    if (list != null) {
+      final newList = list;
+      return newList;
+    }
+    throw Exception();
+  }
+
+  ChallengeInfo _stateToChallengeInfo(
+          String hostId, String hostName, String imgURL) =>
       ChallengeInfo(
         challengeHostId: hostId,
         challengeHostName: hostName,
@@ -308,13 +333,14 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
         prize: state.prize.value,
         teamSizeMin: state.teamSize.value.first,
         teamSizeMax: state.teamSize.value.second,
-        imageURL: '',
+        imageURL: imgURL,
       );
 
   ChallengeTask _stateToChallengeTask() =>
       ChallengeTask(description: state.description.value);
 
-  Challenge _stateToChallenge(String hostId, String hostName) => Challenge(
-      information: _stateToChallengeInfo(hostId, hostName),
-      task: _stateToChallengeTask());
+  Challenge _stateToChallenge(String hostId, String hostName, String imgURL) =>
+      Challenge(
+          information: _stateToChallengeInfo(hostId, hostName, imgURL),
+          task: _stateToChallengeTask());
 }

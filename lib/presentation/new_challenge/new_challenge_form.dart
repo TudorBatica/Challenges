@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:formz/formz.dart';
 import '../../application/new_challenge/new_challenge_cubit.dart';
 import '../common/base_form.dart';
 import 'date_time_input_fields.dart';
@@ -15,7 +15,18 @@ class NewChallengeForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<NewChallengeCubit, NewChallengeState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if (state.status.isSubmissionFailure) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(const SnackBar(
+                content: Text(
+                    'We could not upload your challenge. Please, try again.')));
+        }
+        if (state.status.isSubmissionSuccess) {
+          context.read<NewChallengeCubit>().navigateToProfilePage();
+        }
+      },
       child: Align(
         child: BaseForm(
           elements: [
