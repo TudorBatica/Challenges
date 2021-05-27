@@ -1,8 +1,8 @@
-import 'package:challengesapp/presentation/common/button_with_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/navigation/navigation_service.dart';
-import '../../dependencies_configuration.dart';
+import '../../application/common/app_cubit.dart';
+import '../common/button_with_border.dart';
 
 /// The actual navigation item.
 class NavigationItem extends StatelessWidget {
@@ -33,12 +33,16 @@ class NavigationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ButtonWithBorder(
-      onPressed: () => getIt<NavigationService>().navigateTo(navigationPath),
-      text: name,
-      borderColor: borderColor,
-      textColor: textColor,
-      backgroundColor: color,
+    return BlocBuilder<AppCubit, AppState>(
+      builder: (context, state) {
+        return ButtonWithBorder(
+          onPressed: () => context.read<AppCubit>().navigateTo(navigationPath),
+          text: name,
+          borderColor: borderColor,
+          textColor: textColor,
+          backgroundColor: color,
+        );
+      },
     );
   }
 }

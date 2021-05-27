@@ -33,10 +33,4 @@ class FirestoreChallengeRepository implements ChallengeRepository {
   Future<ChallengeInfo> getChallengeInfo(String id) async {
     return await _challengeInfoRepository.read(id);
   }
-
-  @override
-  Future<String> getChallengeImageDownloadURL(String id) {
-    // TODO: implement getChallengeImageDownloadURL
-    throw UnimplementedError();
-  }
 }

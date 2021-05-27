@@ -12,7 +12,7 @@ import 'base_page.dart';
 /// App's main widget.
 class RootWidget extends StatelessWidget {
   /// Used for the primary swatch's luminance
-  Map<int, Color> primarySwatchColors = {
+  final Map<int, Color> primarySwatchColors = {
     50: Color.fromRGBO(104, 106, 197, .1),
     100: Color.fromRGBO(104, 106, 197, .2),
     200: Color.fromRGBO(104, 106, 197, .3),

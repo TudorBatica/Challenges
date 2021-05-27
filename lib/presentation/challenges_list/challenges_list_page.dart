@@ -1,5 +1,6 @@
-import 'package:challengesapp/presentation/common/scaffold_with_background.dart';
 import 'package:flutter/material.dart';
+
+import '../common/scaffold_with_background.dart';
 
 class ChallengesListPage extends StatelessWidget {
   @override

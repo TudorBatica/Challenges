@@ -1,7 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:challengesapp/application/navigation/navigation_service.dart';
-import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:equatable/equatable.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,6 +14,8 @@ import '../../domain/challenge/challenge_repository.dart';
 import '../../domain/challenge/challenge_storage_repository.dart';
 import '../../domain/challenge/challenge_task.dart';
 import '../../domain/common/pair.dart';
+import '../navigation/navigation_service.dart';
+import '../navigation/route_names.dart';
 import 'category_input.dart';
 import 'description_input.dart';
 import 'image_selection_input.dart';

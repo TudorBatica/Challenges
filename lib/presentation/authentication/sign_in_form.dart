@@ -1,10 +1,10 @@
-import 'package:challengesapp/presentation/common/base_form.dart';
-import 'package:challengesapp/presentation/common/button_with_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
 import '../../application/authentication/sign_in_cubit.dart';
+import '../common/base_form.dart';
+import '../common/button_with_border.dart';
 
 /// Sign in form widget
 class SignInForm extends StatelessWidget {

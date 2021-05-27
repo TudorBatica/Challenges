@@ -1,10 +1,10 @@
-import 'package:challengesapp/application/navigation/logged_in_users_only_routes.dart';
-import 'package:challengesapp/application/navigation/route_names.dart';
-import 'package:challengesapp/domain/common/user.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../domain/common/user.dart';
+import 'logged_in_users_only_routes.dart';
 import 'navigation_service.dart';
+import 'route_names.dart';
 
 /// Navigation Service implementation which uses the built in NavigatorState
 @LazySingleton(as: NavigationService)
