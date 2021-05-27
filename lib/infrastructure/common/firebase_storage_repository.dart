@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -15,20 +16,17 @@ abstract class FirebaseStorageRepository {
   // ignore: public_member_api_docs
   FirebaseStorageRepository(this._firebaseStorage, this.rootFolder);
 
-  /// Uploads, from the user's device, a file located
-  /// at `onDeviceAbsoluteFilePath` to the Firebase Default Storage Bucket,
+  /// Uploads a file in the form of a Uint8List
+  /// to the Firebase Default Storage Bucket,
   /// at the following path: `this.rootFolder/fileRelativePath`.
   /// Returns a download URL for the uploaded resource,
   /// or throws a [UploadFailed] exception if the process fails.
-  Future<String> uploadFile(
-      String onDeviceAbsoluteFilePath, String fileRelativePath) async {
+  Future<String> uploadFile(Uint8List file, String fileRelativePath) async {
     try {
-      final file = File(onDeviceAbsoluteFilePath);
-
       await _firebaseStorage
           .ref(rootFolder)
           .child(fileRelativePath)
-          .putFile(file);
+          .putData(file);
 
       final downloadUrl = await _firebaseStorage
           .ref(rootFolder)
