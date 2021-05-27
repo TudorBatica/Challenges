@@ -265,6 +265,7 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
         prize: state.prize.value,
         teamSizeMin: state.teamSize.value.first,
         teamSizeMax: state.teamSize.value.second,
+        imageURL: '',
       );
 
   ChallengeTask _stateToChallengeTask() =>

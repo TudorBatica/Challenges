@@ -1,7 +1,7 @@
 import 'challenge.dart';
 import 'challenge_info.dart';
 
-/// Repository which manages challenge models
+/// Repository which manages challenge models and images.
 abstract class ChallengeRepository {
   /// Store a new challenge
   Future<void> createNewChallenge(Challenge challenge);
@@ -15,4 +15,7 @@ abstract class ChallengeRepository {
 
   /// Retrieves the challenge information of a specific challenge.
   Future<ChallengeInfo> getChallengeInfo(String id);
+
+  /// Retrieves the download URL a specficic challenge's image
+  ///TODO: remove Future<String> getChallengeImageDownloadURL(String id);
 }

@@ -1,12 +1,12 @@
 import 'package:bloc/bloc.dart';
-import 'package:challengesapp/application/navigation/navigation_service.dart';
-import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/authentication/authentication_repository.dart';
+import '../navigation/navigation_service.dart';
+import '../navigation/route_names.dart';
 import 'email.dart';
 import 'password.dart';
 

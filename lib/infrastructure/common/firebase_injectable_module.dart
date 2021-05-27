@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 
 /// Module used for injecting Firebase third party dependency
@@ -12,4 +13,9 @@ abstract class FirebaseInjectableModule {
   /// Retrieves the FirebaseFirestore service instance
   @lazySingleton
   FirebaseFirestore get firebaseFirestore => FirebaseFirestore.instance;
+
+  /// Retrieves the Firebase Cloud Storage service instance
+  /// for the Default Bucket
+  @lazySingleton
+  FirebaseStorage get firebaseStorage => FirebaseStorage.instance;
 }

@@ -41,6 +41,9 @@ class ChallengeInfo extends Equatable {
   /// Maximum number of people in a team
   final int teamSizeMax;
 
+  /// Cover image download URL
+  final String imageURL;
+
   // ignore: public_member_api_docs
   ChallengeInfo(
       {required this.challengeHostName,
@@ -53,7 +56,8 @@ class ChallengeInfo extends Equatable {
       required this.submission,
       required this.prize,
       required this.teamSizeMin,
-      required this.teamSizeMax});
+      required this.teamSizeMax,
+      required this.imageURL});
 
   @override
   List<Object?> get props => [
