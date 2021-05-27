@@ -1,3 +1,6 @@
+import 'package:challengesapp/application/navigation/logged_in_users_only_routes.dart';
+import 'package:challengesapp/application/navigation/route_names.dart';
+import 'package:challengesapp/domain/common/user.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
@@ -17,4 +20,13 @@ class NavigationServiceImpl implements NavigationService {
   }
 
   GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
+
+  @override
+  Future<dynamic>? navigateToo(String routeName, User user) {
+    if (user.identity.isAnonymous &&
+        loggedInUsersOnlyRoutes.contains(routeName)) {
+      return _navigatorKey.currentState?.pushNamed(signUpRoute);
+    }
+    return _navigatorKey.currentState?.pushNamed(routeName);
+  }
 }
