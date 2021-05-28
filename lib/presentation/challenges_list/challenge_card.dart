@@ -76,8 +76,12 @@ class _ImageContainer extends StatelessWidget {
           fit: BoxFit.cover,
           errorWidget: (context, url, error) =>
               Center(child: Icon(Icons.error)),
-          progressIndicatorBuilder: (context, url, downloadProgress) =>
-              CircularProgressIndicator(value: downloadProgress.progress),
+          progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+              child: Container(
+                  width: 50.0,
+                  height: 50.0,
+                  child: CircularProgressIndicator(
+                      value: downloadProgress.progress))),
         ), /*
         Image.network(
           imageURL,
