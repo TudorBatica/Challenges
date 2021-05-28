@@ -82,11 +82,7 @@ class _ImageContainer extends StatelessWidget {
                   height: 50.0,
                   child: CircularProgressIndicator(
                       value: downloadProgress.progress))),
-        ), /*
-        Image.network(
-          imageURL,
-          fit: BoxFit.cover,
-        ),*/
+        ),
       ),
     );
   }
