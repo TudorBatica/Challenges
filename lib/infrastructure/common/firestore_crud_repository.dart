@@ -64,7 +64,7 @@ abstract class FirestoreCrudRepository<T> implements CrudRepository<T> {
       (document) {
         final data = document.data();
         data.addAll({'id': document.id});
-        return _serializer.fromJson(document.data());
+        return _serializer.fromJson(data);
       },
     ).toList();
   }

@@ -1,3 +1,4 @@
+import 'package:challengesapp/presentation/challenge_details/challenge_page.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../presentation/authentication/sign_in_page.dart';
@@ -29,11 +30,13 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case hostChallengeRoute:
       return _getPageRoute(NewChallengePage(), routingData.route);
     case challengesListRoute:
-      if (routingData.queryParams.isEmpty) {
+      if (routingData.queryParams.isEmpty ||
+          routingData.queryParams['id'] == null ||
+          routingData.queryParams['id']!.isEmpty) {
         return _getPageRoute(ChallengesListPage(), routingData.route);
       }
       return _getPageRoute(
-          HomePage(),
+          ChallengePage(routingData.queryParams['id'].toString()),
           Uri(path: routingData.route, queryParameters: routingData.queryParams)
               .toString());
     default:
