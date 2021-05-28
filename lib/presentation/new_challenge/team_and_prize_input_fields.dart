@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../application/new_challenge/new_challenge_cubit.dart';
 import '../../domain/common/pair.dart';
 
+// ignore_for_file: public_member_api_docs
+
 class PrizeInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -1,16 +1,18 @@
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jiffy/jiffy.dart';
 
 import '../../application/common/app_cubit.dart';
+import '../../application/navigation/route_names.dart';
 import '../../domain/challenge/challenge_info.dart';
 import '../../domain/common/pair.dart';
 
+/// Challenge card used as list tile for the challenges list
 class ChallengeCard extends StatelessWidget {
+  /// Data source for card
   final ChallengeInfo challengeInfo;
 
   // ignore: public_member_api_docs

@@ -7,6 +7,7 @@ import '../../application/challenges_list/challenges_list_cubit.dart';
 import '../../application/challenges_list/challenges_list_state.dart';
 import 'challenge_card.dart';
 
+/// Widget which holds challenges.
 class ChallengesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

@@ -9,11 +9,13 @@ import 'challenges_list_state.dart';
 class ChallengesListCubit extends Cubit<ChallengesListState> {
   final ChallengeRepository _challengeRepository;
 
+  // ignore: public_member_api_docs
   ChallengesListCubit(this._challengeRepository)
       : super(const ChallengesListState()) {
     retrieveChallengeInfos();
   }
 
+  /// Updates the state with a list of [ChallengeInfo] models.
   Future<void> retrieveChallengeInfos() async {
     final challenges = await _challengeRepository.getAllChallengeInfos();
     emit(state.copyWith(challenges: challenges));

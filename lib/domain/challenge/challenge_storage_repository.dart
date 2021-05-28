@@ -7,5 +7,6 @@ abstract class ChallengeStorageRepository {
   Future<String> uploadImageAndRetrieveDownloadURL(
       Uint8List file, String fileName);
 
+  /// Upload a solution
   Future<String> uploadSolution();
 }
