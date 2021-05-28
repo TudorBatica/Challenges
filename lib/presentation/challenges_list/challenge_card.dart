@@ -1,12 +1,12 @@
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:challengesapp/application/common/app_cubit.dart';
 import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jiffy/jiffy.dart';
 
+import '../../application/common/app_cubit.dart';
 import '../../domain/challenge/challenge_info.dart';
 import '../../domain/common/pair.dart';
 
@@ -25,7 +25,7 @@ class ChallengeCard extends StatelessWidget {
 
     return MaterialButton(
       onPressed: () => BlocProvider.of<AppCubit>(context)
-          .navigateTo(challengeRoute(challengeInfo.challengeHostId)),
+          .navigateTo(challengeRoute(challengeInfo.id)),
       child: Padding(
         padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
         child: Container(

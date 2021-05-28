@@ -8,6 +8,9 @@ part 'challenge_info.g.dart';
 /// {@endtemplate}
 @JsonSerializable()
 class ChallengeInfo extends Equatable {
+  /// Challenge id
+  final String id;
+
   /// Challenge host
   final String challengeHostName;
 
@@ -46,7 +49,8 @@ class ChallengeInfo extends Equatable {
 
   // ignore: public_member_api_docs
   ChallengeInfo(
-      {required this.challengeHostName,
+      {this.id = '',
+      required this.challengeHostName,
       required this.challengeHostId,
       required this.title,
       required this.description,

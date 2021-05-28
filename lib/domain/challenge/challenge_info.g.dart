@@ -8,6 +8,7 @@ part of 'challenge_info.dart';
 
 ChallengeInfo _$ChallengeInfoFromJson(Map<String, dynamic> json) {
   return ChallengeInfo(
+    id: json['id'] as String,
     challengeHostName: json['challengeHostName'] as String,
     challengeHostId: json['challengeHostId'] as String,
     title: json['title'] as String,
@@ -25,6 +26,7 @@ ChallengeInfo _$ChallengeInfoFromJson(Map<String, dynamic> json) {
 
 Map<String, dynamic> _$ChallengeInfoToJson(ChallengeInfo instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'challengeHostName': instance.challengeHostName,
       'challengeHostId': instance.challengeHostId,
       'title': instance.title,

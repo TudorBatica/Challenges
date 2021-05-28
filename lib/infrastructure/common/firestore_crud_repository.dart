@@ -60,10 +60,12 @@ abstract class FirestoreCrudRepository<T> implements CrudRepository<T> {
   /// Retrieves the entire collection
   Future<List<T>> readEntireCollection() async {
     final entireCollection = await _collection.get();
-    return entireCollection.docs.map((document) {
-      final data = document.data();
-      data.addAll({'id': document.id});
-      return _serializer.fromJson(document.data());
-    }).toList();
+    return entireCollection.docs.map(
+      (document) {
+        final data = document.data();
+        data.addAll({'id': document.id});
+        return _serializer.fromJson(document.data());
+      },
+    ).toList();
   }
 }
