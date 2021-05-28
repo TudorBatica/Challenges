@@ -20,7 +20,7 @@ class FirestoreChallengeRepository implements ChallengeRepository {
   Future<void> createNewChallenge(Challenge challenge) async {
     final challengeId =
         await _challengeInfoRepository.create(challenge.information, null);
-    await _challengeTaskRepository.create(challenge.task, challengeId);
+    await _challengeTaskRepository.create(challenge.task!, challengeId);
   }
 
   @override
@@ -32,6 +32,11 @@ class FirestoreChallengeRepository implements ChallengeRepository {
   @override
   Future<ChallengeInfo> getChallengeInfo(String id) async {
     return await _challengeInfoRepository.read(id);
+  }
+
+  @override
+  Future<ChallengeTask> getChallengeTask(String id) {
+    return _challengeTaskRepository.read(id);
   }
 
   @override

@@ -9,7 +9,7 @@ class Challenge extends Equatable {
   final ChallengeInfo information;
 
   /// {@macro ChallengeTask}
-  final ChallengeTask task;
+  final ChallengeTask? task;
 
   // ignore: public_member_api_docs
   Challenge({required this.information, required this.task});

@@ -1,4 +1,4 @@
-import 'package:challengesapp/presentation/challenge_details/challenge_page.dart';
+import 'package:challengesapp/presentation/challenge/challenge_page.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../presentation/authentication/sign_in_page.dart';
@@ -36,7 +36,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         return _getPageRoute(ChallengesListPage(), routingData.route);
       }
       return _getPageRoute(
-          ChallengePage(routingData.queryParams['id'].toString()),
+          ChallengePage(id: routingData.queryParams['id'].toString()),
           Uri(path: routingData.route, queryParameters: routingData.queryParams)
               .toString());
     default:

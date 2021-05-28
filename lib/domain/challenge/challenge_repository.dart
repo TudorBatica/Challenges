@@ -1,3 +1,5 @@
+import 'package:challengesapp/domain/challenge/challenge_task.dart';
+
 import 'challenge.dart';
 import 'challenge_info.dart';
 
@@ -15,6 +17,8 @@ abstract class ChallengeRepository {
 
   /// Retrieves the challenge information of a specific challenge.
   Future<ChallengeInfo> getChallengeInfo(String id);
+
+  Future<ChallengeTask> getChallengeTask(String id);
 
   /// Retrieve all challenge infos(no tasks).
   Future<List<ChallengeInfo>> getAllChallengeInfos();
