@@ -1,9 +1,9 @@
 import 'dart:math';
 
-import 'package:challengesapp/domain/common/pair.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/challenge/challenge_info.dart';
+import '../../domain/common/pair.dart';
 
 class ChallengeCard extends StatelessWidget {
   final ChallengeInfo challengeInfo;
@@ -17,25 +17,30 @@ class ChallengeCard extends StatelessWidget {
     final _imageHeight = (_width * (9 / 16)).toDouble();
     final _textContainerHeigth = min(_imageHeight * 2, 300).toDouble();
 
-    return Padding(
-      padding: const EdgeInsets.all(15.0),
-      child: Container(
-        color: Colors.transparent,
-        width: _width,
-        height: _imageHeight + _textContainerHeigth,
-        child: Column(
-          children: [
-            _ImageContainer(
-              height: _imageHeight,
-              imageURL: challengeInfo.imageURL,
-              width: _width,
+    return MaterialButton(
+      onPressed: () => print('c'),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+        child: Container(
+          width: _width,
+          height: _imageHeight + _textContainerHeigth,
+          decoration: BoxDecoration(color: Colors.transparent),
+          child: Container(
+            child: Column(
+              children: [
+                _ImageContainer(
+                  height: _imageHeight,
+                  imageURL: challengeInfo.imageURL,
+                  width: _width,
+                ),
+                _InformationContainer(
+                  challengeInfo: challengeInfo,
+                  height: _textContainerHeigth,
+                  width: _width,
+                )
+              ],
             ),
-            _InformationContainer(
-              challengeInfo: challengeInfo,
-              height: _textContainerHeigth,
-              width: _width,
-            )
-          ],
+          ),
         ),
       ),
     );
@@ -59,9 +64,15 @@ class _ImageContainer extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      child: Image.network(
-        imageURL,
-        fit: BoxFit.cover,
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10.0),
+          topRight: Radius.circular(10.0),
+        ),
+        child: Image.network(
+          imageURL,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
@@ -84,9 +95,15 @@ class _InformationContainer extends StatelessWidget {
     return Container(
       width: width,
       height: height,
-      color: Colors.white,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(10.0),
+          bottomRight: Radius.circular(10.0),
+        ),
+      ),
       child: Padding(
-        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+        padding: const EdgeInsets.only(left: 10.0, right: 10.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -151,7 +168,7 @@ class _DescriptionContainer extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: Text(
           description,
-          maxLines: 3,
+          maxLines: 4,
           style: Theme.of(context).textTheme.bodyText1,
         ),
       ),
