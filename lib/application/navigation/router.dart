@@ -7,23 +7,37 @@ import '../../presentation/home/home_page.dart';
 import '../../presentation/new_challenge/new_challenge_page.dart';
 import '../../presentation/profile/profile_page.dart';
 import 'route_names.dart';
+import 'string_routing_extension.dart';
 
 /// Retrieves the correct route using its path
 Route<dynamic> generateRoute(RouteSettings settings) {
-  switch (settings.name) {
+  if (settings.name == null) {
+    /// default page for anonymous route
+    return _getPageRoute(ProfilePage(), settings.name.toString());
+  }
+
+  final routingData = settings.name!.toRoutingData;
+  switch (routingData.route) {
     case homeRoute:
-      return _getPageRoute(HomePage(), settings.name.toString());
+      return _getPageRoute(HomePage(), routingData.route);
     case profileRoute:
-      return _getPageRoute(ProfilePage(), settings.name.toString());
+      return _getPageRoute(ProfilePage(), routingData.route);
     case signInRoute:
-      return _getPageRoute(SignInPage(), settings.name.toString());
+      return _getPageRoute(SignInPage(), routingData.route);
     case signUpRoute:
-      return _getPageRoute(SignUpPage(), settings.name.toString());
+      return _getPageRoute(SignUpPage(), routingData.route);
     case hostChallengeRoute:
-      return _getPageRoute(NewChallengePage(), settings.name.toString());
+      return _getPageRoute(NewChallengePage(), routingData.route);
     case challengesListRoute:
-      return _getPageRoute(ChallengesListPage(), settings.name.toString());
+      if (routingData.queryParams.isEmpty) {
+        return _getPageRoute(ChallengesListPage(), routingData.route);
+      }
+      return _getPageRoute(
+          HomePage(),
+          Uri(path: routingData.route, queryParameters: routingData.queryParams)
+              .toString());
     default:
+      //TODO: replace with 404
       return _getPageRoute(ProfilePage(), settings.name.toString());
   }
 }

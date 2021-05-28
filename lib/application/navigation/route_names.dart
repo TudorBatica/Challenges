@@ -4,6 +4,9 @@ const String homeRoute = '/home';
 /// Challenges list page
 const String challengesListRoute = '/challenges';
 
+/// Challenge details page
+String challengeRoute(String id) => '$challengesListRoute?id=$id';
+
 /// User profile page
 const String profileRoute = '/profile';
 

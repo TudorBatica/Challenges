@@ -1,7 +1,10 @@
 import 'dart:math';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:challengesapp/application/common/app_cubit.dart';
+import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jiffy/jiffy.dart';
 
 import '../../domain/challenge/challenge_info.dart';
@@ -10,6 +13,7 @@ import '../../domain/common/pair.dart';
 class ChallengeCard extends StatelessWidget {
   final ChallengeInfo challengeInfo;
 
+  // ignore: public_member_api_docs
   const ChallengeCard({Key? key, required this.challengeInfo})
       : super(key: key);
 
@@ -20,7 +24,8 @@ class ChallengeCard extends StatelessWidget {
     final _textContainerHeigth = min(_imageHeight * 2, 300).toDouble();
 
     return MaterialButton(
-      onPressed: () => print('c'),
+      onPressed: () => BlocProvider.of<AppCubit>(context)
+          .navigateTo(challengeRoute(challengeInfo.challengeHostId)),
       child: Padding(
         padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
         child: Container(
