@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 
@@ -70,10 +71,18 @@ class _ImageContainer extends StatelessWidget {
           topLeft: Radius.circular(10.0),
           topRight: Radius.circular(10.0),
         ),
-        child: Image.network(
+        child: CachedNetworkImage(
+          imageUrl: imageURL,
+          fit: BoxFit.cover,
+          errorWidget: (context, url, error) =>
+              Center(child: Icon(Icons.error)),
+          progressIndicatorBuilder: (context, url, downloadProgress) =>
+              CircularProgressIndicator(value: downloadProgress.progress),
+        ), /*
+        Image.network(
           imageURL,
           fit: BoxFit.cover,
-        ),
+        ),*/
       ),
     );
   }

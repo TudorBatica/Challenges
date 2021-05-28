@@ -12,7 +12,9 @@ class ChallengesListPage extends StatelessWidget {
     return ScaffoldWithBackground(
         child: BlocProvider(
       create: (context) => getIt<ChallengesListCubit>(),
-      child: ChallengesList(),
+      child: Center(
+        child: ChallengesList(),
+      ),
     ));
   }
 }

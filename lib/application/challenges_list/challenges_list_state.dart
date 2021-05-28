@@ -13,7 +13,6 @@ class ChallengesListState extends Equatable {
   const ChallengesListState({this.challenges});
 
   @override
-  // TODO: implement props
   List<Object?> get props => [challenges];
 
   // ignore: public_member_api_docs
