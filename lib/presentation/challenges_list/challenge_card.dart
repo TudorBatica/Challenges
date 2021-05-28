@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:jiffy/jiffy.dart';
 
 import '../../domain/challenge/challenge_info.dart';
 import '../../domain/common/pair.dart';
@@ -180,7 +181,7 @@ class _AdditionalInformation extends StatelessWidget {
   final double height;
   final Pair<int, int> teamSize;
 
-  late final DateTime nextDeadline;
+  late final String nextDeadline;
   late final String nextDeadlineMessage;
 
   _AdditionalInformation(
@@ -193,14 +194,17 @@ class _AdditionalInformation extends StatelessWidget {
       : super(key: key) {
     final now = DateTime.now();
     if (registrationDeadline.isAfter(now)) {
-      nextDeadline = registrationDeadline;
+      nextDeadline = Jiffy(registrationDeadline).fromNow();
       nextDeadlineMessage = ' registration deadline: ';
     } else if (startDatetime.isAfter(now)) {
-      nextDeadline = startDatetime;
+      nextDeadline = Jiffy(startDatetime).fromNow();
       nextDeadlineMessage = ' starts: ';
+    } else if (solutionSubmissionDeadline.isAfter(now)) {
+      nextDeadline = Jiffy(solutionSubmissionDeadline).fromNow();
+      nextDeadlineMessage = ' submit solutions: ';
     } else {
-      nextDeadline = solutionSubmissionDeadline;
-      nextDeadlineMessage = ' submit solutions until: ';
+      nextDeadline = Jiffy(registrationDeadline).fromNow();
+      nextDeadlineMessage = 'challenge ended: ';
     }
   }
 
