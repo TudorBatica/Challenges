@@ -6,6 +6,7 @@ import '../../application/challenge/challenge_cubit.dart';
 import '../../application/challenge/challenge_state.dart';
 import '../common/scaffold_with_background.dart';
 
+/// Challenge details page
 class ChallengePage extends StatelessWidget {
   /// Challenge id
   final String id;

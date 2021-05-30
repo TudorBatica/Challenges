@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 
-import 'package:challengesapp/domain/challenge/challenge.dart';
+import '../../domain/challenge/challenge.dart';
 
 /// Models the data required to build
 /// a challenge details page
@@ -21,6 +21,7 @@ class ChallengeState extends Equatable {
   @override
   List<Object?> get props => [notFound, challenge];
 
+  // ignore: public_member_api_docs
   ChallengeState copyWith({
     bool? notFound,
     Challenge? challenge,

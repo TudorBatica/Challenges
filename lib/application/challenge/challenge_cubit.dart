@@ -1,12 +1,11 @@
-import 'package:challengesapp/application/common/app_cubit.dart';
-import 'package:challengesapp/domain/challenge/challenge.dart';
-import 'package:challengesapp/domain/common/common_failures.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 
 import '../../dependencies_configuration.dart';
+import '../../domain/challenge/challenge.dart';
 import '../../domain/challenge/challenge_repository.dart';
+import '../../domain/common/common_failures.dart';
+import '../common/app_cubit.dart';
 import 'challenge_state.dart';
 
 /// Manages the state of a details page of a challenge.

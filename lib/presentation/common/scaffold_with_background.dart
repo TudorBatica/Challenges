@@ -10,8 +10,6 @@ class ScaffoldWithBackground extends StatelessWidget {
   const ScaffoldWithBackground({Key? key, required this.child})
       : super(key: key);
 
-  final _backgroundPath = kIsWeb ? 'assets/background.png' : 'background.png';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

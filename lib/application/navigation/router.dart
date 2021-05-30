@@ -1,8 +1,8 @@
-import 'package:challengesapp/presentation/challenge/challenge_page.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../presentation/authentication/sign_in_page.dart';
 import '../../presentation/authentication/sign_up_page.dart';
+import '../../presentation/challenge/challenge_page.dart';
 import '../../presentation/challenges_list/challenges_list_page.dart';
 import '../../presentation/home/home_page.dart';
 import '../../presentation/new_challenge/new_challenge_page.dart';

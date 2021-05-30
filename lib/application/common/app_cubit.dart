@@ -1,16 +1,15 @@
 import 'dart:async';
 
-import 'package:challengesapp/application/navigation/logged_in_users_only_routes.dart';
-import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/authentication/authentication_repository.dart';
 import '../../domain/authentication/user_identity.dart';
 import '../../domain/common/user.dart';
+import '../navigation/logged_in_users_only_routes.dart';
+import '../navigation/route_names.dart';
 
 part 'app_state.dart';
 

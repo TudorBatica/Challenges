@@ -1,10 +1,10 @@
-import 'package:challengesapp/application/common/app_cubit.dart';
-import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
 import '../../application/authentication/sign_up_cubit.dart';
+import '../../application/common/app_cubit.dart';
+import '../../application/navigation/route_names.dart';
 import '../common/base_form.dart';
 import '../common/button_with_border.dart';
 
