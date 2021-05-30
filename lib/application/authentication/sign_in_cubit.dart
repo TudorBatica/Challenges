@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:formz/formz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
@@ -16,11 +17,9 @@ part 'sign_in_state.dart';
 @injectable
 class SignInCubit extends Cubit<SignInState> {
   final AuthenticationRepository _authenticationRepository;
-  final NavigationService _navigationService;
 
   /// Constructor
-  SignInCubit(this._authenticationRepository, this._navigationService)
-      : super(const SignInState());
+  SignInCubit(this._authenticationRepository) : super(const SignInState());
 
   /// Update state with new email
   void emailChanged(String value) {
@@ -49,15 +48,5 @@ class SignInCubit extends Cubit<SignInState> {
     } on Exception {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
     }
-  }
-
-  /// Push the profile route
-  Future<void> navigateToProfilePage() async {
-    _navigationService.navigateTo(profileRoute);
-  }
-
-  /// Push the sign up route
-  Future<void> navigateToSignUpPage() async {
-    _navigationService.navigateTo(signUpRoute);
   }
 }

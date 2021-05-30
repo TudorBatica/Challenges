@@ -1,3 +1,6 @@
+import 'package:challengesapp/application/common/app_cubit.dart';
+import 'package:challengesapp/application/navigation/route_names.dart';
+import 'package:challengesapp/presentation/authentication/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -19,7 +22,7 @@ class SignInForm extends StatelessWidget {
                 content: Text('Sign in failed. Please, try again.')));
         }
         if (state.status.isSubmissionSuccess) {
-          context.read<SignInCubit>().navigateToProfilePage();
+          BlocProvider.of<AppCubit>(context).navigateTo(profileRoute);
         }
       },
       child: Align(
@@ -123,7 +126,8 @@ class _GoToSignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonWithBorder(
-      onPressed: () => context.read<SignInCubit>().navigateToSignUpPage(),
+      onPressed: () =>
+          BlocProvider.of<AppCubit>(context).navigateTo(signUpRoute),
       text: "Don't have an account? Sign up here.",
       borderColor: Theme.of(context).primaryColor,
       textColor: Theme.of(context).primaryColor,
