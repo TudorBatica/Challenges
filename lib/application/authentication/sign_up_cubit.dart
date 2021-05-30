@@ -18,11 +18,9 @@ part 'sign_up_state.dart';
 @injectable
 class SignUpCubit extends Cubit<SignUpState> {
   /// Constructor
-  SignUpCubit(this._authenticationRepository, this._navigationService)
-      : super(const SignUpState());
+  SignUpCubit(this._authenticationRepository) : super(const SignUpState());
 
   final AuthenticationRepository _authenticationRepository;
-  final NavigationService _navigationService;
 
   /// Update state with new email
   void emailChanged(String value) {
@@ -85,15 +83,5 @@ class SignUpCubit extends Cubit<SignUpState> {
     } on Exception {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
     }
-  }
-
-  /// Push the profile route
-  Future<void> navigateToProfilePage() async {
-    _navigationService.navigateTo(profileRoute);
-  }
-
-  /// Push the sign in route
-  Future<void> navigateToSignInPage() async {
-    _navigationService.navigateTo(signInRoute);
   }
 }

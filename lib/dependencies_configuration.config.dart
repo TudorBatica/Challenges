@@ -76,8 +76,8 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
           get<_i6.JsonSerializer<_i9.ChallengeTask>>()));
   gh.factory<_i24.SignInCubit>(
       () => _i24.SignInCubit(get<_i17.AuthenticationRepository>()));
-  gh.factory<_i25.SignUpCubit>(() => _i25.SignUpCubit(
-      get<_i17.AuthenticationRepository>(), get<_i13.NavigationService>()));
+  gh.factory<_i25.SignUpCubit>(
+      () => _i25.SignUpCubit(get<_i17.AuthenticationRepository>()));
   gh.factory<_i26.AppCubit>(() => _i26.AppCubit(
       get<_i17.AuthenticationRepository>(), get<_i13.NavigationService>()));
   gh.lazySingleton<_i27.ChallengeRepository>(() =>
