@@ -2,13 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../domain/common/common_failures.dart';
-import '../../domain/common/crud_repository.dart';
 import '../../domain/common/json_serializer.dart';
 
 /// Repository which provides basic CRUD
 /// functionalities for a Firestore database.
 /// The repository stores one entity of type T per Firestore document.
-abstract class FirestoreCrudRepository<T> implements CrudRepository<T> {
+abstract class FirestoreCrudRepository<T> {
   final FirebaseFirestore _firebaseFirestore;
 
   @protected
@@ -23,7 +22,8 @@ abstract class FirestoreCrudRepository<T> implements CrudRepository<T> {
     _collection = _firebaseFirestore.collection(collectionPath);
   }
 
-  @override
+  /// Create e new doc.
+  /// Will auto generate an id if one is not provided.
   Future<String> create(T entity, String? documentId) async {
     if (documentId == null) {
       final newDoc = await _collection.add(_serializer.toJson(entity));
@@ -33,7 +33,7 @@ abstract class FirestoreCrudRepository<T> implements CrudRepository<T> {
     return documentId;
   }
 
-  @override
+  /// Delete a document.
   Future<void> delete(String documentId) async {
     await _collection.doc(documentId).delete();
   }
@@ -41,7 +41,6 @@ abstract class FirestoreCrudRepository<T> implements CrudRepository<T> {
   /// Retrieves the entity located inside a specific document
   /// Throws a [DataNotFound] exception
   /// if the document does not exist or is empty.
-  @override
   Future<T> read(String documentId) async {
     final document = await _collection.doc(documentId).get();
     final docData = document.data() ?? <String, dynamic>{};
@@ -52,12 +51,12 @@ abstract class FirestoreCrudRepository<T> implements CrudRepository<T> {
     return _serializer.fromJson(docData);
   }
 
-  @override
+  /// Update a specific doc.
   Future<void> update(T entity, String documentId) async {
     await _collection.doc(documentId).set(_serializer.toJson(entity));
   }
 
-  /// Retrieves the entire collection
+  /// Retrieves the entire collection.
   Future<List<T>> readEntireCollection() async {
     final entireCollection = await _collection.get();
     return entireCollection.docs.map(
