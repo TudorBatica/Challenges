@@ -1,3 +1,5 @@
+import 'package:challengesapp/application/common/app_cubit.dart';
+import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
@@ -24,7 +26,7 @@ class NewChallengeForm extends StatelessWidget {
                     'We could not upload your challenge. Please, try again.')));
         }
         if (state.status.isSubmissionSuccess) {
-          context.read<NewChallengeCubit>().navigateToProfilePage();
+          BlocProvider.of<AppCubit>(context).navigateTo(profileRoute);
         }
       },
       child: Align(

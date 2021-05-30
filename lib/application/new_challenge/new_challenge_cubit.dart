@@ -34,11 +34,9 @@ part 'new_challenge_state.dart';
 class NewChallengeCubit extends Cubit<NewChallengeState> {
   final ChallengeRepository _challengeRepository;
   final ChallengeStorageRepository _challengeStorageRepository;
-  final NavigationService _navigationService;
 
   /// Constructor with initial state
-  NewChallengeCubit(this._challengeRepository, this._challengeStorageRepository,
-      this._navigationService)
+  NewChallengeCubit(this._challengeRepository, this._challengeStorageRepository)
       : super(NewChallengeState.intial());
 
   /// Title input has been changed by user
@@ -303,11 +301,6 @@ class NewChallengeCubit extends Cubit<NewChallengeState> {
     } on Exception {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
     }
-  }
-
-  /// Push the profile route
-  Future<void> navigateToProfilePage() async {
-    _navigationService.navigateTo(profileRoute);
   }
 
   // This horrible method is due to sound null safety

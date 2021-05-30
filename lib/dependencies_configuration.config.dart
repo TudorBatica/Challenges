@@ -87,9 +87,7 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i29.ChallengesListCubit>(
       () => _i29.ChallengesListCubit(get<_i27.ChallengeRepository>()));
   gh.factory<_i30.NewChallengeCubit>(() => _i30.NewChallengeCubit(
-      get<_i27.ChallengeRepository>(),
-      get<_i19.ChallengeStorageRepository>(),
-      get<_i13.NavigationService>()));
+      get<_i27.ChallengeRepository>(), get<_i19.ChallengeStorageRepository>()));
   return get;
 }
 
