@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../application/common/app_cubit.dart';
-import '../../application/navigation/navigation_service.dart';
 import '../../application/navigation/route_names.dart';
 import '../../application/navigation/router.dart';
 import '../../dependencies_configuration.dart';
+import '../../domain/authentication/authentication_repository.dart';
 import 'base_page.dart';
 
 /// App's main widget.
@@ -25,10 +25,12 @@ class RootWidget extends StatelessWidget {
     900: Color.fromRGBO(104, 106, 197, 1),
   };
 
+  final _navigatorKey = GlobalKey<NavigatorState>();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => getIt<AppCubit>(),
+      create: (_) => AppCubit(getIt<AuthenticationRepository>(), _navigatorKey),
       child: MaterialApp(
         title: 'Challenges App',
         debugShowCheckedModeBanner: false,
@@ -53,7 +55,7 @@ class RootWidget extends StatelessWidget {
           ),
         ),
         builder: (context, child) => BasePage(child: child),
-        navigatorKey: getIt<NavigationService>().navigatorKey,
+        navigatorKey: _navigatorKey,
         onGenerateRoute: generateRoute,
         initialRoute: profileRoute,
       ),

@@ -14,8 +14,7 @@ import '../../domain/challenge/challenge_repository.dart';
 import '../../domain/challenge/challenge_storage_repository.dart';
 import '../../domain/challenge/challenge_task.dart';
 import '../../domain/common/pair.dart';
-import '../navigation/navigation_service.dart';
-import '../navigation/route_names.dart';
+
 import 'category_input.dart';
 import 'description_input.dart';
 import 'image_selection_input.dart';

@@ -6,8 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 import '../../domain/authentication/authentication_repository.dart';
-import '../navigation/navigation_service.dart';
-import '../navigation/route_names.dart';
+
 import 'email.dart';
 import 'password.dart';
 

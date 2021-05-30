@@ -18,16 +18,17 @@ class ChallengePage extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           ChallengeCubit(buildContext: context, challengeId: id),
-      child: ScaffoldWithBackground(child:
-          BlocBuilder<ChallengeCubit, ChallengeState>(
-              builder: (context, state) {
-        if (state.notFound) {
-          return Container(child: Text('challenge does not exist'));
-        }
-        return state.challenge == null
-            ? Center(child: LoadingIndicator(indicatorType: Indicator.orbit))
-            : Container(child: Text(state.challenge!.information.title));
-      })),
+      child: ScaffoldWithBackground(
+        child: BlocBuilder<ChallengeCubit, ChallengeState>(
+            builder: (context, state) {
+          if (state.notFound) {
+            return Container(child: Text('challenge does not exist'));
+          }
+          return state.challenge == null
+              ? Center(child: LoadingIndicator(indicatorType: Indicator.orbit))
+              : Container(child: Text(state.challenge!.information.title));
+        }),
+      ),
     );
   }
 }
