@@ -52,9 +52,6 @@ class RootWidget extends StatelessWidget {
             subtitle2: GoogleFonts.redHatDisplay(fontWeight: FontWeight.w600),
           ),
         ),
-        darkTheme: ThemeData(
-          primarySwatch: Colors.green,
-        ),
         builder: (context, child) => BasePage(child: child),
         navigatorKey: getIt<NavigationService>().navigatorKey,
         onGenerateRoute: generateRoute,
