@@ -11,7 +11,12 @@ import 'route_names.dart';
 class NavigationServiceImpl implements NavigationService {
   final GlobalKey<NavigatorState> _navigatorKey = GlobalKey<NavigatorState>();
 
-  Future<dynamic>? navigateTo(String routeName) {
+  @override
+  Future<dynamic>? navigateTo(String routeName, User user) {
+    if (user.identity.isAnonymous &&
+        loggedInUsersOnlyRoutes.contains(routeName)) {
+      return _navigatorKey.currentState?.pushNamed(signUpRoute);
+    }
     return _navigatorKey.currentState?.pushNamed(routeName);
   }
 
@@ -20,13 +25,4 @@ class NavigationServiceImpl implements NavigationService {
   }
 
   GlobalKey<NavigatorState> get navigatorKey => _navigatorKey;
-
-  @override
-  Future<dynamic>? navigateToo(String routeName, User user) {
-    if (user.identity.isAnonymous &&
-        loggedInUsersOnlyRoutes.contains(routeName)) {
-      return _navigatorKey.currentState?.pushNamed(signUpRoute);
-    }
-    return _navigatorKey.currentState?.pushNamed(routeName);
-  }
 }

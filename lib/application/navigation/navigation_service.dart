@@ -5,10 +5,10 @@ import '../../domain/common/user.dart';
 /// Service which handles navigation
 abstract class NavigationService {
   /// Pushes the new route
-  Future<dynamic>? navigateTo(String routeName);
+  //Future<dynamic>? navigateTo(String routeName);
 
   ///TODO: replace navigateTo with this one.
-  Future<dynamic>? navigateToo(String routeName, User user);
+  Future<dynamic>? navigateTo(String routeName, User user);
 
   /// Pop current route
   void goBack();

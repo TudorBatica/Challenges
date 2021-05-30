@@ -31,7 +31,7 @@ class AppCubit extends Cubit<AppState> {
 
   /// Push a new route.
   Future<void> navigateTo(String routeName) async {
-    await _navigationService.navigateToo(routeName, state.user);
+    await _navigationService.navigateTo(routeName, state.user);
   }
 
   @override
