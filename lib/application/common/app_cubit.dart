@@ -1,6 +1,9 @@
 import 'dart:async';
 
+import 'package:challengesapp/application/navigation/logged_in_users_only_routes.dart';
+import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
@@ -8,7 +11,6 @@ import 'package:meta/meta.dart';
 import '../../domain/authentication/authentication_repository.dart';
 import '../../domain/authentication/user_identity.dart';
 import '../../domain/common/user.dart';
-import '../navigation/navigation_service.dart';
 
 part 'app_state.dart';
 
@@ -16,22 +18,32 @@ part 'app_state.dart';
 /// which may be considered 'global' (e.g.: the currently logged in user).
 /// Also manages navigation requests from widgets which do not have another
 /// cubit associated.
-@injectable
 class AppCubit extends Cubit<AppState> {
   /// Constructor
-  AppCubit(this._authenticationRepository, this._navigationService)
+  AppCubit(this._authenticationRepository, this.navigatorKey)
       : super(AppState(user: User(identity: UserIdentity.anonymous))) {
     _userSubscription = _authenticationRepository.user
         .listen((user) => emit(state.copyWith(user: user)));
   }
 
+  /// Global key for navigation
+  final GlobalKey<NavigatorState> navigatorKey;
+
   final AuthenticationRepository _authenticationRepository;
   late final StreamSubscription<User> _userSubscription;
-  final NavigationService _navigationService;
 
-  /// Push a new route.
-  Future<void> navigateTo(String routeName) async {
-    await _navigationService.navigateTo(routeName, state.user);
+  /// Push a new route
+  Future<dynamic>? navigateTo(String routeName) {
+    if (state.user.identity.isAnonymous &&
+        loggedInUsersOnlyRoutes.contains(routeName)) {
+      return navigatorKey.currentState?.pushNamed(signUpRoute);
+    }
+    return navigatorKey.currentState?.pushNamed(routeName);
+  }
+
+  /// Pop current route
+  void navigateBack() {
+    return navigatorKey.currentState?.pop();
   }
 
   @override
