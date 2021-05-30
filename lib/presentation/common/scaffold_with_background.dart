@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// Scaffold with the standard background image.
@@ -9,13 +10,15 @@ class ScaffoldWithBackground extends StatelessWidget {
   const ScaffoldWithBackground({Key? key, required this.child})
       : super(key: key);
 
+  final _backgroundPath = kIsWeb ? 'assets/background.png' : 'background.png';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("../../../web/background.png"),
+            image: AssetImage('web/background.png'),
             fit: BoxFit.cover,
           ),
         ),
