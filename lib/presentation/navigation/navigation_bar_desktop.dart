@@ -32,7 +32,7 @@ class _MainNavElements extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
         Text(
-          'Logo',
+          'Logos',
           style: TextStyle(fontSize: 24),
         ),
         SizedBox(
