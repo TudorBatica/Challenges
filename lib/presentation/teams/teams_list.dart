@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:challengesapp/presentation/teams/invitation_card.dart';
+import 'package:challengesapp/presentation/teams/team_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_indicator/loading_indicator.dart';
@@ -14,7 +17,13 @@ class TeamsAndInvitationsList extends StatelessWidget {
           current.user.profile?.invitations,
       builder: (context, state) => state.user.profile == null
           ? LoadingIndicator(indicatorType: Indicator.orbit)
-          : _InvitationsList(),
+          : Column(
+              children: [
+                _InvitationsList(),
+                SizedBox(height: 25.0),
+                _TeamsList()
+              ],
+            ),
     );
   }
 }
@@ -35,5 +44,22 @@ class _InvitationsList extends StatelessWidget {
             .toList(),
       );
     });
+  }
+}
+
+class _TeamsList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AppCubit, AppState>(
+      builder: (context, state) {
+        final teams = state.user.profile!.teams;
+        if (teams == null || teams.isEmpty) {
+          return Container();
+        }
+        return Column(
+          children: teams.map((e) => TeamCard(teamInfo: e)).toList(),
+        );
+      },
+    );
   }
 }
