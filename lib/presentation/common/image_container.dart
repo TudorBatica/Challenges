@@ -1,8 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+/// Display a image of fixed size, with loading indicator
 class ImageContainer extends StatelessWidget {
-  final BorderRadius? borderRadius;
+  final BorderRadius borderRadius;
   final double height;
   final String imageURL;
   final double width;
@@ -12,7 +13,7 @@ class ImageContainer extends StatelessWidget {
       required this.height,
       required this.imageURL,
       required this.width,
-      this.borderRadius})
+      required this.borderRadius})
       : super(key: key);
 
   @override
