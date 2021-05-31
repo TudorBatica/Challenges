@@ -1,3 +1,5 @@
+import 'package:challengesapp/presentation/new_team/new_team_page.dart';
+import 'package:challengesapp/presentation/teams/teams_page.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../presentation/authentication/sign_in_page.dart';
@@ -29,6 +31,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(SignUpPage(), routingData.route);
     case hostChallengeRoute:
       return _getPageRoute(NewChallengePage(), routingData.route);
+    case teamsRoute:
+      return _getPageRoute(TeamsPage(), routingData.route);
+    case newTeamRoute:
+      return _getPageRoute(NewTeamPage(), routingData.route);
     case challengesListRoute:
       if (routingData.queryParams.isEmpty ||
           routingData.queryParams['id'] == null ||

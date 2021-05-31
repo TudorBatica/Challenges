@@ -10,7 +10,7 @@ import '../../domain/teams/team_repository.dart';
 import '../common/firestore_crud_repository.dart';
 
 /// [TeamRepository] implementation which uses Firebase Firestore
-@LazySingleton(as: FirestoreCrudRepository)
+@LazySingleton(as: TeamRepository)
 class FirestoreTeamRepository extends FirestoreCrudRepository<Team>
     implements TeamRepository {
   FirestoreTeamRepository(

@@ -18,3 +18,9 @@ const String signUpRoute = '/signup';
 
 /// Host(add) a challenge page
 const String hostChallengeRoute = '/host';
+
+/// Teams and team invitations page
+const String teamsRoute = '/teams';
+
+/// New team creation page
+const String newTeamRoute = '/newteam';

@@ -36,7 +36,7 @@ class NewTeamState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [nameInput, members, userNotFound, status];
+  List<Object?> get props => [nameInput, members, userNotFound, userId, status];
 
   /// Copy constructor
   NewTeamState copyWith(

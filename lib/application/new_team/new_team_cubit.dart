@@ -56,18 +56,34 @@ class NewTeamCubit extends Cubit<NewTeamState> {
     }
   }
 
+  /// Resets the user not found flag
+  void resetUserNotFound() async {
+    emit(state.copyWith(userNotFound: !state.userNotFound));
+  }
+
   /// Creates the team, updates the logged in user's profile
   /// and send invitations to team members(by updating their profiles).
   Future<void> createTeamAndInviteMembers(
-      String currentlyLoggedInUserId) async {
-    final team = await _createTeam();
-    _addTeamToCurrentUserProfile(team, currentlyLoggedInUserId);
-    _inviteMembers(team);
+      String currentlyLoggedInUserId, String currentlyLoggedInUserName) async {
+    emit(state.copyWith(status: FormzStatus.submissionInProgress));
+    try {
+      final team =
+          await _createTeam(currentlyLoggedInUserId, currentlyLoggedInUserName);
+      _addTeamToCurrentUserProfile(team, currentlyLoggedInUserId);
+      _inviteMembers(team);
+      emit(state.copyWith(status: FormzStatus.submissionSuccess));
+    } on Exception {
+      emit(state.copyWith(status: FormzStatus.submissionFailure));
+    }
   }
 
-  Future<Team> _createTeam() async {
-    return await _teamRepository.createTeam(Team(
-        id: '', name: state.nameInput.value, members: state.members.value));
+  Future<Team> _createTeam(
+      String currentlyLoggedInUserId, String currentlyLoggedInUserName) async {
+    final members = state.members.value;
+    members.add(TeamMember(
+        id: currentlyLoggedInUserId, name: currentlyLoggedInUserName));
+    return await _teamRepository.createTeam(
+        Team(id: '', name: state.nameInput.value, members: members));
   }
 
   Future<void> _addTeamToCurrentUserProfile(

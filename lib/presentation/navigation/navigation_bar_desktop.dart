@@ -49,7 +49,7 @@ class _MainNavElements extends StatelessWidget {
         ),
         NavigationItem(
           name: 'TEAMS',
-          navigationPath: profileRoute,
+          navigationPath: teamsRoute,
           textColor: Colors.black,
           borderColor: Colors.white,
         )
