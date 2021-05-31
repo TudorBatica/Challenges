@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_indicator/loading_indicator.dart';
@@ -16,6 +18,9 @@ class ChallengePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _imageWidth = min(MediaQuery.of(context).size.width, 400).toDouble();
+    final _imageHeight = (_imageWidth * (9 / 16)).toDouble();
+
     return BlocProvider(
       create: (context) =>
           ChallengeCubit(buildContext: context, challengeId: id),
@@ -27,7 +32,10 @@ class ChallengePage extends StatelessWidget {
           }
           return state.challenge == null
               ? Center(child: LoadingIndicator(indicatorType: Indicator.orbit))
-              : Container(child: Text(state.challenge!.information.title));
+              : Container(
+                  child: Column(
+                  children: [Container()],
+                ));
         }),
       ),
     );

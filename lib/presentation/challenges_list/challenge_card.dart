@@ -9,6 +9,7 @@ import '../../application/common/app_cubit.dart';
 import '../../application/navigation/route_names.dart';
 import '../../domain/challenge/challenge_info.dart';
 import '../../domain/common/pair.dart';
+import '../common/image_container.dart';
 
 /// Challenge card used as list tile for the challenges list
 class ChallengeCard extends StatelessWidget {
@@ -37,10 +38,14 @@ class ChallengeCard extends StatelessWidget {
           child: Container(
             child: Column(
               children: [
-                _ImageContainer(
+                ImageContainer(
                   height: _imageHeight,
                   imageURL: challengeInfo.imageURL,
                   width: _width,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10.0),
+                    topRight: Radius.circular(10.0),
+                  ),
                 ),
                 _InformationContainer(
                   challengeInfo: challengeInfo,
@@ -50,45 +55,6 @@ class ChallengeCard extends StatelessWidget {
               ],
             ),
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _ImageContainer extends StatelessWidget {
-  final double height;
-  final String imageURL;
-  final double width;
-
-  const _ImageContainer(
-      {Key? key,
-      required this.height,
-      required this.imageURL,
-      required this.width})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      child: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10.0),
-          topRight: Radius.circular(10.0),
-        ),
-        child: CachedNetworkImage(
-          imageUrl: imageURL,
-          fit: BoxFit.cover,
-          errorWidget: (context, url, error) =>
-              Center(child: Icon(Icons.error)),
-          progressIndicatorBuilder: (context, url, downloadProgress) => Center(
-              child: Container(
-                  width: 50.0,
-                  height: 50.0,
-                  child: CircularProgressIndicator(
-                      value: downloadProgress.progress))),
         ),
       ),
     );
