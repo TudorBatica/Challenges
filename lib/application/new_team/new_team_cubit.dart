@@ -69,8 +69,9 @@ class NewTeamCubit extends Cubit<NewTeamState> {
     try {
       final team =
           await _createTeam(currentlyLoggedInUserId, currentlyLoggedInUserName);
-      _addTeamToCurrentUserProfile(team, currentlyLoggedInUserId);
-      _inviteMembers(team);
+      await _inviteMembers(team, currentlyLoggedInUserId);
+      await _addTeamToCurrentUserProfile(team, currentlyLoggedInUserId);
+
       emit(state.copyWith(status: FormzStatus.submissionSuccess));
     } on Exception {
       emit(state.copyWith(status: FormzStatus.submissionFailure));
@@ -94,11 +95,13 @@ class NewTeamCubit extends Cubit<NewTeamState> {
     }, currentlyLoggedInUserId);
   }
 
-  Future<void> _inviteMembers(Team team) async {
+  Future<void> _inviteMembers(Team team, String currentlyLoggedInUserId) async {
     for (final member in state.members.value) {
-      await _profileRepository.updateUserProfile({
-        'invitations': FieldValue.arrayUnion([team.toJson()])
-      }, member.id);
+      if (member.id != currentlyLoggedInUserId) {
+        await _profileRepository.updateUserProfile({
+          'invitations': FieldValue.arrayUnion([team.toJson()])
+        }, member.id);
+      }
     }
   }
 }
