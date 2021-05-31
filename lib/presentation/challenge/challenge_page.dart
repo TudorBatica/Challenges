@@ -1,8 +1,5 @@
 import 'dart:math';
 
-import 'package:challengesapp/domain/challenge/challenge_task.dart';
-import 'package:challengesapp/presentation/challenge/challenge_detail_section.dart';
-import 'package:challengesapp/presentation/common/image_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -10,7 +7,10 @@ import 'package:loading_indicator/loading_indicator.dart';
 
 import '../../application/challenge/challenge_cubit.dart';
 import '../../application/challenge/challenge_state.dart';
+import '../../domain/challenge/challenge_task.dart';
+import '../common/image_container.dart';
 import '../common/scaffold_with_background.dart';
+import 'challenge_detail_section.dart';
 
 /// Challenge details page
 class ChallengePage extends StatelessWidget {

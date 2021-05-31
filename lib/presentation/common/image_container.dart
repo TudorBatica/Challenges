@@ -3,11 +3,19 @@ import 'package:flutter/material.dart';
 
 /// Display a image of fixed size, with loading indicator
 class ImageContainer extends StatelessWidget {
+  /// Image border radius
   final BorderRadius borderRadius;
+
+  /// Image height
   final double height;
+
+  /// Image source
   final String imageURL;
+
+  /// Image width
   final double width;
 
+  // ignore: public_member_api_docs
   const ImageContainer(
       {Key? key,
       required this.height,

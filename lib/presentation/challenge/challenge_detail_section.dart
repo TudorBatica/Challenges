@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 
+/// The base form of a challenge detail section
 class ChallengeDetailSection extends StatelessWidget {
+  /// Container width
   final double width;
+
+  /// Leading widget, usually icon
   final Widget leading;
+
+  /// Title widget
   final Widget title;
+
+  /// Content widget
   final Widget content;
 
+  // ignore: public_member_api_docs
   const ChallengeDetailSection(
       {Key? key,
       required this.width,
