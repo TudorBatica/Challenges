@@ -1,3 +1,4 @@
+import 'package:challengesapp/presentation/teams/teams_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,7 +12,8 @@ class TeamsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScaffoldWithBackground(
-      child: Center(
+      child: Align(
+        alignment: Alignment.topCenter,
         child: Scrollbar(
           isAlwaysShown: true,
           child: SingleChildScrollView(
@@ -19,14 +21,17 @@ class TeamsPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  SizedBox(height: 25.0),
                   ButtonWithBorder(
-                    text: 'CREATE TEAM',
+                    text: 'CREATE A NEW TEAM',
                     borderColor: Theme.of(context).primaryColor,
                     textColor: Theme.of(context).primaryColor,
                     backgroundColor: Colors.white,
                     onPressed: () => BlocProvider.of<AppCubit>(context)
                         .navigateTo(newTeamRoute),
                   ),
+                  SizedBox(height: 25.0),
+                  TeamsAndInvitationsList()
                 ],
               ),
             ),
