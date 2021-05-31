@@ -1,3 +1,4 @@
+import 'package:challengesapp/domain/teams/team.dart';
 import 'package:challengesapp/domain/teams/team_basic_info.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -21,8 +22,15 @@ class UserProfile extends Equatable {
   /// Teams which the user is part of
   final List<TeamBasicInfo>? teams;
 
+  /// Teams into which the user has been invited.
+  final List<Team>? invitations;
+
   // ignore: public_member_api_docs
-  UserProfile({required this.name, this.profilePictureURL, this.teams});
+  UserProfile(
+      {required this.name,
+      this.profilePictureURL,
+      this.teams,
+      this.invitations});
 
   /// Build profile from json
   factory UserProfile.fromJson(Map<String, dynamic> json) =>

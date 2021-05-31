@@ -24,15 +24,24 @@ abstract class FirestoreCrudRepository<T> {
 
   /// Creates a new doc with documentId.
   /// Will auto generate an id if one is not provided.
+  /// If [writeInDoc] parameter is true, the method will update the document,
+  /// after creation with a field `{id: documentId}`.
   ///
   /// *WARNING: If the document already exists, it will OVERWRITE it.*
-  Future<String> create(T entity, String? documentId) async {
+  Future<String> create(T entity, String? documentId,
+      {bool writeIdInDoc = false}) async {
+    late final createdDocId;
     if (documentId == null) {
       final newDoc = await _collection.add(_serializer.toJson(entity));
-      return newDoc.id;
+      createdDocId = newDoc.id;
+    } else {
+      await _collection.doc(documentId).set(_serializer.toJson(entity));
+      createdDocId = documentId;
     }
-    await _collection.doc(documentId).set(_serializer.toJson(entity));
-    return documentId;
+    if (writeIdInDoc) {
+      update({'id': createdDocId}, createdDocId);
+    }
+    return createdDocId;
   }
 
   /// Delete a document.

@@ -13,6 +13,9 @@ UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
     teams: (json['teams'] as List<dynamic>?)
         ?.map((e) => TeamBasicInfo.fromJson(e as Map<String, dynamic>))
         .toList(),
+    invitations: (json['invitations'] as List<dynamic>?)
+        ?.map((e) => Team.fromJson(e))
+        .toList(),
   );
 }
 
@@ -21,4 +24,5 @@ Map<String, dynamic> _$UserProfileToJson(UserProfile instance) =>
       'name': instance.name,
       'profilePictureURL': instance.profilePictureURL,
       'teams': instance.teams,
+      'invitations': instance.invitations,
     };
