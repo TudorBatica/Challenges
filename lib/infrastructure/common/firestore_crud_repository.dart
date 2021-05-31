@@ -22,8 +22,10 @@ abstract class FirestoreCrudRepository<T> {
     _collection = _firebaseFirestore.collection(collectionPath);
   }
 
-  /// Create e new doc.
+  /// Creates a new doc with documentId.
   /// Will auto generate an id if one is not provided.
+  ///
+  /// *WARNING: If the document already exists, it will OVERWRITE it.*
   Future<String> create(T entity, String? documentId) async {
     if (documentId == null) {
       final newDoc = await _collection.add(_serializer.toJson(entity));
@@ -52,8 +54,9 @@ abstract class FirestoreCrudRepository<T> {
   }
 
   /// Update a specific doc.
-  Future<void> update(T entity, String documentId) async {
-    await _collection.doc(documentId).set(_serializer.toJson(entity));
+  Future<void> update(
+      Map<String, dynamic> updatedFields, String documentId) async {
+    await _collection.doc(documentId).update(updatedFields);
   }
 
   /// Retrieves the entire collection.

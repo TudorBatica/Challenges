@@ -7,14 +7,8 @@ import 'user_profile.dart';
 @Injectable(as: JsonSerializer)
 class UserProfileSerializer extends JsonSerializer<UserProfile> {
   @override
-  UserProfile fromJson(Map<String, dynamic> json) => UserProfile(
-        name: json['name'] as String,
-        profilePictureURL: json['profilePictureURL'] as String?,
-      );
+  UserProfile fromJson(Map<String, dynamic> json) => UserProfile.fromJson(json);
 
   @override
-  Map<String, dynamic> toJson(UserProfile instance) => <String, dynamic>{
-        'name': instance.name,
-        'profilePictureURL': instance.profilePictureURL,
-      };
+  Map<String, dynamic> toJson(UserProfile instance) => instance.toJson();
 }

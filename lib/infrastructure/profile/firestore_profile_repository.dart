@@ -25,4 +25,10 @@ class FirestoreProfileRepository extends FirestoreCrudRepository<UserProfile>
   Future<UserProfile> getUserProfile(String id) async {
     return read(id);
   }
+
+  @override
+  Future<void> updateUserProfile(
+      Map<String, dynamic> updatedFields, String id) {
+    return update(updatedFields, id);
+  }
 }

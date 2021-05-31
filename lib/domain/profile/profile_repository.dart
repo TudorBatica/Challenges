@@ -7,4 +7,7 @@ abstract class ProfileRepository {
 
   /// Retrieves a user profile
   Future<UserProfile> getUserProfile(String id);
+
+  /// Update specific fields of the profile
+  Future<void> updateUserProfile(Map<String, dynamic> updatedFields, String id);
 }
