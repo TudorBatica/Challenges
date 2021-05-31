@@ -18,8 +18,8 @@ class FirestoreChallengeRepository implements ChallengeRepository {
 
   @override
   Future<void> createNewChallenge(Challenge challenge) async {
-    final challengeId =
-        await _challengeInfoRepository.create(challenge.information, null);
+    final challengeId = await _challengeInfoRepository
+        .create(challenge.information, null, writeIdInDoc: true);
     await _challengeTaskRepository.create(challenge.task!, challengeId);
   }
 

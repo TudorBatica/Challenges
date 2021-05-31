@@ -58,7 +58,6 @@ abstract class FirestoreCrudRepository<T> {
     if (!document.exists || docData.isEmpty) {
       throw DataNotFound();
     }
-    docData.addAll({'id': documentId});
     return _serializer.fromJson(docData);
   }
 
@@ -71,12 +70,8 @@ abstract class FirestoreCrudRepository<T> {
   /// Retrieves the entire collection.
   Future<List<T>> readEntireCollection() async {
     final entireCollection = await _collection.get();
-    return entireCollection.docs.map(
-      (document) {
-        final data = document.data();
-        data.addAll({'id': document.id});
-        return _serializer.fromJson(data);
-      },
-    ).toList();
+    return entireCollection.docs
+        .map((document) => _serializer.fromJson(document.data()))
+        .toList();
   }
 }
