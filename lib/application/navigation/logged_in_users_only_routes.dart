@@ -5,5 +5,6 @@ List<String> loggedInUsersOnlyRoutes = [
   profileRoute,
   hostChallengeRoute,
   teamsRoute,
-  newTeamRoute
+  newTeamRoute,
+  profileRoute
 ];
