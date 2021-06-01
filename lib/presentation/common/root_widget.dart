@@ -57,7 +57,7 @@ class RootWidget extends StatelessWidget {
         builder: (context, child) => BasePage(child: child),
         navigatorKey: _navigatorKey,
         onGenerateRoute: generateRoute,
-        initialRoute: profileRoute,
+        initialRoute: challengesListRoute,
       ),
     );
   }
