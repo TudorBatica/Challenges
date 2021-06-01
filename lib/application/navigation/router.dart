@@ -45,7 +45,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       }
       return _getPageRoute(
           ChatPage(teamId: routingData.queryParams['id'].toString()),
-          routingData.route);
+          Uri(path: routingData.route, queryParameters: routingData.queryParams)
+              .toString());
     case challengesListRoute:
       if (routingData.queryParams.isEmpty ||
           routingData.queryParams['id'] == null ||

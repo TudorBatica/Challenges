@@ -29,4 +29,4 @@ const String newTeamRoute = '/newteam';
 const String chatRouteBase = '/chat';
 
 /// Team chat page path
-String chatRoute(String teamId) => '/$chatRouteBase?id=$teamId';
+String chatRoute(String teamId) => '$chatRouteBase?id=$teamId';
