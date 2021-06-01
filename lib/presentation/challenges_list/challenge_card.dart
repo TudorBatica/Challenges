@@ -184,7 +184,7 @@ class _AdditionalInformation extends StatelessWidget {
       nextDeadline = Jiffy(solutionSubmissionDeadline).fromNow();
       nextDeadlineMessage = ' submit solutions: ';
     } else {
-      nextDeadline = Jiffy(registrationDeadline).fromNow();
+      nextDeadline = Jiffy(solutionSubmissionDeadline).fromNow();
       nextDeadlineMessage = 'challenge ended: ';
     }
   }
