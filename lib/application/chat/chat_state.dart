@@ -9,8 +9,10 @@ class ChatState extends Equatable {
   /// The list challenge infos
   final List<Message>? messages;
 
+  /// True if the team is not in the database
   final bool teamDoesNotExist;
 
+  /// Tru if the user is not in this team
   final bool userIsNotInTeam;
 
   // ignore: public_member_api_docs

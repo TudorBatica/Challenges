@@ -31,7 +31,12 @@ class ChatCubit extends Cubit<ChatState> {
   }
 
   /// Sends a text message from the current user
-  Future<void> sendMessage(Message message) async {
+  Future<void> sendMessage(String textMessage) async {
+    final message = Message(
+      content: textMessage,
+      createdAt: DateTime.now(),
+      sender: _currentlyLoggedInUserId,
+    );
     await _chatRepository.sendMessage(_teamId, message);
   }
 
@@ -45,6 +50,7 @@ class ChatCubit extends Cubit<ChatState> {
       emit(state.copyWith(userIsNotInTeam: true));
       return;
     }
+    emit(state.copyWith(team: team));
     _startListeningConversation();
   }
 
