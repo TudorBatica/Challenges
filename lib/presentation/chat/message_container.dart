@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:jiffy/jiffy.dart';
 
+/// Displays a message
 class MessageContainer extends StatelessWidget {
+  /// Container color
   final Color backgroundColor;
+
+  /// Text color
   final Color textColor;
+
+  /// Container alignment on screen
   final AlignmentGeometry alignment;
 
+  /// Sender name(not id)
   final String senderName;
+
+  /// Message creation datetime
   final DateTime createdAt;
+
+  /// Message content
   final String content;
 
+  // ignore: public_member_api_docs
   const MessageContainer(
       {Key? key,
       required this.backgroundColor,
@@ -70,7 +82,7 @@ class MessageContainer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('$senderName   •   ${Jiffy(createdAt).fromNow()}',
+                SelectableText('$senderName  •  ${Jiffy(createdAt).fromNow()}',
                     style: Theme.of(context)
                         .textTheme
                         .bodyText2!
@@ -80,7 +92,7 @@ class MessageContainer extends StatelessWidget {
                   height: 0.01,
                 ),
                 SizedBox(height: 10.0),
-                Text(
+                SelectableText(
                   content,
                   style: Theme.of(context)
                       .textTheme
