@@ -1,4 +1,6 @@
+import 'package:challengesapp/application/common/app_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/navigation/route_names.dart';
 import 'navigation_item.dart';
@@ -63,13 +65,7 @@ class _TrailingNavElements extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        NavigationItem(
-          name: 'ENTER ACCOUNT',
-          navigationPath: signUpRoute,
-          textColor: Colors.white,
-          borderColor: Theme.of(context).primaryColor,
-          color: Theme.of(context).primaryColor,
-        ),
+        _AccountButton(),
         SizedBox(
           width: 20,
         ),
@@ -80,6 +76,33 @@ class _TrailingNavElements extends StatelessWidget {
           borderColor: Theme.of(context).primaryColor,
         ),
       ],
+    );
+  }
+}
+
+class _AccountButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<AppCubit, AppState>(
+      buildWhen: (previous, current) => previous.user != current.user,
+      builder: (context, state) => state.user.identity.isAnonymous
+          ? NavigationItem(
+              name: 'ENTER ACCOUNT',
+              navigationPath: signUpRoute,
+              textColor: Colors.white,
+              borderColor: Theme.of(context).primaryColor,
+              color: Theme.of(context).primaryColor,
+            )
+          : IconButton(
+              onPressed: () =>
+                  BlocProvider.of<AppCubit>(context).navigateTo(profileRoute),
+              icon: (state.user.profile == null ||
+                      state.user.profile!.profilePictureURL == null)
+                  ? Icon(Icons.person)
+                  : Image.network(
+                      state.user.profile!.profilePictureURL.toString(),
+                    ),
+            ),
     );
   }
 }
