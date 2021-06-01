@@ -1,5 +1,4 @@
-import 'package:challengesapp/presentation/new_team/new_team_page.dart';
-import 'package:challengesapp/presentation/teams/teams_page.dart';
+import 'package:challengesapp/presentation/chat/chat_page.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../presentation/authentication/sign_in_page.dart';
@@ -8,7 +7,9 @@ import '../../presentation/challenge/challenge_page.dart';
 import '../../presentation/challenges_list/challenges_list_page.dart';
 import '../../presentation/home/home_page.dart';
 import '../../presentation/new_challenge/new_challenge_page.dart';
+import '../../presentation/new_team/new_team_page.dart';
 import '../../presentation/profile/profile_page.dart';
+import '../../presentation/teams/teams_page.dart';
 import 'route_names.dart';
 import 'string_routing_extension.dart';
 
@@ -35,6 +36,16 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return _getPageRoute(TeamsPage(), routingData.route);
     case newTeamRoute:
       return _getPageRoute(NewTeamPage(), routingData.route);
+    case chatRouteBase:
+      if (routingData.queryParams.isEmpty ||
+          routingData.queryParams['id'] == null ||
+          routingData.queryParams['id']!.isEmpty) {
+        //TODO: replace w. 404
+        return _getPageRoute(ProfilePage(), settings.name.toString());
+      }
+      return _getPageRoute(
+          ChatPage(teamId: routingData.queryParams['id'].toString()),
+          routingData.route);
     case challengesListRoute:
       if (routingData.queryParams.isEmpty ||
           routingData.queryParams['id'] == null ||
