@@ -15,8 +15,7 @@ part 'app_state.dart';
 
 /// Cubit which manages the part of the app's state
 /// which may be considered 'global' (e.g.: the currently logged in user).
-/// Also manages navigation requests from widgets which do not have another
-/// cubit associated.
+/// Also manages navigation requests from widgets.
 class AppCubit extends Cubit<AppState> {
   /// Constructor
   AppCubit(this._authenticationRepository, this.navigatorKey)
