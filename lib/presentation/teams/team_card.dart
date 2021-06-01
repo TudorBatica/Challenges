@@ -1,7 +1,11 @@
 import 'dart:math';
 
-import 'package:challengesapp/domain/teams/team_basic_info.dart';
+import 'package:challengesapp/application/common/app_cubit.dart';
+import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../domain/teams/team_basic_info.dart';
 
 class TeamCard extends StatelessWidget {
   final TeamBasicInfo teamInfo;
@@ -10,27 +14,34 @@ class TeamCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = min(500.0, MediaQuery.of(context).size.width).toDouble();
-    return Container(
-      width: width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        color: Colors.white,
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: RichText(
-          text: TextSpan(
-            children: [
-              WidgetSpan(
-                child: Icon(Icons.group, color: Colors.black),
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: MaterialButton(
+        onPressed: () => BlocProvider.of<AppCubit>(context)
+            .navigateTo(chatRoute(teamInfo.id)),
+        child: Container(
+          width: width,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+            color: Colors.white,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: RichText(
+              text: TextSpan(
+                children: [
+                  WidgetSpan(
+                    child: Icon(Icons.group, color: Colors.black),
+                  ),
+                  TextSpan(
+                    text: '     ${teamInfo.name}',
+                    style: Theme.of(context).textTheme.subtitle1!.copyWith(
+                          color: Colors.black,
+                        ),
+                  )
+                ],
               ),
-              TextSpan(
-                text: '     ${teamInfo.name}',
-                style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                      color: Colors.black,
-                    ),
-              )
-            ],
+            ),
           ),
         ),
       ),
