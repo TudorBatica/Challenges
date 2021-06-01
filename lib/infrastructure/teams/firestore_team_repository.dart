@@ -18,9 +18,6 @@ class FirestoreTeamRepository extends FirestoreCrudRepository<Team>
       : super(firebaseFirestore, serializer, teamsCollectionPath);
 
   @override
-  Future<void> addTeamMember(String teamId, TeamMember member) async {}
-
-  @override
   Future<Team> createTeam(Team team) async {
     final teamId = await create(team, null, writeIdInDoc: true);
     return team.copyWith(id: teamId);
@@ -29,5 +26,11 @@ class FirestoreTeamRepository extends FirestoreCrudRepository<Team>
   @override
   Future<Team> retrieveTeam(String id) async {
     return await read(id);
+  }
+
+  @override
+  Future<void> updateTeam(
+      Map<String, dynamic> updatedFields, String teamId) async {
+    await update(updatedFields, teamId);
   }
 }

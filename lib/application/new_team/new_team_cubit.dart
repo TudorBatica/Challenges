@@ -80,9 +80,9 @@ class NewTeamCubit extends Cubit<NewTeamState> {
 
   Future<Team> _createTeam(
       String currentlyLoggedInUserId, String currentlyLoggedInUserName) async {
-    final members = state.members.value;
-    members.add(TeamMember(
-        id: currentlyLoggedInUserId, name: currentlyLoggedInUserName));
+    final members = [
+      TeamMember(id: currentlyLoggedInUserId, name: currentlyLoggedInUserName)
+    ];
     return await _teamRepository.createTeam(
         Team(id: '', name: state.nameInput.value, members: members));
   }

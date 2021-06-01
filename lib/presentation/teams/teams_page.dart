@@ -1,11 +1,15 @@
-import 'package:challengesapp/presentation/teams/teams_list.dart';
+import 'package:challengesapp/application/teams_and_invitations/teams_and_invitations_cubit.dart';
+import 'package:challengesapp/domain/profile/profile_repository.dart';
+import 'package:challengesapp/domain/teams/team_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/common/app_cubit.dart';
 import '../../application/navigation/route_names.dart';
+import '../../dependencies_configuration.dart';
 import '../common/button_with_border.dart';
 import '../common/scaffold_with_background.dart';
+import 'teams_and_invitations_list.dart';
 
 /// Page with teams and invitations
 class TeamsPage extends StatelessWidget {
@@ -31,7 +35,14 @@ class TeamsPage extends StatelessWidget {
                         .navigateTo(newTeamRoute),
                   ),
                   SizedBox(height: 25.0),
-                  TeamsAndInvitationsList()
+                  BlocProvider(
+                    create: (context) => TeamsAndInvitationsCubit(
+                      BlocProvider.of<AppCubit>(context).state.user.identity.id,
+                      getIt<ProfileRepository>(),
+                      getIt<TeamRepository>(),
+                    ),
+                    child: TeamsAndInvitationsList(),
+                  )
                 ],
               ),
             ),
