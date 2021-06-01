@@ -7,3 +7,5 @@ String get challengeInfoCollectionPath => 'challengesInfo';
 String get challengeTasksCollectionPath => 'challengesTasks';
 
 String get teamsCollectionPath => 'teams';
+
+String chatCollectionPath(String teamId) => '$teamsCollectionPath/$teamId/chat';
