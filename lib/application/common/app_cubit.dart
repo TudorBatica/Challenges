@@ -73,6 +73,11 @@ class AppCubit extends Cubit<AppState> {
     print(messagingToken);
   }
 
+  ///TODO: move method
+  Future<void> logUserOut() async {
+    await _authenticationRepository.signOut();
+  }
+
   @override
   Future<void> close() {
     _userSubscription.cancel();
