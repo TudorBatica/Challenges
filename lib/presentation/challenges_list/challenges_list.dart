@@ -18,8 +18,8 @@ class ChallengesList extends StatelessWidget {
           ? Center(child: LoadingIndicator(indicatorType: Indicator.orbit))
           : Scrollbar(
               isAlwaysShown: true,
-              child: SingleChildScrollView(
-                child: Container(
+              child: Container(
+                child: SingleChildScrollView(
                   child: ResponsiveGridRow(
                     children: state.challenges!
                         .map(
