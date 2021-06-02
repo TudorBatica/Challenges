@@ -1,3 +1,4 @@
+import 'package:challengesapp/presentation/common/page_404.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../presentation/authentication/sign_in_page.dart';
@@ -40,8 +41,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       if (routingData.queryParams.isEmpty ||
           routingData.queryParams['id'] == null ||
           routingData.queryParams['id']!.isEmpty) {
-        //TODO: replace w. 404
-        return _getPageRoute(ProfilePage(), settings.name.toString());
+        return _getPageRoute(Page404(), settings.name.toString());
       }
       return _getPageRoute(
           ChatPage(teamId: routingData.queryParams['id'].toString()),
@@ -58,8 +58,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           Uri(path: routingData.route, queryParameters: routingData.queryParams)
               .toString());
     default:
-      //TODO: replace with 404
-      return _getPageRoute(ProfilePage(), settings.name.toString());
+      return _getPageRoute(Page404(), settings.name.toString());
   }
 }
 
