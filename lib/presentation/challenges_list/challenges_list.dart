@@ -14,14 +14,13 @@ class ChallengesList extends StatelessWidget {
     return BlocBuilder<ChallengesListCubit, ChallengesListState>(
       buildWhen: (previous, current) =>
           previous.challenges != current.challenges,
-      builder: (context, state) => Scrollbar(
-        isAlwaysShown: true,
-        child: SingleChildScrollView(
-          child: Container(
-            child: state.challenges == null
-                ? Center(
-                    child: LoadingIndicator(indicatorType: Indicator.orbit))
-                : ResponsiveGridRow(
+      builder: (context, state) => state.challenges == null
+          ? Center(child: LoadingIndicator(indicatorType: Indicator.orbit))
+          : Scrollbar(
+              isAlwaysShown: true,
+              child: SingleChildScrollView(
+                child: Container(
+                  child: ResponsiveGridRow(
                     children: state.challenges!
                         .map(
                           (chl) => ResponsiveGridCol(
@@ -34,9 +33,9 @@ class ChallengesList extends StatelessWidget {
                         )
                         .toList(),
                   ),
-          ),
-        ),
-      ),
+                ),
+              ),
+            ),
     );
   }
 }
