@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 
@@ -18,4 +19,8 @@ abstract class FirebaseInjectableModule {
   /// for the Default Bucket
   @lazySingleton
   FirebaseStorage get firebaseStorage => FirebaseStorage.instance;
+
+  /// Retrieves the Firebase Cloud Messaging service instance
+  @lazySingleton
+  FirebaseMessaging get firebaseMessaging => FirebaseMessaging.instance;
 }

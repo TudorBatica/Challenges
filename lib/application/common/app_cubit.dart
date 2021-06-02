@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:equatable/equatable.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
@@ -18,10 +19,12 @@ part 'app_state.dart';
 /// Also manages navigation requests from widgets.
 class AppCubit extends Cubit<AppState> {
   /// Constructor
-  AppCubit(this._authenticationRepository, this.navigatorKey)
+  AppCubit(this._authenticationRepository, this.navigatorKey,
+      this._firebaseMessaging)
       : super(AppState(user: User(identity: UserIdentity.anonymous))) {
     _userSubscription = _authenticationRepository.user
         .listen((user) => emit(state.copyWith(user: user)));
+    askForPushNotificationsPermissions();
   }
 
   /// Global key for navigation
@@ -29,6 +32,8 @@ class AppCubit extends Cubit<AppState> {
 
   final AuthenticationRepository _authenticationRepository;
   late final StreamSubscription<User> _userSubscription;
+
+  final FirebaseMessaging _firebaseMessaging;
 
   /// Push a new route
   Future<dynamic>? navigateTo(String routeName) {
@@ -42,6 +47,30 @@ class AppCubit extends Cubit<AppState> {
   /// Pop current route
   void navigateBack() {
     return navigatorKey.currentState?.pop();
+  }
+
+  /// Ask for permission for push notifications
+  Future<void> askForPushNotificationsPermissions() async {
+    final settings = await _firebaseMessaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+    print('User granted permission: ${settings.authorizationStatus}');
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      _createInitialHandshakeWithFirebaseMessaging();
+    }
+  }
+
+  Future<void> _createInitialHandshakeWithFirebaseMessaging() async {
+    final messagingToken = await _firebaseMessaging.getToken(
+        vapidKey: 'BKS1ajSLsuJknuMLwO3wnarsA2nUxQnZZCi9ERkuhCW'
+            'VZEcGZhdQobqbYHrSX7UFzQUPxoipSlTExsCGNE2HNT4');
+    print(messagingToken);
   }
 
   @override
