@@ -1,7 +1,6 @@
-import 'package:challengesapp/domain/teams/team_member.dart';
 import 'package:formz/formz.dart';
 
-import '../../domain/common/pair.dart';
+import '../../domain/teams/team_member.dart';
 
 // ignore: public_member_api_docs
 enum MembersInputError { invalid }

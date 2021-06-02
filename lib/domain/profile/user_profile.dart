@@ -1,7 +1,8 @@
-import 'package:challengesapp/domain/teams/team.dart';
-import 'package:challengesapp/domain/teams/team_basic_info.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../teams/team.dart';
+import '../teams/team_basic_info.dart';
 
 part 'user_profile.g.dart';
 

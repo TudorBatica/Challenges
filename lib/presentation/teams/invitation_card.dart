@@ -5,15 +5,16 @@ import 'package:flutter/material.dart';
 import '../../domain/teams/team.dart';
 import '../common/button_with_border.dart';
 
+/// Displays an invitation
 class InvitationCard extends StatelessWidget {
-  /// Team to which the user is invited
+  /// Team into which the user is invited
   final Team team;
 
   /// Accept invitation handler
-  void Function()? onAccept;
+  final void Function()? onAccept;
 
   /// Decline invitation handler
-  void Function()? onDecline;
+  final void Function()? onDecline;
 
   // ignore: public_member_api_docs
   InvitationCard({Key? key, required this.team, this.onAccept, this.onDecline})

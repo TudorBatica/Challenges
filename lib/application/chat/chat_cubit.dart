@@ -14,6 +14,7 @@ import '../../domain/teams/team_repository.dart';
 
 part 'chat_state.dart';
 
+/// Manages chat's state
 @injectable
 class ChatCubit extends Cubit<ChatState> {
   final ChatRepository _chatRepository;

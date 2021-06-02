@@ -12,12 +12,14 @@ import '../../domain/teams/team_repository.dart';
 
 part 'teams_and_invitations_state.dart';
 
+/// Manages the teams and invitations list state.
 class TeamsAndInvitationsCubit extends Cubit<TeamsAndInvitationsState> {
   final ProfileRepository _profileRepository;
   final TeamRepository _teamRepository;
   final String _currentlyLoggedInUserId;
   late UserProfile _userProfile;
 
+  // ignore: public_member_api_docs
   TeamsAndInvitationsCubit(this._currentlyLoggedInUserId,
       this._profileRepository, this._teamRepository)
       : super(TeamsAndInvitationsState()) {

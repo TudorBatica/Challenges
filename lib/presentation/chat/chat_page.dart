@@ -1,5 +1,3 @@
-import 'package:challengesapp/domain/chat/message.dart';
-import 'package:challengesapp/domain/teams/team_member.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_indicator/loading_indicator.dart';
@@ -8,12 +6,15 @@ import '../../application/chat/chat_cubit.dart';
 import '../../application/common/app_cubit.dart';
 import '../../dependencies_configuration.dart';
 import '../../domain/chat/chat_repository.dart';
+import '../../domain/chat/message.dart';
+import '../../domain/teams/team_member.dart';
 import '../../domain/teams/team_repository.dart';
 import '../common/scaffold_with_background.dart';
 import 'message_container.dart';
 
 /// Chat page of a team
 class ChatPage extends StatelessWidget {
+  /// Team's id
   final String teamId;
 
   // ignore: public_member_api_docs

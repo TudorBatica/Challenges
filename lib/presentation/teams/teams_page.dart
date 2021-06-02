@@ -1,12 +1,12 @@
-import 'package:challengesapp/application/teams_and_invitations/teams_and_invitations_cubit.dart';
-import 'package:challengesapp/domain/profile/profile_repository.dart';
-import 'package:challengesapp/domain/teams/team_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../application/common/app_cubit.dart';
 import '../../application/navigation/route_names.dart';
+import '../../application/teams_and_invitations/teams_and_invitations_cubit.dart';
 import '../../dependencies_configuration.dart';
+import '../../domain/profile/profile_repository.dart';
+import '../../domain/teams/team_repository.dart';
 import '../common/button_with_border.dart';
 import '../common/scaffold_with_background.dart';
 import 'teams_and_invitations_list.dart';

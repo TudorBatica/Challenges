@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:challengesapp/domain/teams/team_member.dart';
+import 'team_member.dart';
 
 part 'team.g.dart';
 

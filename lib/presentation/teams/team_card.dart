@@ -1,15 +1,18 @@
 import 'dart:math';
 
-import 'package:challengesapp/application/common/app_cubit.dart';
-import 'package:challengesapp/application/navigation/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../application/common/app_cubit.dart';
+import '../../application/navigation/route_names.dart';
 import '../../domain/teams/team_basic_info.dart';
 
+/// Displays a team
 class TeamCard extends StatelessWidget {
+  /// Team to display
   final TeamBasicInfo teamInfo;
 
+  // ignore: public_member_api_docs
   const TeamCard({Key? key, required this.teamInfo}) : super(key: key);
   @override
   Widget build(BuildContext context) {

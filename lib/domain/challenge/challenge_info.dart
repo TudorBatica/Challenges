@@ -23,7 +23,7 @@ class ChallengeInfo extends Equatable {
   /// Describes what the challenge will be about. NOT the actual task
   final String description;
 
-  ///TODO: replace with actual Category obj
+  /// Challenge category
   final String category;
 
   /// Registration deadline

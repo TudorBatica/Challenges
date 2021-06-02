@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 
 import '../../application/teams_and_invitations/teams_and_invitations_cubit.dart';
 import 'invitation_card.dart';
 import 'team_card.dart';
 
+/// Displays a user's teams and invitations
 class TeamsAndInvitationsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

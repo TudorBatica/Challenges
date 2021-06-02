@@ -1,7 +1,7 @@
-import 'package:challengesapp/application/common/app_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../application/common/app_cubit.dart';
 import '../../application/navigation/route_names.dart';
 import 'navigation_item.dart';
 
