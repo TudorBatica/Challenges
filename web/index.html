@@ -64,10 +64,16 @@
           navigator.serviceWorker.register("flutter_service_worker.js");
         });
         window.addEventListener("load", function () {
-        navigator.serviceWorker.register("firebase-messaging-sw.js");
-      });
+          navigator.serviceWorker.register("firebase-messaging-sw.js");
+          
+          const messaging = firebase.messaging();
+          messaging.onMessage((payload) => {
+            console.log(`received payload ${payload}\nnotif ${payload.notification}`);
+            const notificationTitle = payload.notification.title;
+            self.registration.showNotification(notificationTitle, payload.notification);
+          });
+        });
       }
     </script>
-    
   </body>
 </html>
