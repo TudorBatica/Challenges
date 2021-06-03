@@ -22,4 +22,8 @@ abstract class ChallengeRepository {
 
   /// Retrieve all challenge infos(no tasks).
   Future<List<ChallengeInfo>> getAllChallengeInfos();
+
+  /// Update a challenge info
+  Future<void> updateChallengeInfo(
+      String id, Map<String, dynamic> fieldsToUpdate);
 }

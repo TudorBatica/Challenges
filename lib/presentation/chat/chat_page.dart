@@ -45,7 +45,15 @@ class ChatPage extends StatelessWidget {
             }
             return Scaffold(
               appBar: AppBar(
-                title: Text(state.team!.name),
+                title: SelectableText(state.team!.name),
+                bottom: PreferredSize(
+                  child: SelectableText(
+                    'Team Id: ${state.team!.id}',
+                    cursorColor: Colors.black,
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  preferredSize: Size.fromHeight(20.0),
+                ),
               ),
               body: (state.messages == null)
                   ? LoadingIndicator(indicatorType: Indicator.orbit)

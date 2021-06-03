@@ -43,4 +43,10 @@ class FirestoreChallengeRepository implements ChallengeRepository {
   Future<List<ChallengeInfo>> getAllChallengeInfos() {
     return _challengeInfoRepository.readEntireCollection();
   }
+
+  @override
+  Future<void> updateChallengeInfo(
+      String documentId, Map<String, dynamic> fieldsToUpdate) {
+    return _challengeInfoRepository.update(fieldsToUpdate, documentId);
+  }
 }

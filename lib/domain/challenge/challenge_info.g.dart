@@ -21,6 +21,9 @@ ChallengeInfo _$ChallengeInfoFromJson(Map<String, dynamic> json) {
     teamSizeMin: json['teamSizeMin'] as int,
     teamSizeMax: json['teamSizeMax'] as int,
     imageURL: json['imageURL'] as String,
+    registeredTeams: (json['registeredTeams'] as List<dynamic>?)
+        ?.map((e) => TeamBasicInfo.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -39,4 +42,5 @@ Map<String, dynamic> _$ChallengeInfoToJson(ChallengeInfo instance) =>
       'teamSizeMin': instance.teamSizeMin,
       'teamSizeMax': instance.teamSizeMax,
       'imageURL': instance.imageURL,
+      'registeredTeams': instance.registeredTeams,
     };

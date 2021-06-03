@@ -1,3 +1,5 @@
+import 'package:challengesapp/domain/teams/team_basic_info.dart';
+import 'package:challengesapp/domain/teams/team_member.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -47,6 +49,9 @@ class ChallengeInfo extends Equatable {
   /// Cover image download URL
   final String imageURL;
 
+  /// List of teams which take part in this challenge
+  final List<TeamBasicInfo>? registeredTeams;
+
   // ignore: public_member_api_docs
   ChallengeInfo(
       {this.id = '',
@@ -61,7 +66,8 @@ class ChallengeInfo extends Equatable {
       required this.prize,
       required this.teamSizeMin,
       required this.teamSizeMax,
-      required this.imageURL});
+      required this.imageURL,
+      this.registeredTeams});
 
   @override
   List<Object?> get props => [
@@ -73,7 +79,8 @@ class ChallengeInfo extends Equatable {
         submission,
         prize,
         teamSizeMin,
-        teamSizeMax
+        teamSizeMax,
+        registeredTeams
       ];
 
   // ignore: public_member_api_docs
