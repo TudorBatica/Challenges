@@ -1,5 +1,8 @@
 import 'dart:async';
 
+import 'package:challengesapp/application/navigation/router.dart';
+import 'package:challengesapp/presentation/challenges_list/challenges_list_page.dart';
+import 'package:challengesapp/presentation/profile/profile_page.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -34,6 +37,19 @@ class AppCubit extends Cubit<AppState> {
   late final StreamSubscription<User> _userSubscription;
 
   final FirebaseMessaging _firebaseMessaging;
+
+  Route<dynamic> generateRoute(RouteSettings settings) {
+    print(settings);
+    return _getPageRoute(ChallengesListPage(), settings.name.toString());
+    if (settings.name == null) {
+      /// default page for anonymous route
+      return _getPageRoute(ProfilePage(), settings.name.toString());
+    }
+  }
+
+  PageRoute _getPageRoute(Widget child, String routeName) {
+    return FadeRoute(child: child, routeName: routeName);
+  }
 
   /// Push a new route
   Future<dynamic>? navigateTo(String routeName) {

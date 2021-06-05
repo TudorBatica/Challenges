@@ -16,6 +16,7 @@ import 'string_routing_extension.dart';
 
 /// Retrieves the correct route using its path
 Route<dynamic> generateRoute(RouteSettings settings) {
+  print(settings);
   if (settings.name == null) {
     /// default page for anonymous route
     return _getPageRoute(ProfilePage(), settings.name.toString());
@@ -63,13 +64,13 @@ Route<dynamic> generateRoute(RouteSettings settings) {
 }
 
 PageRoute _getPageRoute(Widget child, String routeName) {
-  return _FadeRoute(child: child, routeName: routeName);
+  return FadeRoute(child: child, routeName: routeName);
 }
 
-class _FadeRoute extends PageRouteBuilder {
+class FadeRoute extends PageRouteBuilder {
   final Widget child;
   final String routeName;
-  _FadeRoute({required this.child, required this.routeName})
+  FadeRoute({required this.child, required this.routeName})
       : super(
           settings: RouteSettings(name: routeName),
           pageBuilder: (

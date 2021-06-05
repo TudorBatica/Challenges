@@ -17,6 +17,16 @@ import 'application/challenges_list/challenges_list_cubit.dart' as _i38;
 import 'application/chat/chat_cubit.dart' as _i39;
 import 'application/new_challenge/new_challenge_cubit.dart' as _i40;
 import 'application/new_team/new_team_cubit.dart' as _i33;
+import 'data/authentication/firebase_auth_repository.dart' as _i25;
+import 'data/challenge/firebase_challenge_storage_repository.dart' as _i27;
+import 'data/challenge/firestore_challenge_info_repository.dart' as _i31;
+import 'data/challenge/firestore_challenge_repository.dart' as _i37;
+import 'data/challenge/firestore_challenge_task_repository.dart' as _i32;
+import 'data/chat/firestore_chat_repository.dart' as _i29;
+import 'data/common/firebase_injectable_module.dart' as _i41;
+import 'data/common/firestore_crud_repository.dart' as _i30;
+import 'data/profile/firestore_profile_repository.dart' as _i21;
+import 'data/teams/firestore_team_repository.dart' as _i23;
 import 'domain/authentication/authentication_repository.dart' as _i24;
 import 'domain/challenge/challenge_info.dart' as _i8;
 import 'domain/challenge/challenge_info_serializer.dart' as _i9;
@@ -35,21 +45,8 @@ import 'domain/teams/team.dart' as _i18;
 import 'domain/teams/team_basic_info.dart' as _i16;
 import 'domain/teams/team_basic_info_serializer.dart' as _i17;
 import 'domain/teams/team_repository.dart' as _i22;
-import 'domain/teams/team_serializer.dart' as _i19;
-import 'infrastructure/authentication/firebase_auth_repository.dart' as _i25;
-import 'infrastructure/challenge/firebase_challenge_storage_repository.dart'
-    as _i27;
-import 'infrastructure/challenge/firestore_challenge_info_repository.dart'
-    as _i31;
-import 'infrastructure/challenge/firestore_challenge_repository.dart' as _i37;
-import 'infrastructure/challenge/firestore_challenge_task_repository.dart'
-    as _i32;
-import 'infrastructure/chat/firestore_chat_repository.dart' as _i29;
-import 'infrastructure/common/firebase_injectable_module.dart' as _i41;
-import 'infrastructure/common/firestore_crud_repository.dart' as _i30;
-import 'infrastructure/profile/firestore_profile_repository.dart' as _i21;
-import 'infrastructure/teams/firestore_team_repository.dart'
-    as _i23; // ignore_for_file: unnecessary_lambdas
+import 'domain/teams/team_serializer.dart'
+    as _i19; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]

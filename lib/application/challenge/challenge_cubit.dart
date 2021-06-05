@@ -21,8 +21,7 @@ part 'challenge_state.dart';
 
 /// Manages the state of a details page of a challenge.
 class ChallengeCubit extends Cubit<ChallengeState> {
-  /// The current build context; used to retrieve
-  /// the currently logged in user
+  /// The current build context
   final BuildContext buildContext;
 
   /// Challenge's id
