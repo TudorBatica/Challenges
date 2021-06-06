@@ -1,14 +1,15 @@
-import 'package:challengesapp/application/challenge/challenge_cubit.dart';
-import 'package:challengesapp/application/common/app_cubit.dart';
-import 'package:challengesapp/domain/challenge/challenge_task.dart';
-import 'package:challengesapp/presentation/challenge/challenge_detail_section.dart';
-import 'package:challengesapp/presentation/common/button_with_border.dart';
-import 'package:challengesapp/presentation/teams/team_card.dart';
+// ignore_for_file: public_member_api_docs
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 import 'package:intl/intl.dart';
 
+import '../../application/challenge/challenge_cubit.dart';
+import '../../domain/challenge/challenge_task.dart';
+import '../common/button_with_border.dart';
+import 'challenge_detail_section.dart';
+
+/// Display a section of details for the challenge details page
 class ChallengePresentationSection extends StatelessWidget {
   final double width;
   final String title;

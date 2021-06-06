@@ -5,12 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../application/common/app_cubit.dart';
 import '../../application/navigation/route_names.dart';
-import '../../application/navigation/router.dart';
 import '../../dependencies_configuration.dart';
 import '../../domain/authentication/authentication_repository.dart';
 import 'base_page.dart';
 
-/// App's main widget.
+/// App's main widget wrap.
 class RootWidget extends StatelessWidget {
   final _navigatorKey = GlobalKey<NavigatorState>();
   @override
@@ -23,9 +22,12 @@ class RootWidget extends StatelessWidget {
   }
 }
 
+/// App's main widget
 class RootAppWidget extends StatelessWidget {
+  /// Global navigation key used in the app
   final GlobalKey<NavigatorState> navigatorKey;
 
+  // ignore: public_member_api_docs
   RootAppWidget({Key? key, required this.navigatorKey}) : super(key: key);
 
   /// Used for the primary swatch's luminance

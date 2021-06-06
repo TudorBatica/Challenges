@@ -64,9 +64,14 @@ PageRoute _getPageRoute(Widget child, String routeName) {
   return FadeRoute(child: child, routeName: routeName);
 }
 
+/// [PageRouteBuilder] which uses a fade effect to display the new page
 class FadeRoute extends PageRouteBuilder {
+  /// Widget to display
   final Widget child;
+
+  /// New route name
   final String routeName;
+  // ignore: public_member_api_docs
   FadeRoute({required this.child, required this.routeName})
       : super(
           settings: RouteSettings(name: routeName),

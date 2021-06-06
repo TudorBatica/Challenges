@@ -1,5 +1,6 @@
-import 'package:challengesapp/presentation/common/scaffold_with_background.dart';
 import 'package:flutter/material.dart';
+
+import 'scaffold_with_background.dart';
 
 /// Path not found page
 class Page404 extends StatelessWidget {

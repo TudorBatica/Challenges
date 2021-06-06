@@ -11,7 +11,6 @@ import '../../domain/challenge/challenge_repository.dart';
 import '../../domain/challenge/challenge_task.dart';
 import '../../domain/common/common_failures.dart';
 import '../../domain/common/user.dart';
-import '../../domain/profile/profile_repository.dart';
 import '../../domain/teams/team.dart';
 import '../../domain/teams/team_basic_info.dart';
 import '../../domain/teams/team_repository.dart';
@@ -27,14 +26,12 @@ class ChallengeCubit extends Cubit<ChallengeState> {
   /// Challenge's id
   final String challengeId;
   late final ChallengeRepository _challengeRepository;
-  late final ProfileRepository _profileRepository;
   late final TeamRepository _teamRepository;
 
   // ignore: public_member_api_docs
   ChallengeCubit({required this.buildContext, required this.challengeId})
       : super(const ChallengeState()) {
     _challengeRepository = getIt<ChallengeRepository>();
-    _profileRepository = getIt<ProfileRepository>();
     _teamRepository = getIt<TeamRepository>();
     _emitInitialState();
     print(state.registrationStatus);

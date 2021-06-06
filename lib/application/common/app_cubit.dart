@@ -1,8 +1,5 @@
 import 'dart:async';
 
-import 'package:challengesapp/application/navigation/router.dart';
-import 'package:challengesapp/presentation/challenges_list/challenges_list_page.dart';
-import 'package:challengesapp/presentation/profile/profile_page.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -14,12 +11,12 @@ import '../../domain/authentication/user_identity.dart';
 import '../../domain/common/user.dart';
 import '../navigation/logged_in_users_only_routes.dart';
 import '../navigation/route_names.dart';
+import '../navigation/router.dart' as router;
 
 part 'app_state.dart';
 
-/// Cubit which manages the part of the app's state
-/// which may be considered 'global' (e.g.: the currently logged in user).
-/// Also manages navigation requests from widgets.
+/// Cubit which manages the currently logged in user state
+/// and navigation and asks permissions for push notifications
 class AppCubit extends Cubit<AppState> {
   /// Constructor
   AppCubit(this._authenticationRepository, this.navigatorKey,
@@ -38,17 +35,9 @@ class AppCubit extends Cubit<AppState> {
 
   final FirebaseMessaging _firebaseMessaging;
 
+  /// Route requested automatically by browser
   Route<dynamic> generateRoute(RouteSettings settings) {
-    print(settings);
-    return _getPageRoute(ChallengesListPage(), settings.name.toString());
-    if (settings.name == null) {
-      /// default page for anonymous route
-      return _getPageRoute(ProfilePage(), settings.name.toString());
-    }
-  }
-
-  PageRoute _getPageRoute(Widget child, String routeName) {
-    return FadeRoute(child: child, routeName: routeName);
+    return router.generateRoute(settings);
   }
 
   /// Push a new route
