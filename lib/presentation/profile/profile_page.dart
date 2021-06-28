@@ -67,7 +67,7 @@ class ProfilePage extends StatelessWidget {
                               style: Theme.of(context).textTheme.bodyText1,
                             ),
                             SizedBox(height: 20.0),
-                            ...state.user.profile!.teams!.map(
+                            ...?state.user.profile!.teams?.map(
                               (team) => Column(
                                 children: [
                                   TeamCard(teamInfo: team),
