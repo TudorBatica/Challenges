@@ -1,3 +1,4 @@
+import 'package:challengesapp/presentation/teams/team_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_indicator/loading_indicator.dart';
@@ -21,38 +22,64 @@ class ProfilePage extends StatelessWidget {
         builder: (context, state) {
           return (state.user.identity.isAnonymous || state.user.profile == null)
               ? LoadingIndicator(indicatorType: Indicator.orbit)
-              : BaseForm(
-                  elements: [
-                    Icon(
-                      Icons.person,
-                      size: 150.0,
+              : Center(
+                  child: Container(
+                    constraints: BoxConstraints(
+                      minWidth: MediaQuery.of(context).size.width * 0.8,
+                      minHeight: MediaQuery.of(context).size.height * 0.3,
                     ),
-                    SizedBox(height: 15.0),
-                    SelectableText(
-                      state.user.profile!.name,
-                      style: Theme.of(context).textTheme.headline3,
+                    decoration: BoxDecoration(color: Colors.white70),
+                    child: SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () {
+                                    context.read<AppCubit>().logUserOut();
+                                    context
+                                        .read<AppCubit>()
+                                        .navigateTo(challengesListRoute);
+                                  },
+                                  icon: Icon(Icons.logout),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: SelectableText(
+                                      state.user.profile!.name,
+                                      style:
+                                          Theme.of(context).textTheme.headline3,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 20.0),
+                            SelectableText(
+                              state.user.identity.email.toString(),
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
+                            SizedBox(height: 10.0),
+                            SelectableText(
+                              state.user.identity.id,
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
+                            SizedBox(height: 20.0),
+                            ...state.user.profile!.teams!.map(
+                              (team) => Column(
+                                children: [
+                                  TeamCard(teamInfo: team),
+                                  SizedBox(height: 10.0)
+                                ].toList(),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
-                    SizedBox(height: 15.0),
-                    ButtonWithBorder(
-                      text: 'LOG OUT',
-                      borderColor: Theme.of(context).primaryColor,
-                      textColor: Theme.of(context).primaryColor,
-                      onPressed: () async {
-                        await context.read<AppCubit>().logUserOut();
-                        context
-                            .read<AppCubit>()
-                            .navigateTo(challengesListRoute);
-                      },
-                    ),
-                    SizedBox(height: 30.0),
-                    SelectableText('Email and Unique ID',
-                        style: Theme.of(context).textTheme.headline5),
-                    SizedBox(height: 15.0),
-                    SelectableText(state.user.identity.email.toString(),
-                        style: Theme.of(context).textTheme.headline6),
-                    SelectableText('ID: ${state.user.identity.id}',
-                        style: Theme.of(context).textTheme.headline6),
-                  ],
+                  ),
                 );
         },
       ),

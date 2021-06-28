@@ -15,16 +15,19 @@ class NavigationBarMobile extends StatelessWidget {
 
     return Container(
       height: height,
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () => drawerKey.currentState?.openDrawer(),
-          ),
-          Text('Logo'),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.only(left: 15.0, right: 50.0),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              icon: Icon(Icons.menu),
+              onPressed: () => drawerKey.currentState?.openDrawer(),
+            ),
+            Text('Challenges'),
+          ],
+        ),
       ),
     );
   }
