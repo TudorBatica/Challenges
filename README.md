@@ -1,11 +1,13 @@
 # Challenges
 ![.NET workflow badge](https://github.com/TudorBatica/Challenges/workflows/pipeline/badge.svg)
-
 [![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://pub.dev/packages/effective_dart)
 
 Find and host challenges.
 
 ## Getting started
+
+### Live demo 👾
+Check it out [here](https://challengespwa.web.app/) or [here](https://challengespwa.firebaseapp.com/).
 
 ### Prerequisites 
 
